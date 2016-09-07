@@ -2,15 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:gravity="center">
+              android:layout_height="match_parent" android:gravity="center" android:background="#ffb100">
 
     <GridLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/Top">
+            android:layout_height="wrap_content" android:id="@+id/Top"
+    >
     </GridLayout>
-    <Chronometer
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/chronometer"/>
-    <GridLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/Bottom"/>
+            android:text="New Button"
+            android:id="@+id/button" android:onClick="generate"/>
+    <GridLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/Bottom"
+    />
 </LinearLayout>
