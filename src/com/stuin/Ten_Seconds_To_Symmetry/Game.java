@@ -11,54 +11,69 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import android.view.View.*;
+import android.renderscript.*;
 
 public class Game extends Activity {
     int size = 5;
-    Point change;
+    int change;
+    int maxColor = 3;
     Random random = new Random();
-    Point[] grid;
+    boolean win = false;
+    int[] grid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+        getActionBar().hide();
         generate(null);
+    }
+    
+    public void clear() {
+        GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
+        gridLayout.removeAllViews();
+        gridLayout = (GridLayout) findViewById(R.id.Bottom);
+        gridLayout.removeAllViews();
     }
 
     public void generate(View v) {
-        grid = new Point[size * size];
-        int i = 0;
-        for(int x = 0; x < size; x++) for(int y = 0; y < size; y++) {
-            grid[i] = new Point(i);
-            grid[i].color = random.nextInt(4);
-            i++;
-        }
-        change = grid[random.nextInt(grid.length)];
-        change.color = random.nextInt(3);
-        if(change.color == grid[change.i].color) change.color = 3;
-        showGrid();
-    }
-
-    public void showGrid() {
+        grid = new int[size * size];
+        
+        for(int i = 0; i < grid.length; i++) grid[i] = random.nextInt(maxColor);
+        change = random.nextInt(grid.length);
+        
+        TextView textView = (TextView) findViewById(R.id.button);
+        textView.setVisibility(View.INVISIBLE);
+        
         GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
         gridLayout.setColumnCount(size);
-        for(Point p : grid) {
-            TextView textView = new TextView(this);
-            textView.setWidth(100);
-            textView.setHeight(100);
-            setColor(textView,p.color);
-            gridLayout.addView(textView);
-        }
+        setGrid(gridLayout,true);
 
         gridLayout = (GridLayout) findViewById(R.id.Bottom);
         gridLayout.setColumnCount(size);
-        for(Point p : grid) {
+        setGrid(gridLayout,false);
+        
+        textView = (TextView) findViewById(change);
+        int c = random.nextInt(maxColor - 1);
+        if(grid[change] == c) c = maxColor - 1;
+        setColor(textView,c);
+    }
+    
+    public void setGrid(GridLayout gridLayout, boolean top) {
+        int i = 0;
+        for(int cell : grid) {
             TextView textView = new TextView(this);
             textView.setWidth(100);
             textView.setHeight(100);
-            if(p.i == change.i) setColor(textView,change.color);
-            else setColor(textView,p.color);
+            setColor(textView,cell);
             gridLayout.addView(textView);
+            
+            if(i == change) {
+                textView.setOnClickListener(winListener);
+                if(top) textView.setId(change);
+            } else textView.setOnClickListener(loseListener);
+            i++;
         }
     }
 
@@ -74,8 +89,49 @@ public class Game extends Activity {
                 textView.setBackgroundColor(Color.GREEN);
                 break;
             case 3:
+                textView.setBackgroundColor(Color.WHITE);
+                break;
+            case 4:
                 textView.setBackgroundColor(Color.BLACK);
                 break;
         }
     }
+    
+    View.OnClickListener loseListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View p1) {
+            TextView textView = (TextView) findViewById(R.id.button);
+            textView.setText("You Lose");
+            textView.setVisibility(View.VISIBLE);
+            clear();
+            
+            size--;
+            win = false;
+            if(size < 3) {
+                size = 6;
+                if(maxColor > 2) maxColor--;
+            }
+        }
+    };
+    
+    View.OnClickListener winListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View p1) {
+            TextView textView = (TextView) findViewById(R.id.button);
+            textView.setText("You Win");
+            textView.setVisibility(View.VISIBLE);
+            clear();
+            
+            if(size < 9 && (win || maxColor == 2)) {
+                size++;
+                win = false;
+            }
+            else win = true;
+            if(size == 9 && maxColor < 5)  {
+                size = 5;
+                maxColor++;
+            }
+            
+        }
+    };
 }
