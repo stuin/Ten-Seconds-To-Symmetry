@@ -1,11 +1,14 @@
 package com.stuin.Ten_Seconds_To_Symmetry;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,7 +21,9 @@ public class Game extends Activity {
     int size = 5;
     int change;
     int maxColor = 3;
+    int points = 0;
     Random random = new Random();
+    CountDownTimer countDownTimer;
     boolean win = false;
     int[] grid;
 
@@ -27,7 +32,6 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         getActionBar().hide();
-        generate(null);
     }
     
     public void clear() {
@@ -44,7 +48,11 @@ public class Game extends Activity {
         change = random.nextInt(grid.length);
         
         TextView textView = (TextView) findViewById(R.id.button);
-        textView.setVisibility(View.INVISIBLE);
+        textView.setText("Next Round");
+        textView.setVisibility(View.GONE);
+
+        textView = (TextView) findViewById(R.id.Score);
+        textView.setVisibility(View.GONE);
         
         GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
         gridLayout.setColumnCount(size);
@@ -58,6 +66,28 @@ public class Game extends Activity {
         int c = random.nextInt(maxColor - 1);
         if(grid[change] == c) c = maxColor - 1;
         setColor(textView,c);
+
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar.setProgress(0);
+
+        countDownTimer = new CountDownTimer(10000,100) {
+            @Override
+            public void onTick(long l) {
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                progressBar.setProgress(progressBar.getProgress() + 1);
+
+                TextView textView = (TextView) findViewById(R.id.Left);
+                textView.setText((l / 1000) + "");
+
+                textView = (TextView) findViewById(R.id.Right);
+                textView.setText((l / 1000) + "");
+            }
+
+            @Override
+            public void onFinish() {
+                loseListener.onClick(null);
+            }
+        }.start();
     }
     
     public void setGrid(GridLayout gridLayout, boolean top) {
@@ -101,8 +131,9 @@ public class Game extends Activity {
         @Override
         public void onClick(View p1) {
             TextView textView = (TextView) findViewById(R.id.button);
-            textView.setText("You Lose");
             textView.setVisibility(View.VISIBLE);
+
+            countDownTimer.cancel();
             clear();
             
             size--;
@@ -111,6 +142,10 @@ public class Game extends Activity {
                 size = 6;
                 if(maxColor > 2) maxColor--;
             }
+
+            textView = (TextView) findViewById(R.id.Score);
+            textView.setText("-" + points + "-");
+            textView.setVisibility(View.VISIBLE);
         }
     };
     
@@ -118,8 +153,9 @@ public class Game extends Activity {
         @Override
         public void onClick(View p1) {
             TextView textView = (TextView) findViewById(R.id.button);
-            textView.setText("You Win");
             textView.setVisibility(View.VISIBLE);
+
+            countDownTimer.cancel();
             clear();
             
             if(size < 9 && (win || maxColor == 2)) {
@@ -131,7 +167,13 @@ public class Game extends Activity {
                 size = 5;
                 maxColor++;
             }
-            
+
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            points += progressBar.getMax() - progressBar.getProgress();
+
+            textView = (TextView) findViewById(R.id.Score);
+            textView.setText("+" + points + "+");
+            textView.setVisibility(View.VISIBLE);
         }
     };
 }

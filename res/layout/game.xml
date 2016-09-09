@@ -9,10 +9,42 @@
             android:layout_height="wrap_content" android:id="@+id/Top"
     >
     </GridLayout>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="0"
+            android:id="@+id/Score" android:textSize="40dp"/>
+    <Space
+            android:layout_width="20px"
+            android:layout_height="20px"
+    />
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:gravity="center" android:background="#32010101">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Right"/>
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:id="@+id/progressBar" android:max="100"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Left"/>
+    </LinearLayout>
+    <Space
+            android:layout_width="20px"
+            android:layout_height="20px"
+    />
     <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
+            android:layout_height="50dp"
+            android:text="Start Game"
             android:id="@+id/button" android:onClick="generate"/>
     <GridLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/Bottom"
     />
