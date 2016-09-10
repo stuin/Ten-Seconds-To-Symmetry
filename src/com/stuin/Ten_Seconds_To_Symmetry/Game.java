@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Random;
 import android.view.View.*;
 import android.renderscript.*;
+import android.view.animation.*;
 
 public class Game extends Activity {
     int size = 5;
@@ -139,9 +140,14 @@ public class Game extends Activity {
             size--;
             win = false;
             if(size < 3) {
-                size = 6;
-                if(maxColor > 2) maxColor--;
+                if(maxColor > 2) {
+                    maxColor--;
+                    size = 6;
+                } else size = 3;
             }
+            
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            points -= 2 * progressBar.getProgress() * (size / 2 + maxColor);
 
             textView = (TextView) findViewById(R.id.Score);
             textView.setText("-" + points + "-");
@@ -166,10 +172,10 @@ public class Game extends Activity {
             if(size == 9 && maxColor < 5)  {
                 size = 5;
                 maxColor++;
-            }
+            } else if(size == 9) size = 8;
 
             ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            points += progressBar.getMax() - progressBar.getProgress();
+            points += (progressBar.getMax() - progressBar.getProgress()) * (size / 2 + maxColor);
 
             textView = (TextView) findViewById(R.id.Score);
             textView.setText("+" + points + "+");
