@@ -17,6 +17,7 @@ import java.util.Random;
 import android.view.View.*;
 import android.renderscript.*;
 import android.view.animation.*;
+import android.widget.*;
 
 public class Game extends Activity {
     int size = 5;
@@ -49,18 +50,32 @@ public class Game extends Activity {
         change = random.nextInt(grid.length);
         
         TextView textView = (TextView) findViewById(R.id.button);
-        textView.setText("Next Round");
         textView.setVisibility(View.GONE);
 
         textView = (TextView) findViewById(R.id.Score);
         textView.setVisibility(View.GONE);
         
         GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
-        gridLayout.setColumnCount(size);
         setGrid(gridLayout,true);
-
+        
+        new CountDownTimer(500,1) {
+            @Override
+            public void onTick(long l) {
+                Space space = (Space) findViewById(R.id.TopSpace);
+                space.setMinimumHeight(2 * (int)l);
+                space = (Space) findViewById(R.id.BottomSpace);
+                space.setMinimumHeight(2 * (int)l);
+            }
+            @Override
+            public void onFinish() {
+                Space space = (Space) findViewById(R.id.TopSpace);
+                space.setMinimumHeight(20);
+                space = (Space) findViewById(R.id.BottomSpace);
+                space.setMinimumHeight(20);
+            }
+        }.start();
+        
         gridLayout = (GridLayout) findViewById(R.id.Bottom);
-        gridLayout.setColumnCount(size);
         setGrid(gridLayout,false);
         
         textView = (TextView) findViewById(change);
@@ -71,17 +86,17 @@ public class Game extends Activity {
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgress(0);
 
-        countDownTimer = new CountDownTimer(10000,100) {
+        countDownTimer = new CountDownTimer(10500,100) {
             @Override
             public void onTick(long l) {
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
                 progressBar.setProgress(progressBar.getProgress() + 1);
 
-                TextView textView = (TextView) findViewById(R.id.Left);
-                textView.setText((l / 1000) + "");
+                TextView textView = (TextView) findViewById(R.id.Right);
+                textView.setText((l / 1000) + " ");
 
-                textView = (TextView) findViewById(R.id.Right);
-                textView.setText((l / 1000) + "");
+                textView = (TextView) findViewById(R.id.Left);
+                textView.setText(" " + (l / 1000));
             }
 
             @Override
@@ -99,6 +114,7 @@ public class Game extends Activity {
             textView.setHeight(100);
             setColor(textView,cell);
             gridLayout.addView(textView);
+            gridLayout.setColumnCount(size);
             
             if(i == change) {
                 textView.setOnClickListener(winListener);
@@ -132,26 +148,20 @@ public class Game extends Activity {
         @Override
         public void onClick(View p1) {
             TextView textView = (TextView) findViewById(R.id.button);
+            textView.setText("Restart");
             textView.setVisibility(View.VISIBLE);
 
             countDownTimer.cancel();
             clear();
-            
-            size--;
-            win = false;
-            if(size < 3) {
-                if(maxColor > 2) {
-                    maxColor--;
-                    size = 6;
-                } else size = 3;
-            }
-            
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            points -= 2 * progressBar.getProgress() * (size / 2 + maxColor);
 
             textView = (TextView) findViewById(R.id.Score);
-            textView.setText("-" + points + "-");
+            textView.setText("Game Lost: " + points);
             textView.setVisibility(View.VISIBLE);
+            
+            points = 0;
+            win = false;
+            size = 5;
+            maxColor = 3;
         }
     };
     
@@ -159,12 +169,13 @@ public class Game extends Activity {
         @Override
         public void onClick(View p1) {
             TextView textView = (TextView) findViewById(R.id.button);
+            textView.setText("Next Round");
             textView.setVisibility(View.VISIBLE);
 
             countDownTimer.cancel();
             clear();
             
-            if(size < 9 && (win || maxColor == 2)) {
+            if(size < 9 && win) {
                 size++;
                 win = false;
             }
