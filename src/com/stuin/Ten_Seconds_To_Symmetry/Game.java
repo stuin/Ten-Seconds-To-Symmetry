@@ -1,22 +1,15 @@
 package com.stuin.Ten_Seconds_To_Symmetry;
 
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import android.view.View.*;
-import android.renderscript.*;
-import android.view.animation.*;
 import android.widget.*;
 
 public class Game extends Activity {
