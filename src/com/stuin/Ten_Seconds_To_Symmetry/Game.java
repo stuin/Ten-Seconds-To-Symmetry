@@ -26,7 +26,7 @@ public class Game extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
-        getActionBar().hide();
+        if(getActionBar() != null)getActionBar().hide();
     }
     
     public void clear() {
@@ -38,19 +38,30 @@ public class Game extends Activity {
 
     public void generate(View v) {
         grid = new int[size * size];
-        
+
+        //Generate grid
         for(int i = 0; i < grid.length; i++) grid[i] = random.nextInt(maxColor);
         change = random.nextInt(grid.length);
-        
+
+        //Hide menu
         TextView textView = (TextView) findViewById(R.id.button);
         textView.setVisibility(View.GONE);
-
         textView = (TextView) findViewById(R.id.Score);
         textView.setVisibility(View.GONE);
-        
+
+        //Set spaces
+        Space space = (Space) findViewById(R.id.TopSpace);
+        space.setMinimumHeight(1000);
+        space = (Space) findViewById(R.id.BottomSpace);
+        space.setMinimumHeight(1000);
+
+        //Set up grids
         GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
         setGrid(gridLayout,true);
-        
+        gridLayout = (GridLayout) findViewById(R.id.Bottom);
+        setGrid(gridLayout,false);
+
+        //Ready startup animation
         new CountDownTimer(500,1) {
             @Override
             public void onTick(long l) {
@@ -67,18 +78,16 @@ public class Game extends Activity {
                 space.setMinimumHeight(20);
             }
         }.start();
-        
-        gridLayout = (GridLayout) findViewById(R.id.Bottom);
-        setGrid(gridLayout,false);
-        
+
+        //Set difference color
         textView = (TextView) findViewById(change);
         int c = random.nextInt(maxColor - 1);
         if(grid[change] == c) c = maxColor - 1;
         setColor(textView,c);
 
+        //Start timer
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgress(0);
-
         countDownTimer = new CountDownTimer(10500,100) {
             @Override
             public void onTick(long l) {
@@ -91,7 +100,6 @@ public class Game extends Activity {
                 textView = (TextView) findViewById(R.id.Left);
                 textView.setText(" " + (l / 1000));
             }
-
             @Override
             public void onFinish() {
                 loseListener.onClick(null);
