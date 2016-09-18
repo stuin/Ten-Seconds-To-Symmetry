@@ -13,23 +13,40 @@ import java.util.Random;
 import android.widget.*;
 
 public class Game extends Activity {
-    int size = 5;
-    int change;
-    int maxColor = 3;
-    int points = 0;
-    Random random = new Random();
-    CountDownTimer countDownTimer;
-    boolean win = false;
-    int[] grid;
+    private int size = 5;
+    private int change;
+    private int maxColor = 3;
+    private int points = 0;
+    private Random random = new Random();
+    private CountDownTimer countDownTimer;
+    private boolean win = false;
+    private int[] grid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         if(getActionBar() != null)getActionBar().hide();
+
+        new CountDownTimer(500,1) {
+            @Override
+            public void onTick(long l) {
+                Space space = (Space) findViewById(R.id.TopSpace);
+                space.setMinimumHeight((int)l + 75);
+                space = (Space) findViewById(R.id.BottomSpace);
+                space.setMinimumHeight((int)l + 75);
+            }
+            @Override
+            public void onFinish() {
+                Space space = (Space) findViewById(R.id.TopSpace);
+                space.setMinimumHeight(50);
+                space = (Space) findViewById(R.id.BottomSpace);
+                space.setMinimumHeight(50);
+            }
+        }.start();
     }
-    
-    public void clear() {
+
+    private void clear() {
         GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
         gridLayout.removeAllViews();
         gridLayout = (GridLayout) findViewById(R.id.Bottom);
@@ -95,10 +112,12 @@ public class Game extends Activity {
                 progressBar.setProgress(progressBar.getProgress() + 1);
 
                 TextView textView = (TextView) findViewById(R.id.Right);
-                textView.setText((l / 1000) + " ");
+                String t = (l / 1000) + " ";
+                textView.setText(t);
 
                 textView = (TextView) findViewById(R.id.Left);
-                textView.setText(" " + (l / 1000));
+                t = " " + (l / 1000);
+                textView.setText(t);
             }
             @Override
             public void onFinish() {
@@ -106,8 +125,8 @@ public class Game extends Activity {
             }
         }.start();
     }
-    
-    public void setGrid(GridLayout gridLayout, boolean top) {
+
+    private void setGrid(GridLayout gridLayout, boolean top) {
         int i = 0;
         for(int cell : grid) {
             TextView textView = new TextView(this);
@@ -125,7 +144,7 @@ public class Game extends Activity {
         }
     }
 
-    public void setColor(TextView textView, int i) {
+    private void setColor(TextView textView, int i) {
         switch(i) {
             case 0:
                 textView.setBackgroundColor(Color.RED);
@@ -144,19 +163,26 @@ public class Game extends Activity {
                 break;
         }
     }
-    
-    View.OnClickListener loseListener = new View.OnClickListener() {
+
+    private View.OnClickListener loseListener = new View.OnClickListener() {
         @Override
         public void onClick(View p1) {
             TextView textView = (TextView) findViewById(R.id.button);
-            textView.setText("Restart");
+            String t = "Restart";
+            textView.setText(t);
             textView.setVisibility(View.VISIBLE);
+
+            Space space = (Space) findViewById(R.id.TopSpace);
+            space.setMinimumHeight(50);
+            space = (Space) findViewById(R.id.BottomSpace);
+            space.setMinimumHeight(50);
 
             countDownTimer.cancel();
             clear();
 
             textView = (TextView) findViewById(R.id.Score);
-            textView.setText("Game Lost: " + points);
+            t = "Game Lost: " + points;
+            textView.setText(t);
             textView.setVisibility(View.VISIBLE);
             
             points = 0;
@@ -165,13 +191,19 @@ public class Game extends Activity {
             maxColor = 3;
         }
     };
-    
-    View.OnClickListener winListener = new View.OnClickListener() {
+
+    private View.OnClickListener winListener = new View.OnClickListener() {
         @Override
         public void onClick(View p1) {
             TextView textView = (TextView) findViewById(R.id.button);
-            textView.setText("Next Round");
+            String t = "Next Round";
+            textView.setText(t);
             textView.setVisibility(View.VISIBLE);
+
+            Space space = (Space) findViewById(R.id.TopSpace);
+            space.setMinimumHeight(50);
+            space = (Space) findViewById(R.id.BottomSpace);
+            space.setMinimumHeight(50);
 
             countDownTimer.cancel();
             clear();
@@ -190,7 +222,8 @@ public class Game extends Activity {
             points += (progressBar.getMax() - progressBar.getProgress()) * (size / 2 + maxColor);
 
             textView = (TextView) findViewById(R.id.Score);
-            textView.setText("+" + points + "+");
+            t = "+" + points + "+";
+            textView.setText(t);
             textView.setVisibility(View.VISIBLE);
         }
     };
