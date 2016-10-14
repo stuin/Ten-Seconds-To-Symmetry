@@ -9,6 +9,10 @@ import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
 import android.widget.*;
 
@@ -21,12 +25,21 @@ public class Game extends Activity {
     private CountDownTimer countDownTimer;
     private boolean win = false;
     private int[] grid;
+    private int highScore = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         if(getActionBar() != null)getActionBar().hide();
+
+        try {
+            FileInputStream fileInputStream = openFileInput("highScore");
+            try {
+                highScore = fileInputStream.read();
+                fileInputStream.close();
+            } catch (IOException e) {}
+        } catch(FileNotFoundException e) {}
 
         new CountDownTimer(500,1) {
             @Override
@@ -77,6 +90,11 @@ public class Game extends Activity {
         setGrid(gridLayout,true);
         gridLayout = (GridLayout) findViewById(R.id.Bottom);
         setGrid(gridLayout,false);
+
+        findViewById(R.id.Left).setVisibility(View.VISIBLE);
+        findViewById(R.id.Right).setVisibility(View.VISIBLE);
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+        findViewById(R.id.HighScore).setVisibility(View.GONE);
 
         //Ready startup animation
         new CountDownTimer(500,1) {
@@ -184,6 +202,27 @@ public class Game extends Activity {
             t = "Game Lost: " + points;
             textView.setText(t);
             textView.setVisibility(View.VISIBLE);
+
+            textView = (TextView) findViewById(R.id.HighScore);
+            if(points > highScore) {
+                t = "New High Score";
+                highScore = points;
+
+                try {
+                    FileOutputStream fileOutputStream = openFileOutput("highScore",MODE_PRIVATE);
+                    try {
+                        fileOutputStream.write(points);
+                        fileOutputStream.close();
+                    } catch (IOException e) {}
+                } catch(FileNotFoundException e) {}
+            }
+            else t = "High Score: " + highScore;
+            textView.setText(t);
+            textView.setVisibility(View.VISIBLE);
+
+            findViewById(R.id.Left).setVisibility(View.GONE);
+            findViewById(R.id.Right).setVisibility(View.GONE);
+            findViewById(R.id.progressBar).setVisibility(View.GONE);
             
             points = 0;
             win = false;
