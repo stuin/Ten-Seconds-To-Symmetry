@@ -10,9 +10,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Random;
 import android.widget.*;
 
@@ -35,11 +33,9 @@ public class Game extends Activity {
 
         try {
             FileInputStream fileInputStream = openFileInput("highScore");
-            try {
-                highScore = fileInputStream.read();
-                fileInputStream.close();
-            } catch (IOException e) {}
-        } catch(FileNotFoundException e) {}
+            highScore = fileInputStream.read();
+            fileInputStream.close();
+        } catch(Exception e) {System.out.print("File not read");}
 
         new CountDownTimer(500,1) {
             @Override
@@ -210,13 +206,10 @@ public class Game extends Activity {
 
                 try {
                     FileOutputStream fileOutputStream = openFileOutput("highScore",MODE_PRIVATE);
-                    try {
                         fileOutputStream.write(points);
                         fileOutputStream.close();
-                    } catch (IOException e) {}
-                } catch(FileNotFoundException e) {}
-            }
-            else t = "High Score: " + highScore;
+                } catch(Exception e) {System.out.print("File not written");}
+            } else t = "High Score: " + highScore;
             textView.setText(t);
             textView.setVisibility(View.VISIBLE);
 
