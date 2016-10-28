@@ -1,4 +1,4 @@
-package com.stuin.Ten_Seconds_To_Symmetry;
+package com.stuin.TenSecondsToSymmetry;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Space;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
-import android.widget.*;
+import java.util.Scanner;
 
 public class Game extends Activity {
     private int size = 5;
@@ -30,20 +32,24 @@ public class Game extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         if(getActionBar() != null)getActionBar().hide();
+        TextView textView = (TextView) findViewById(R.id.button);
 
         try {
             FileInputStream fileInputStream = openFileInput("highScore");
-            highScore = fileInputStream.read();
+            try {
+                Scanner scanner = new Scanner(fileInputStream);
+                highScore = scanner.nextInt();
+            } catch(Exception e) {}
             fileInputStream.close();
-        } catch(Exception e) {System.out.print("File not read");}
+        } catch(Exception e) {}
 
         new CountDownTimer(500,1) {
             @Override
             public void onTick(long l) {
                 Space space = (Space) findViewById(R.id.TopSpace);
-                space.setMinimumHeight((int)l + 75);
+                space.setMinimumHeight(2 * (int)l);
                 space = (Space) findViewById(R.id.BottomSpace);
-                space.setMinimumHeight((int)l + 75);
+                space.setMinimumHeight(2 * (int)l);
             }
             @Override
             public void onFinish() {
@@ -205,10 +211,10 @@ public class Game extends Activity {
                 highScore = points;
 
                 try {
-                    FileOutputStream fileOutputStream = openFileOutput("highScore",MODE_PRIVATE);
-                        fileOutputStream.write(points);
-                        fileOutputStream.close();
-                } catch(Exception e) {System.out.print("File not written");}
+                    FileOutputStream fileOutputStream = openFileOutput("highScore", MODE_PRIVATE);
+                    fileOutputStream.write(points);
+                    fileOutputStream.close();
+                } catch(Exception e) {t = "File not written";}
             } else t = "High Score: " + highScore;
             textView.setText(t);
             textView.setVisibility(View.VISIBLE);
@@ -223,6 +229,11 @@ public class Game extends Activity {
             maxColor = 3;
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        loseListener.onClick(null);
+    }
 
     private View.OnClickListener winListener = new View.OnClickListener() {
         @Override

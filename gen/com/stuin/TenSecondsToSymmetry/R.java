@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.stuin.Ten_Seconds_To_Symmetry;
+package com.stuin.TenSecondsToSymmetry;
 
 public final class R {
     public static final class attr {

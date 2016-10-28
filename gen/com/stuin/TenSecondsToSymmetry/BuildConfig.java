@@ -1,6 +1,6 @@
 /*___Generated_by_IDEA___*/
 
-package com.stuin.Ten_Seconds_To_Symmetry;
+package com.stuin.TenSecondsToSymmetry;
 
 /* This stub is only used by the IDE. It is NOT the BuildConfig class actually packed into the APK */
 public final class BuildConfig {
