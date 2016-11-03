@@ -3,9 +3,12 @@ package com.stuin.tensecondstosymmetry;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ProgressBar;
@@ -24,6 +27,7 @@ public class Game extends Activity {
     private boolean second = false;
     private int[] grid;
     private int highScore = 0;
+    private int scale = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,58 +37,54 @@ public class Game extends Activity {
         if(getActionBar() != null)getActionBar().hide();
 
         //Retrieve high score
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        highScore = sharedPreferences.getInt("HighScore", 0);
+        highScore = getPreferences(Context.MODE_PRIVATE).getInt("HighScore", 0);
 
-        //Start intro animation
-        new CountDownTimer(1000,1) {
-            @Override
-            public void onTick(long l) {
-                Space space = (Space) findViewById(R.id.TopSpace);
-                space.setMinimumHeight(2 * (int)l);
-                space = (Space) findViewById(R.id.BottomSpace);
-                space.setMinimumHeight(2 * (int)l);
-            }
-            @Override
-            public void onFinish() {
-                Space space = (Space) findViewById(R.id.TopSpace);
-                space.setMinimumHeight(50);
-                space = (Space) findViewById(R.id.BottomSpace);
-                space.setMinimumHeight(50);
-            }
-        }.start();
+        //Set spacing
+        findViewById(R.id.TopSpace).setMinimumHeight(1000);
+        findViewById(R.id.BottomSpace).setMinimumHeight(1000);
     }
 
     private void clear() {
-        //Clear grids
-        GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
-        gridLayout.removeAllViews();
-        gridLayout = (GridLayout) findViewById(R.id.Bottom);
-        gridLayout.removeAllViews();
-
-        //Set spacing
-        Space space = (Space) findViewById(R.id.TopSpace);
-        space.setMinimumHeight(50);
-        space = (Space) findViewById(R.id.BottomSpace);
-        space.setMinimumHeight(50);
 
         //Clear settings
         countDownTimer.cancel();
         change = -1;
+
+        //Ready exit animation
+        new CountDownTimer(500,1) {
+            @Override
+            public void onTick(long l) {
+                Space space = (Space) findViewById(R.id.TopSpace);
+                space.setMinimumHeight(2 * (500 - (int)l));
+                space = (Space) findViewById(R.id.BottomSpace);
+                space.setMinimumHeight(2 * (500 - (int)l));
+            }
+            @Override
+            public void onFinish() {
+                Space space = (Space) findViewById(R.id.TopSpace);
+                space.setMinimumHeight(1000);
+                space = (Space) findViewById(R.id.BottomSpace);
+                space.setMinimumHeight(1000);
+
+                //Clear grids
+                GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
+                gridLayout.removeAllViews();
+                gridLayout = (GridLayout) findViewById(R.id.Bottom);
+                gridLayout.removeAllViews();
+            }
+        }.start();
     }
 
     public void generate(View v) {
         grid = new int[size * size];
+        scale = findViewById(R.id.relative).getHeight();
 
         //Generate grid
-        for(int i = 0; i < grid.length; i++) grid[i] = random.nextInt(maxColor);
+        for(int i = 0; i < grid.length; i++) {
+            grid[i] = random.nextInt(maxColor);
+            if(grid[i] % size == 0 || grid[i] % size == size - 1 || grid[i] < size || grid[i] + size > size * size) grid[i] = random.nextInt(maxColor);
+        }
         change = random.nextInt(grid.length);
-
-        //Hide menu
-        TextView textView = (TextView) findViewById(R.id.button);
-        textView.setVisibility(View.GONE);
-        textView = (TextView) findViewById(R.id.Score);
-        textView.setVisibility(View.GONE);
 
         //Set up grids
         GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
@@ -92,17 +92,19 @@ public class Game extends Activity {
         gridLayout = (GridLayout) findViewById(R.id.Bottom);
         setGrid(gridLayout,false);
 
-        //Show timer
-        findViewById(R.id.Left).setVisibility(View.VISIBLE);
-        findViewById(R.id.Right).setVisibility(View.VISIBLE);
-        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
-        findViewById(R.id.HighScore).setVisibility(View.GONE);
+        //Show right timer
+        TextView textView = (TextView) findViewById(R.id.Right);
+        String t = 10 + " ";
+        textView.setText(t);
+        textView.setVisibility(View.VISIBLE);
 
-        //Set spacing
-        Space space = (Space) findViewById(R.id.TopSpace);
-        space.setMinimumHeight(1000);
-        space = (Space) findViewById(R.id.BottomSpace);
-        space.setMinimumHeight(1000);
+        //Show left timer
+        textView = (TextView) findViewById(R.id.Left);
+        t = " " + 10;
+        textView.setText(t);
+        textView.setVisibility(View.VISIBLE);
+
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
 
         //Ready startup animation
         new CountDownTimer(500,1) {
@@ -119,6 +121,10 @@ public class Game extends Activity {
                 space.setMinimumHeight(20);
                 space = (Space) findViewById(R.id.BottomSpace);
                 space.setMinimumHeight(20);
+
+                //Hide menu
+                findViewById(R.id.button).setVisibility(View.GONE);
+                findViewById(R.id.Score).setVisibility(View.GONE);
             }
         }.start();
 
@@ -152,8 +158,8 @@ public class Game extends Activity {
         for(int cell : grid) {
             //Set default square
             TextView textView = new TextView(this);
-            textView.setWidth(100);
-            textView.setHeight(100);
+            textView.setWidth(scale / 20);
+            textView.setHeight(scale / 20);
             gridLayout.addView(textView);
 
             //Set changed square
@@ -205,13 +211,12 @@ public class Game extends Activity {
             textView.setVisibility(View.VISIBLE);
 
             //Check high score
-            textView = (TextView) findViewById(R.id.HighScore);
+            textView = (TextView) findViewById(R.id.Left);
             if(points > highScore) {
                 t = "New High Score";
                 highScore = points;
 
-                SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
+                SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
                 editor.putInt("HighScore",highScore);
                 editor.commit();
             } else t = "High Score: " + highScore;
@@ -219,7 +224,6 @@ public class Game extends Activity {
             textView.setVisibility(View.VISIBLE);
 
             //Hide timer
-            findViewById(R.id.Left).setVisibility(View.GONE);
             findViewById(R.id.Right).setVisibility(View.GONE);
             findViewById(R.id.progressBar).setVisibility(View.GONE);
 
