@@ -3,12 +3,9 @@ package com.stuin.tensecondstosymmetry;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ProgressBar;
@@ -80,11 +77,9 @@ public class Game extends Activity {
         scale = findViewById(R.id.relative).getHeight();
 
         //Generate grid
-        for(int i = 0; i < grid.length; i++) {
-            grid[i] = random.nextInt(maxColor);
-            if(grid[i] % size == 0 || grid[i] % size == size - 1 || grid[i] < size || grid[i] + size > size * size) grid[i] = random.nextInt(maxColor);
-        }
+        for(int i = 0; i < grid.length; i++) grid[i] = random.nextInt(maxColor);
         change = random.nextInt(grid.length);
+        if(change % size == 0 || change % size == size - 1 || change < size || change / size == size - 1) change = random.nextInt(grid.length);
 
         //Set up grids
         GridLayout gridLayout = (GridLayout) findViewById(R.id.Top);
@@ -158,8 +153,8 @@ public class Game extends Activity {
         for(int cell : grid) {
             //Set default square
             TextView textView = new TextView(this);
-            textView.setWidth(scale / 20);
-            textView.setHeight(scale / 20);
+            textView.setWidth(scale / 2 / (size + 1));
+            textView.setHeight(scale / 2 / (size + 1));
             gridLayout.addView(textView);
 
             //Set changed square
