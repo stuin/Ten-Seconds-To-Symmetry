@@ -191,42 +191,44 @@ public class Game extends Activity {
     private View.OnClickListener loseListener = new View.OnClickListener() {
         @Override
         public void onClick(View p1) {
-            clear();
+            if(change > -1) {
+                clear();
 
-            //Set button
-            TextView textView = (TextView) findViewById(R.id.button);
-            String t = "Restart";
-            textView.setText(t);
-            textView.setVisibility(View.VISIBLE);
+                //Set button
+                TextView textView = (TextView) findViewById(R.id.button);
+                String t = "Restart";
+                textView.setText(t);
+                textView.setVisibility(View.VISIBLE);
 
-            //Show score
-            textView = (TextView) findViewById(R.id.Score);
-            t = "Game Lost: " + points;
-            textView.setText(t);
-            textView.setVisibility(View.VISIBLE);
+                //Show score
+                textView = (TextView) findViewById(R.id.Score);
+                t = "Game Lost: " + points;
+                textView.setText(t);
+                textView.setVisibility(View.VISIBLE);
 
-            //Check high score
-            textView = (TextView) findViewById(R.id.Left);
-            if(points > highScore) {
-                t = "New High Score";
-                highScore = points;
+                //Check high score
+                textView = (TextView) findViewById(R.id.Left);
+                if (points > highScore) {
+                    t = "New High Score";
+                    highScore = points;
 
-                SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
-                editor.putInt("HighScore",highScore);
-                editor.commit();
-            } else t = "High Score: " + highScore;
-            textView.setText(t);
-            textView.setVisibility(View.VISIBLE);
+                    SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
+                    editor.putInt("HighScore", highScore);
+                    editor.commit();
+                } else t = "High Score: " + highScore;
+                textView.setText(t);
+                textView.setVisibility(View.VISIBLE);
 
-            //Hide timer
-            findViewById(R.id.Right).setVisibility(View.GONE);
-            findViewById(R.id.progressBar).setVisibility(View.GONE);
+                //Hide timer
+                findViewById(R.id.Right).setVisibility(View.GONE);
+                findViewById(R.id.progressBar).setVisibility(View.GONE);
 
-            //Clear game
-            points = 0;
-            second = false;
-            size = 5;
-            maxColor = 3;
+                //Clear game
+                points = 0;
+                second = false;
+                size = 5;
+                maxColor = 3;
+            }
         }
     };
 
@@ -238,34 +240,35 @@ public class Game extends Activity {
     private View.OnClickListener winListener = new View.OnClickListener() {
         @Override
         public void onClick(View p1) {
-            clear();
+            if(change > -1) {
+                clear();
 
-            //Set button
-            TextView textView = (TextView) findViewById(R.id.button);
-            String t = "Next Round";
-            textView.setText(t);
-            textView.setVisibility(View.VISIBLE);
+                //Set button
+                TextView textView = (TextView) findViewById(R.id.button);
+                String t = "Next Round";
+                textView.setText(t);
+                textView.setVisibility(View.VISIBLE);
 
-            //Check level scaling
-            if(size < 9 && second) {
-                size++;
-                second = false;
+                //Check level scaling
+                if (size < 9 && second) {
+                    size++;
+                    second = false;
+                } else second = true;
+                if (size == 9 && maxColor < 5) {
+                    size = 5;
+                    maxColor++;
+                } else if (size == 9) size = 8;
+
+                //Calculate score
+                ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                points += (progressBar.getMax() - progressBar.getProgress()) * (size / 2 + maxColor);
+
+                //Show Score
+                textView = (TextView) findViewById(R.id.Score);
+                t = "+" + points + "+";
+                textView.setText(t);
+                textView.setVisibility(View.VISIBLE);
             }
-            else second = true;
-            if(size == 9 && maxColor < 5)  {
-                size = 5;
-                maxColor++;
-            } else if(size == 9) size = 8;
-
-            //Calculate score
-            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-            points += (progressBar.getMax() - progressBar.getProgress()) * (size / 2 + maxColor);
-
-            //Show Score
-            textView = (TextView) findViewById(R.id.Score);
-            t = "+" + points + "+";
-            textView.setText(t);
-            textView.setVisibility(View.VISIBLE);
         }
     };
 }
