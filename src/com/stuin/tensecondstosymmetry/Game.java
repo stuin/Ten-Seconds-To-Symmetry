@@ -25,6 +25,7 @@ public class Game extends Activity {
     private int[] grid;
     private int highScore = 0;
     private int scale = 0;
+    private String[] labels;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,11 @@ public class Game extends Activity {
         //Set spacing
         findViewById(R.id.TopSpace).setMinimumHeight(1000);
         findViewById(R.id.BottomSpace).setMinimumHeight(1000);
+
+        labels = getResources().getStringArray(R.array.game_labels);
     }
 
     private void clear() {
-
         //Clear settings
         countDownTimer.cancel();
         change = -1;
@@ -196,26 +198,25 @@ public class Game extends Activity {
 
                 //Set button
                 TextView textView = (TextView) findViewById(R.id.button);
-                String t = "Restart";
-                textView.setText(t);
+                textView.setText(labels[1]);
                 textView.setVisibility(View.VISIBLE);
 
                 //Show score
                 textView = (TextView) findViewById(R.id.Score);
-                t = "Game Lost: " + points;
+                String t = labels[4] + points;
                 textView.setText(t);
                 textView.setVisibility(View.VISIBLE);
 
                 //Check high score
                 textView = (TextView) findViewById(R.id.Left);
                 if (points > highScore) {
-                    t = "New High Score";
+                    t = labels[2];
                     highScore = points;
 
                     SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
                     editor.putInt("HighScore", highScore);
-                    editor.commit();
-                } else t = "High Score: " + highScore;
+                    editor.apply();
+                } else t = labels[3] + highScore;
                 textView.setText(t);
                 textView.setVisibility(View.VISIBLE);
 
@@ -245,8 +246,7 @@ public class Game extends Activity {
 
                 //Set button
                 TextView textView = (TextView) findViewById(R.id.button);
-                String t = "Next Round";
-                textView.setText(t);
+                textView.setText(labels[0]);
                 textView.setVisibility(View.VISIBLE);
 
                 //Check level scaling
@@ -265,7 +265,7 @@ public class Game extends Activity {
 
                 //Show Score
                 textView = (TextView) findViewById(R.id.Score);
-                t = "+" + points + "+";
+                String t = "+" + points + "+";
                 textView.setText(t);
                 textView.setVisibility(View.VISIBLE);
             }
