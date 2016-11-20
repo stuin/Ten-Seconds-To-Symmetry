@@ -56,4 +56,12 @@
             android:layout_height="wrap_content" android:layout_below="@+id/BottomSpace"
             android:layout_centerHorizontal="true" android:id="@+id/Bottom">
     </GridLayout>
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" android:id="@+id/TopChange"/>
+    <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone" android:id="@+id/BottomChange"/>
 </RelativeLayout>

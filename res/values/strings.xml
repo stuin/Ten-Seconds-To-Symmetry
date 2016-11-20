@@ -9,6 +9,7 @@
         <item>New High Score</item>
         <item>High Score:" "</item>
         <item>Game Lost:" "</item>
+        <item>Complete:" "</item>
     </string-array>
     <string-array name="game_values">
 

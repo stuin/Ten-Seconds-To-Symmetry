@@ -26,6 +26,7 @@ public class Game extends Activity {
     private int highScore = 0;
     private int scale = 0;
     private String[] labels;
+    private boolean expanded = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,10 +46,6 @@ public class Game extends Activity {
     }
 
     private void clear() {
-        //Clear settings
-        countDownTimer.cancel();
-        change = -1;
-
         //Ready exit animation
         new CountDownTimer(500,1) {
             @Override
@@ -165,7 +162,9 @@ public class Game extends Activity {
                 if(top) {
                     cell = random.nextInt(maxColor - 1);
                     if(grid[change] == cell) cell = maxColor - 1;
-                }
+                    textView.setId(R.id.TopChange);
+                } else textView.setId(R.id.BottomChange);
+
             } else textView.setOnClickListener(loseListener);
             i++;
 
@@ -194,44 +193,66 @@ public class Game extends Activity {
         @Override
         public void onClick(View p1) {
             if(change > -1) {
-                clear();
+                countDownTimer.cancel();
+                change = -1;
 
-                //Set button
-                TextView textView = (TextView) findViewById(R.id.button);
-                textView.setText(labels[1]);
-                textView.setVisibility(View.VISIBLE);
+                TextView textView = (TextView) findViewById(R.id.TopChange);
+                textView.setBackgroundColor(Color.parseColor("#ffb100"));
+                textView = (TextView) findViewById(R.id.BottomChange);
+                textView.setBackgroundColor(Color.parseColor("#ffb100"));
+
+                new CountDownTimer(1000,1000) {
+                    @Override
+                    public void onTick(long l) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        clear();
+                        endGame();
+                    }
+                }.start();
 
                 //Show score
                 textView = (TextView) findViewById(R.id.Score);
                 String t = labels[4] + points;
                 textView.setText(t);
                 textView.setVisibility(View.VISIBLE);
-
-                //Check high score
-                textView = (TextView) findViewById(R.id.Left);
-                if (points > highScore) {
-                    t = labels[2];
-                    highScore = points;
-
-                    SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
-                    editor.putInt("HighScore", highScore);
-                    editor.apply();
-                } else t = labels[3] + highScore;
-                textView.setText(t);
-                textView.setVisibility(View.VISIBLE);
-
-                //Hide timer
-                findViewById(R.id.Right).setVisibility(View.GONE);
-                findViewById(R.id.progressBar).setVisibility(View.GONE);
-
-                //Clear game
-                points = 0;
-                second = false;
-                size = 5;
-                maxColor = 3;
             }
         }
     };
+
+    private void endGame() {
+        //Check high score
+        String t;
+        TextView textView = (TextView) findViewById(R.id.Left);
+        if (points > highScore) {
+            t = labels[2];
+            highScore = points;
+
+            SharedPreferences.Editor editor = getPreferences(Context.MODE_PRIVATE).edit();
+            editor.putInt("HighScore", highScore);
+            editor.apply();
+        } else t = labels[3] + highScore;
+        textView.setText(t);
+        textView.setVisibility(View.VISIBLE);
+
+        //Hide timer
+        findViewById(R.id.Right).setVisibility(View.GONE);
+        findViewById(R.id.progressBar).setVisibility(View.GONE);
+        points = 0;
+
+        //Set button
+        textView = (TextView) findViewById(R.id.button);
+        textView.setText(labels[1]);
+        textView.setVisibility(View.VISIBLE);
+
+        //Clear game
+        second = false;
+        size = 5;
+        maxColor = 3;
+    }
 
     @Override
     public void onBackPressed() {
@@ -242,12 +263,9 @@ public class Game extends Activity {
         @Override
         public void onClick(View p1) {
             if(change > -1) {
+                countDownTimer.cancel();
+                change = -1;
                 clear();
-
-                //Set button
-                TextView textView = (TextView) findViewById(R.id.button);
-                textView.setText(labels[0]);
-                textView.setVisibility(View.VISIBLE);
 
                 //Check level scaling
                 if (size < 9 && second) {
@@ -257,17 +275,32 @@ public class Game extends Activity {
                 if (size == 9 && maxColor < 5) {
                     size = 5;
                     maxColor++;
-                } else if (size == 9) size = 8;
+                }
 
                 //Calculate score
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
                 points += (progressBar.getMax() - progressBar.getProgress()) * (size / 2 + maxColor);
 
-                //Show Score
-                textView = (TextView) findViewById(R.id.Score);
-                String t = "+" + points + "+";
-                textView.setText(t);
-                textView.setVisibility(View.VISIBLE);
+                if(maxColor > 4 && !expanded || maxColor == 7) {
+                    //Show Score
+                    TextView textView = (TextView) findViewById(R.id.Score);
+                    String t = labels[5] + points;
+                    textView.setText(t);
+                    textView.setVisibility(View.VISIBLE);
+
+                    endGame();
+                } else {
+                    //Set button
+                    TextView textView = (TextView) findViewById(R.id.button);
+                    textView.setText(labels[0]);
+                    textView.setVisibility(View.VISIBLE);
+
+                    //Show Score
+                    textView = (TextView) findViewById(R.id.Score);
+                    String t = "+" + points + "+";
+                    textView.setText(t);
+                    textView.setVisibility(View.VISIBLE);
+                }
             }
         }
     };
