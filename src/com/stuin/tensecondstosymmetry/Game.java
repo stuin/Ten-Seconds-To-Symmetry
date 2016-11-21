@@ -281,7 +281,7 @@ public class Game extends Activity {
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
                 points += (progressBar.getMax() - progressBar.getProgress()) * (size / 2 + maxColor);
 
-                if(maxColor > 4 && !expanded || maxColor == 7) {
+                if(maxColor > 5 && !expanded || maxColor == 8) {
                     //Show Score
                     TextView textView = (TextView) findViewById(R.id.Score);
                     String t = labels[5] + points;
