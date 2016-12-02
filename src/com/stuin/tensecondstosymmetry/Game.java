@@ -15,28 +15,32 @@ import android.widget.Space;
 import java.util.Random;
 
 public class Game extends Activity {
+    private boolean second = false;
     private int size = 5;
     private int change = -1;
     private int maxColor = 3;
     private int points = 0;
-    private Random random = new Random();
-    private CountDownTimer countDownTimer;
-    private boolean second = false;
-    private int[] grid;
-    private int highScore = 0;
     private int scale = 0;
+    private Random random = new Random();
+
+    private boolean expanded;
+    private int highScore;
+    private int[] grid;
     private String[] labels;
-    private boolean expanded = false;
+    private CountDownTimer countDownTimer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //Set up app
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game);
+    setContentView(R.layout.game);
+
         if(getActionBar() != null)getActionBar().hide();
 
-        //Retrieve high score
-        highScore = getPreferences(Context.MODE_PRIVATE).getInt("HighScore", 0);
+        //Retrieve saved data
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        highScore = sharedPreferences.getInt("HighScore", 0);
+        expanded = sharedPreferences.getBoolean("Expanded", false);
 
         //Set spacing
         findViewById(R.id.TopSpace).setMinimumHeight(1000);
@@ -108,6 +112,12 @@ public class Game extends Activity {
                 space.setMinimumHeight(2 * (int)l);
                 space = (Space) findViewById(R.id.BottomSpace);
                 space.setMinimumHeight(2 * (int)l);
+
+                if(l < 300) {
+                    TextView textView = (TextView) findViewById(R.id.Score);
+                    if (textView.length() > 20)
+                        textView.setText(textView.getText().subSequence(1, textView.length() - 2));
+                }
             }
             @Override
             public void onFinish() {
@@ -185,6 +195,17 @@ public class Game extends Activity {
                 case 4:
                     textView.setBackgroundColor(Color.BLACK);
                     break;
+                case 5:
+                    textView.setBackgroundColor(Color.YELLOW);
+                    break;
+                case 6:
+                    textView.setBackgroundColor(Color.MAGENTA);
+                    break;
+                case 7:
+                    textView.setBackgroundColor(Color.CYAN);
+                    break;
+
+
             }
         }
     }
@@ -272,7 +293,7 @@ public class Game extends Activity {
                     size++;
                     second = false;
                 } else second = true;
-                if (size == 9 && maxColor < 5) {
+                if (size == 9) {
                     size = 5;
                     maxColor++;
                 }
@@ -281,7 +302,7 @@ public class Game extends Activity {
                 ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
                 points += (progressBar.getMax() - progressBar.getProgress()) * (size / 2 + maxColor);
 
-                if(maxColor > 5 && !expanded || maxColor == 8) {
+                if(maxColor > 5 && !expanded || maxColor == 9) {
                     //Show Score
                     TextView textView = (TextView) findViewById(R.id.Score);
                     String t = labels[5] + points;
