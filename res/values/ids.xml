@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_id">426632304103</string>
+    
+    <string name="achievement_RGB">CgkI56uRqrUMEAIQAA</string>
+    <string name="achievement_White">CgkI56uRqrUMEAIQAQ</string>
+    <string name="achievement_Black">CgkI56uRqrUMEAIQAg</string>
+    <string name="achievement_Yellow">CgkI56uRqrUMEAIQBQ</string>
+    <string name="achievement_Magenta">CgkI56uRqrUMEAIQBg</string>
+    <string name="achievement_Cyan">CgkI56uRqrUMEAIQBw</string>
+    <string name="achievement_Meet">CgkI56uRqrUMEAIQAw</string>
+    
+    <string name="LeaderBoard_Original">CgkI56uRqrUMEAIQBA</string>
+    <string name="LeaderBoard_Expanded">CgkI56uRqrUMEAIQCQ</string>
+</resources>

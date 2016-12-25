@@ -11,10 +11,12 @@ import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Space;
+import org.w3c.dom.Text;
 
 import java.util.Random;
 
 public class Game extends Activity {
+
     private boolean second = false;
     private int size = 5;
     private int change = -1;
@@ -28,12 +30,13 @@ public class Game extends Activity {
     private int[] grid;
     private String[] labels;
     private CountDownTimer countDownTimer;
+    private TextView[] changes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //Set up app
         super.onCreate(savedInstanceState);
-    setContentView(R.layout.game);
+        setContentView(R.layout.game);
 
         if(getActionBar() != null)getActionBar().hide();
 
@@ -158,12 +161,13 @@ public class Game extends Activity {
 
     private void setGrid(GridLayout gridLayout, boolean top) {
         int i = 0;
+        int pix = (scale / 2 / (size + 1));
         gridLayout.setColumnCount(size);
+        changes = new TextView[2];
+
         for(int cell : grid) {
             //Set default square
-            TextView textView = new TextView(this);
-            textView.setWidth(scale / 2 / (size + 1));
-            textView.setHeight(scale / 2 / (size + 1));
+            Cell textView = new Cell(this, pix);
             gridLayout.addView(textView);
 
             //Set changed square
@@ -172,41 +176,12 @@ public class Game extends Activity {
                 if(top) {
                     cell = random.nextInt(maxColor - 1);
                     if(grid[change] == cell) cell = maxColor - 1;
-                    textView.setId(R.id.TopChange);
-                } else textView.setId(R.id.BottomChange);
-
+                    changes[0] = textView;
+                } else changes[1] = textView;
+                textView.change = true;
             } else textView.setOnClickListener(loseListener);
             i++;
-
-            //Set color
-            switch(cell) {
-                case 0:
-                    textView.setBackgroundColor(Color.RED);
-                    break;
-                case 1:
-                    textView.setBackgroundColor(Color.BLUE);
-                    break;
-                case 2:
-                    textView.setBackgroundColor(Color.GREEN);
-                    break;
-                case 3:
-                    textView.setBackgroundColor(Color.WHITE);
-                    break;
-                case 4:
-                    textView.setBackgroundColor(Color.BLACK);
-                    break;
-                case 5:
-                    textView.setBackgroundColor(Color.YELLOW);
-                    break;
-                case 6:
-                    textView.setBackgroundColor(Color.MAGENTA);
-                    break;
-                case 7:
-                    textView.setBackgroundColor(Color.CYAN);
-                    break;
-
-
-            }
+            textView.color(cell);
         }
     }
 
@@ -217,10 +192,8 @@ public class Game extends Activity {
                 countDownTimer.cancel();
                 change = -1;
 
-                TextView textView = (TextView) findViewById(R.id.TopChange);
-                textView.setBackgroundColor(Color.parseColor("#ffb100"));
-                textView = (TextView) findViewById(R.id.BottomChange);
-                textView.setBackgroundColor(Color.parseColor("#ffb100"));
+                changes[0].setBackgroundColor(Color.parseColor("#ffb100"));
+                changes[1].setBackgroundColor(Color.parseColor("#ffb100"));
 
                 new CountDownTimer(1000,1000) {
                     @Override
@@ -236,7 +209,7 @@ public class Game extends Activity {
                 }.start();
 
                 //Show score
-                textView = (TextView) findViewById(R.id.Score);
+                TextView textView = (TextView) findViewById(R.id.Score);
                 String t = labels[4] + points;
                 textView.setText(t);
                 textView.setVisibility(View.VISIBLE);
@@ -247,7 +220,6 @@ public class Game extends Activity {
     private void endGame() {
         //Check high score
         String t;
-        TextView textView = (TextView) findViewById(R.id.Left);
         if (points > highScore) {
             t = labels[2];
             highScore = points;
@@ -256,6 +228,9 @@ public class Game extends Activity {
             editor.putInt("HighScore", highScore);
             editor.apply();
         } else t = labels[3] + highScore;
+
+        //Show Score
+        TextView textView = (TextView) findViewById(R.id.Left);
         textView.setText(t);
         textView.setVisibility(View.VISIBLE);
 
@@ -325,4 +300,14 @@ public class Game extends Activity {
             }
         }
     };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }
