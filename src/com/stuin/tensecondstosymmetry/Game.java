@@ -11,7 +11,6 @@ import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Space;
-import org.w3c.dom.Text;
 
 import java.util.Random;
 
@@ -253,6 +252,21 @@ public class Game extends Activity {
     @Override
     public void onBackPressed() {
         if(change > -1) loseListener.onClick(null);
+        else {
+            findViewById(R.id.Right).setVisibility(View.GONE);
+            findViewById(R.id.progressBar).setVisibility(View.GONE);
+            findViewById(R.id.Left).setVisibility(View.GONE);
+
+            TextView textView = (TextView) findViewById(R.id.Score);
+            textView.setText(R.string.app_name);
+
+            textView = (TextView) findViewById(R.id.button);
+            textView.setText(R.string.app_start);
+
+            second = false;
+            size = 5;
+            maxColor = 3;
+        }
     }
 
     private View.OnClickListener winListener = new View.OnClickListener() {
