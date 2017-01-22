@@ -175,8 +175,8 @@ public class Game extends Activity {
                 if(top) {
                     cell = random.nextInt(maxColor - 1);
                     if(grid[change] == cell) cell = maxColor - 1;
-                    changes[0] = textView;
-                } else changes[1] = textView;
+                    textView.setId(R.id.TopChange);
+                } else textView.setId(R.id.BottomChange);
                 textView.change = true;
             } else textView.setOnClickListener(loseListener);
             i++;
@@ -191,8 +191,8 @@ public class Game extends Activity {
                 countDownTimer.cancel();
                 change = -1;
 
-                changes[0].setBackgroundColor(Color.parseColor("#ffb100"));
-                changes[1].setBackgroundColor(Color.parseColor("#ffb100"));
+                findViewById(R.id.TopChange).setBackgroundColor(Color.parseColor("#ffb100"));
+                findViewById(R.id.BottomChange).setBackgroundColor(Color.parseColor("#ffb100"));
 
                 new CountDownTimer(1000,1000) {
                     @Override
