@@ -1,9 +1,9 @@
 package com.stuin.tensecondstosymmetry;
 
-import com.google.android.gms.*;
-import com.google.example.games.basegameutils.BaseGameUtils;
+import
 
 public class Service implements
+
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener  {
 
