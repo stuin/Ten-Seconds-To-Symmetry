@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ten Seconds To Symmetry</string>
-    <string name="app_start">Start Game</string>
-
-    <string-array name="game_labels">
-        <item>Next Round</item>
-        <item>Restart</item>
-        <item>New High Score</item>
-        <item>High Score:" "</item>
-        <item>Game Lost:" "</item>
-        <item>Complete:" "</item>
-    </string-array>
+    <dimen name="app_quart">150sp</dimen>
 
     <style name="style_base" parent="android:Theme.Holo">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColor">@color/app_text</item>
         <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="style_norm" parent="style_base">

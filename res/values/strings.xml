@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ten Seconds To Symmetry</string>
+    <string name="app_start">Start Game</string>
+    <string name="app_time"> </string>
+
+    <string-array name="app_labels">
+        <item>Next Round</item>
+        <item>Restart</item>
+        <item>New High Score</item>
+        <item>High Score:" "</item>
+        <item>Game Lost:" "</item>
+        <item>Complete:" "</item>
+    </string-array>
+</resources>
