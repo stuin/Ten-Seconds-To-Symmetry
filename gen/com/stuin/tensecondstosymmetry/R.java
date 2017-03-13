@@ -16,6 +16,7 @@ public final class R {
     public static final class color {
         public static final int app_background=0x7f040000;
         public static final int app_text=0x7f040001;
+        public static final int color_black=0x7f040002;
     }
     public static final class dimen {
         public static final int app_quart=0x7f070000;
@@ -24,17 +25,15 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int BotGrid=0x7f090009;
-        public static final int BotSpace=0x7f090008;
-        public static final int BotText=0x7f09000a;
-        public static final int Left=0x7f090005;
-        public static final int Right=0x7f090007;
-        public static final int TimerLayout=0x7f090004;
-        public static final int TopGrid=0x7f090002;
-        public static final int TopSpace=0x7f090003;
+        public static final int BotSpace=0x7f090007;
+        public static final int BotText=0x7f090008;
+        public static final int Left=0x7f090004;
+        public static final int Right=0x7f090006;
+        public static final int TimerLayout=0x7f090003;
+        public static final int TopSpace=0x7f090002;
         public static final int TopText=0x7f090000;
         public static final int linearLayout=0x7f090001;
-        public static final int progressBar=0x7f090006;
+        public static final int progressBar=0x7f090005;
     }
     public static final class layout {
         public static final int main_layout=0x7f030000;
@@ -60,16 +59,4 @@ public final class R {
         public static final int style_norm=0x7f080002;
         public static final int style_title=0x7f080003;
     }
-    public static final class styleable {
-        /** Attributes that can be used with a Grid.
-         */
-        public static final int[] Grid = {
-            
-        };
-        /** Attributes that can be used with a Timer.
-         */
-        public static final int[] Timer = {
-            
-        };
-    };
 }

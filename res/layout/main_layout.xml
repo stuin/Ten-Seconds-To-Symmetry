@@ -15,7 +15,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="@dimen/app_quart"/>
 
-    <LinearLayout
+    <com.stuin.tenseconds.Player
             style="@style/style_base"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -71,7 +71,7 @@
 
         </com.stuin.tenseconds.Views.Grid>
 
-    </LinearLayout>
+    </com.stuin.tenseconds.Player>
 
     <Button
             android:id="@+id/BotText"
