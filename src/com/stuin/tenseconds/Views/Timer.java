@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
  * Created by Stuart on 3/12/2017.
  */
 public class Timer extends LinearLayout {
-    Timer(Context context, AttributeSet attributeSet) {
+    public Timer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 
     }

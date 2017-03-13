@@ -1,76 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:extra="http://schemas.android.com/apk/res/com.stuin.tensecondstosymmetry"
-	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/app_background">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:extra="http://schemas.android.com/apk/res/com.stuin.tensecondstosymmetry"
 
-	<TextView
-		android:id="@+id/TopText"
-		style="@style/style_title"
-		android:text="@string/app_name"
-		android:layout_alignParentTop="true"
-		android:layout_marginTop="@dimen/app_quart"/>
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background">
 
-	<LinearLayout
-		style="@style/style_base"
-		android:orientation="vertical"
-		android:layout_width="match_parent"
-		android:id="@+id/linearLayout">
+    <TextView
+            android:id="@+id/TopText"
+            style="@style/style_title"
+            android:text="@string/app_name"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/app_quart"/>
 
-		<Space
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:id="@+id/TopSpace"/>
+    <LinearLayout
+            style="@style/style_base"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:id="@+id/linearLayout">
 
-		<LinearLayout
-			android:orientation="horizontal"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:id="@+id/TimerLayout"
-			android:background="@color/color_black"
-			android:gravity="center_horizontal"
-			android:alpha=".25">
+        <com.stuin.tenseconds.Views.Grid
+                style="@style/style_base">
 
-			<TextView
-				android:id="@+id/Left"
-				android:text="@string/app_time"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:gravity="right"/>
+        </com.stuin.tenseconds.Views.Grid>
 
-			<ProgressBar
-				android:id="@+id/progressBar"
-				style="?android:attr/progressBarStyleHorizontal"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"/>
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/TopSpace"/>
 
-			<TextView
-				android:id="@+id/Right"
-				android:text="@string/app_time"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"/>
+        <com.stuin.tenseconds.Views.Timer
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/TimerLayout"
+                android:background="@color/color_black"
+                android:gravity="center_horizontal"
+                android:alpha=".25">
 
-		</LinearLayout>
+            <TextView
+                    android:id="@+id/Left"
+                    android:text="@string/app_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"/>
 
-		<Space
-			android:id="@+id/BotSpace"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="wrap_content"
+                    android:max="10"/>
 
-	</LinearLayout>
+            <TextView
+                    android:id="@+id/Right"
+                    android:text="@string/app_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-	<Button
-		android:id="@+id/BotText"
-		style="@style/style_norm"
-		android:text="@string/app_start"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:layout_marginBottom="@dimen/app_quart"
-		android:layout_centerHorizontal="true"/>
+        </com.stuin.tenseconds.Views.Timer>
+
+        <Space
+                android:id="@+id/BotSpace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        <com.stuin.tenseconds.Views.Grid
+                style="@style/style_base">
+
+        </com.stuin.tenseconds.Views.Grid>
+
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/BotText"
+            style="@style/style_norm"
+            android:text="@string/app_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/app_quart"
+            android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
 

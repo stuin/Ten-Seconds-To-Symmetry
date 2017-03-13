@@ -8,7 +8,7 @@ import android.widget.GridLayout;
  * Created by Stuart on 3/12/2017.
  */
 public class Grid extends GridLayout {
-    Grid(Context context, AttributeSet attributeSet) {
+    public Grid(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 
     }
