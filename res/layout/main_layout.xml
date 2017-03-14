@@ -21,10 +21,11 @@
             android:layout_width="match_parent"
             android:id="@+id/linearLayout">
 
-        <com.stuin.tenseconds.Views.Grid
+        <FrameLayout
+                android:id="@+id/TopGrid"
                 style="@style/style_base">
 
-        </com.stuin.tenseconds.Views.Grid>
+        </FrameLayout>
 
         <Space
                 android:layout_width="match_parent"
@@ -66,10 +67,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        <com.stuin.tenseconds.Views.Grid
+        <FrameLayout
+                android:id="@+id/BotGrid"
                 style="@style/style_base">
 
-        </com.stuin.tenseconds.Views.Grid>
+        </FrameLayout>
 
     </com.stuin.tenseconds.Views.Player>
 

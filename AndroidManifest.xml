@@ -5,9 +5,6 @@
 
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@style/style_app" android:allowBackup="false">
 
-        <meta-data android:name="com.google.android.gms.games.APP_ID"
-                   android:value="@string/app_id"/>
-
         <activity android:name="com.stuin.tenseconds.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
