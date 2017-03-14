@@ -1,4 +1,4 @@
-package com.stuin.tenseconds;
+package com.stuin.tenseconds.Views;
 import android.widget.*;
 import android.content.*;
 import android.util.*;
