@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.widget.TextView;
 import com.stuin.tenseconds.Views.Player;
 import com.stuin.tenseconds.Views.Timer;
-import com.stuin.tensecondstosymmetry.R;
 
 public class Scoreboard {
 	private Player player;

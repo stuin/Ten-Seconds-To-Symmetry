@@ -6,13 +6,12 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.stuin.tenseconds.Views.Player;
-import com.stuin.tensecondstosymmetry.R;
 
 /**
  * Created by Stuart on 2/14/2017.
  */
 public class MainActivity extends Activity {
-    public Player player;
+    private Player player;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

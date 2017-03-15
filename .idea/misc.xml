@@ -24,7 +24,7 @@
     </entry>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="Android 6.0 Google APIs" project-jdk-type="Android SDK">
-    <output url="file://$PROJECT_DIR$/out" />
+    <output url="file://$PROJECT_DIR$/../TenSeconds/out" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
