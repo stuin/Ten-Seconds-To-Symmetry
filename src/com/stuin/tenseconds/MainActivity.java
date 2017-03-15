@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.stuin.tenseconds.Views.Grid;
 import com.stuin.tenseconds.Views.Player;
 import com.stuin.tensecondstosymmetry.R;
 
@@ -13,12 +12,14 @@ import com.stuin.tensecondstosymmetry.R;
  * Created by Stuart on 2/14/2017.
  */
 public class MainActivity extends Activity {
+    public Player player;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         Round.reset();
+        player = (Player) findViewById(R.id.PlayerLayout);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class MainActivity extends Activity {
     public void startGame(View view) {
         if(!Round.moving) {
             Round.generate(this);
-            ((Player) findViewById(R.id.PlayerLayout)).start();
+            player.start();
         }
     }
 }

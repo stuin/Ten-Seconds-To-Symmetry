@@ -5,11 +5,13 @@
     <string name="app_time"> </string>
 
     <string-array name="app_labels">
-        <item>Next Round</item>
-        <item>Restart</item>
-        <item>New High Score</item>
-        <item>High Score:" "</item>
         <item>Game Lost:" "</item>
         <item>Complete:" "</item>
+
+        <item>New High Score</item>
+        <item>High Score:" "</item>
+
+        <item>Next Round</item>
+        <item>Restart</item>
     </string-array>
 </resources>

@@ -2,21 +2,44 @@ package com.stuin.tenseconds.Views;
 import android.widget.*;
 import android.content.*;
 import android.util.*;
-import com.stuin.tenseconds.Round;
+import com.stuin.tenseconds.Scoreboard;
 
 public class Player extends LinearLayout {
+	Scoreboard scoreboard;
+
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
 		((Grid) getChildAt(0)).top = true;
+		scoreboard = new Scoreboard(this);
 	}
 
 	public void start() {
 		((Grid) getChildAt(0)).reset();
 		((Grid) getChildAt(2)).reset();
+		((Timer) getChildAt(1)).clear();
 	}
 
-	public void clear() {
+	void clear() {
 		getChildAt(0).setVisibility(GONE);
 		getChildAt(2).setVisibility(GONE);
+	}
+
+	void win() {
+		clear();
+		scoreboard.win(((Timer) getChildAt(1)).end());
+	}
+
+	void lose() {
+		((Grid) getChildAt(0)).marked.display();
+		((Grid) getChildAt(2)).marked.display();
+
+		try {
+			wait(2000);
+		} catch(InterruptedException e) {
+			//Just go with it
+		}
+
+		scoreboard.done(false);
+		clear();
 	}
 }
