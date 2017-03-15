@@ -5,12 +5,10 @@ import android.util.*;
 import com.stuin.tenseconds.Scoreboard;
 
 public class Player extends LinearLayout {
-	Scoreboard scoreboard;
+	public Scoreboard scoreboard;
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
-		((Grid) getChildAt(0)).top = true;
-		scoreboard = new Scoreboard(this);
 	}
 
 	public void start() {

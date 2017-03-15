@@ -5,6 +5,8 @@
 	<style name="style_app">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:textViewStyle">@style/style_base</item>
+        <item name="android:progressBarStyle">@android:style/Widget.ProgressBar.Horizontal</item>
 	</style>
 
     <style name="style_base">
@@ -16,7 +18,7 @@
 		<item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="style_background">
+    <style name="style_background" parent="style_base">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@color/color_black</item>
         <item name="android:alpha">.25</item>

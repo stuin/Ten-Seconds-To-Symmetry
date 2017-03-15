@@ -9,7 +9,7 @@ import com.stuin.tenseconds.Round;
  * Created by Stuart on 3/12/2017.
  */
 public class Grid extends GridLayout {
-	boolean top = false;
+	public boolean top = false;
 	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
