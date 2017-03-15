@@ -18,10 +18,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-
-        Round.size = 5;
-        Round.colors = 3;
-        Round.moving = true;
+        Round.reset();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class MainActivity extends Activity {
     public void startGame(View view) {
         if(!Round.moving) {
             Round.generate(this);
-
+            ((Player) findViewById(R.id.PlayerLayout)).start();
         }
     }
 }

@@ -24,6 +24,7 @@
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/TopGrid"
                 style="@style/style_base"
+                android:visibility="gone"
                 android:translationY="15dp">
 
         </com.stuin.tenseconds.Views.Grid>
@@ -61,6 +62,7 @@
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/BotGrid"
                 style="@style/style_base"
+                android:visibility="gone"
                 android:translationY="-15dp">
 
         </com.stuin.tenseconds.Views.Grid>

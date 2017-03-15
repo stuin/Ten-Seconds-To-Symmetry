@@ -12,6 +12,7 @@ import java.util.Random;
  */
 public class Round {
     public static boolean moving;
+    public static boolean next;
     public static int size;
 	public static int colors;
     public static int scale;
@@ -32,5 +33,12 @@ public class Round {
 		pos = rand.nextInt(cells.size());
         cells.get(pos).mark = rand.nextInt(colors - 1);
         if(cells.get(pos).mark == cells.get(pos).color) cells.get(pos).mark = colors - 1;
+    }
+
+    static void reset() {
+        Round.size = 5;
+        Round.colors = 3;
+        Round.moving = true;
+        Round.next = false;
     }
 }

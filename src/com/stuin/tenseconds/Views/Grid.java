@@ -9,15 +9,16 @@ import com.stuin.tenseconds.Round;
  * Created by Stuart on 3/12/2017.
  */
 public class Grid extends GridLayout {
-	public boolean top = false;
-	public Cell marked;
+	boolean top = false;
+	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
 
-    public void reset() {
+    void reset() {
         removeAllViewsInLayout();
+        setVisibility(VISIBLE);
         setColumnCount(Round.size);
 
         for(Cell c : Round.cells) addView(c);
