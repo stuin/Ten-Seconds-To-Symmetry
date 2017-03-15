@@ -12,9 +12,10 @@ import java.util.Random;
  */
 public class Round {
     public static int size;
+	public static int colors;
     public static int scale;
+	public static int pos;
     public static List<Cell> cells;
-    static int colors;
 
     static void generate(Context context) {
         cells = new ArrayList<>();
@@ -23,7 +24,8 @@ public class Round {
         for(int y = 0; y < size; y++) for(int x = 0; x < size; x++) {
             cells.add(new Cell(context, rand.nextInt(colors), x, y));
         }
-
-        cells.get(rand.nextInt(cells.size()));
+		
+		pos = rand.nextInt(cells.size());
+        cells.get(pos).mark = true;
     }
 }

@@ -2,6 +2,8 @@ package com.stuin.tenseconds.Views;
 
 import android.content.Context;
 import android.widget.TextView;
+import android.graphics.*;
+import com.stuin.tenseconds.*;
 
 /**
  * Created by Stuart on 3/14/2017.
@@ -18,7 +20,17 @@ public class Cell extends TextView {
         this.color = color;
         this.x = x;
         this.y = y;
+		
+		setWidth(Round.scale);
+		setHeight(Round.scale);
     }
+	
+	Color color() {
+		switch(color) {
+			
+		}
+		return null;
+	}
 
 
 }
