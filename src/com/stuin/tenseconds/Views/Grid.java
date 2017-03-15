@@ -1,18 +1,19 @@
 package com.stuin.tenseconds.Views;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.widget.GridLayout;
 import com.stuin.tenseconds.Round;
-import java.util.*;
 
 /**
  * Created by Stuart on 3/12/2017.
  */
 public class Grid extends GridLayout {
-	boolean top;
+	public boolean top = false;
+	public Cell marked;
 	
-    public Grid(Context context) {
-        super(context);
+    public Grid(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
     }
 
     public void reset() {
@@ -20,11 +21,7 @@ public class Grid extends GridLayout {
         setColumnCount(Round.size);
 
         for(Cell c : Round.cells) addView(c);
-		if(top) {
-			Cell c = (Cell) getChildAt(Round.pos);
-			int next = new Random().nextInt(Round.colors - 1);
-			if(next == c.color) next = Round.colors - 1;
-			c.color = next;
-		}
+        marked = (Cell) getChildAt(Round.pos);
+		if(top) marked.color = marked.mark;
     }
 }

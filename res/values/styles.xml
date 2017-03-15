@@ -16,11 +16,9 @@
 		<item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="style_norm" parent="style_base">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="style_title" parent="style_base">
-        <item name="android:textSize">25sp</item>
+    <style name="style_background">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@color/color_black</item>
+        <item name="android:alpha">.25</item>
     </style>
 </resources>

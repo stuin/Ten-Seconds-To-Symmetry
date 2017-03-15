@@ -11,13 +11,17 @@ import java.util.Random;
  * Created by Stuart on 3/14/2017.
  */
 public class Round {
+    public static boolean moving;
     public static int size;
 	public static int colors;
     public static int scale;
 	public static int pos;
     public static List<Cell> cells;
+    static int length;
 
     static void generate(Context context) {
+        scale = length / (size + 1);
+
         cells = new ArrayList<>();
         Random rand = new Random();
 
@@ -26,6 +30,7 @@ public class Round {
         }
 		
 		pos = rand.nextInt(cells.size());
-        cells.get(pos).mark = true;
+        cells.get(pos).mark = rand.nextInt(colors - 1);
+        if(cells.get(pos).mark == cells.get(pos).color) cells.get(pos).mark = colors - 1;
     }
 }
