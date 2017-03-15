@@ -18,9 +18,15 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
+		findViewById(R.id.Relative).post(new Runnable() {
+			@Override
+			public void run() {
+				setup();
+			}
+		});
     }
-
-    protected void onstart() {
+	
+    protected void setup() {
         super.onStart();
         Round.reset();
         player = (Player) findViewById(R.id.PlayerLayout);
@@ -33,12 +39,12 @@ public class MainActivity extends Activity {
         if(relativeLayout.getWidth() > Round.length) Round.length = relativeLayout.getWidth();
 
         TextView textView = (TextView) findViewById(R.id.TopText);
-        textView.setTextSize(Round.length / 25);
-        textView.setTranslationY(-Round.length / 2);
+        textView.setTextSize(Round.length / 40);
+		textView.setTranslationY(Round.length / 2.5f);
 
         textView = (TextView) findViewById(R.id.BotText);
-        textView.setTextSize(Round.length / 30);
-        textView.setTranslationY(Round.length / 2);
+        textView.setTextSize(Round.length / 45);
+		textView.setTranslationY(Round.length / -2.5f);
     }
 
     public void startGame(View view) {

@@ -31,11 +31,7 @@ public class Player extends LinearLayout {
 		((Grid) getChildAt(0)).marked.display();
 		((Grid) getChildAt(2)).marked.display();
 
-		try {
-			wait(2000);
-		} catch(InterruptedException e) {
-			//Just go with it
-		}
+		
 
 		scoreboard.done(false);
 		clear();

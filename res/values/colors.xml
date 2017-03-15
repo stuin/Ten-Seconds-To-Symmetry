@@ -2,5 +2,5 @@
 <resources>
     <color name="app_background">#ffb100</color>
     <color name="app_text">#ffffff</color>
-	<color name="color_black">#000000</color>
+	<color name="app_layout">#4C000000</color>
 </resources>

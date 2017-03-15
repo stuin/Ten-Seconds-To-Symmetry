@@ -21,8 +21,23 @@ public class Grid extends GridLayout {
         setVisibility(VISIBLE);
         setColumnCount(Round.size);
 
-        for(Cell c : Round.cells) addView(c);
-        marked = (Cell) getChildAt(Round.pos);
-		if(top) marked.color = marked.mark;
+        
+		if(top) {
+			for(Cell c : Round.cells) {
+				addView(c);
+				c.display();
+				if(c.mark != -1) marked = c;
+			}
+			//marked = (Cell) getChildAt(Round.pos);
+			marked.color = marked.mark;
+			marked.setColor();
+			marked.display();
+		} else {
+			for(Cell c : Round.cells) {
+				addView(c.clone());
+			}
+			marked = (Cell) getChildAt(Round.pos);
+			marked.display();
+		}
     }
 }

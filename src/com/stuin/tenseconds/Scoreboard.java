@@ -46,15 +46,15 @@ public class Scoreboard {
 		String text = "+" + score + '+';
 		((TextView) player.getChildAt(0)).setText(text);
 
-		((TextView) player.getChildAt(2)).setText(labels[4]);
+		((TextView) player.getChildAt(1)).setText(labels[4]);
     }
 
     public void done(boolean win) {
 		String text = labels[0] + score;
 		if(win) text = labels[1] + score;
-		((TextView) player.getChildAt(0)).setText(text);
+		((TextView) player.findViewById(R.id.TopText)).setText(text);
 
-		Timer timer = (Timer) player.getChildAt(1);
+		Timer timer = (Timer) player.getChildAt(2);
 		if(score > highScore) {
 			timer.write(labels[2]);
 
@@ -62,6 +62,6 @@ public class Scoreboard {
 			highScore = score;
 		} else timer.write(labels[3] + highScore);
 
-		((TextView) player.getChildAt(2)).setText(labels[5]);
+		((TextView) player.findViewById(R.id.BotText)).setText(labels[5]);
     }
 }

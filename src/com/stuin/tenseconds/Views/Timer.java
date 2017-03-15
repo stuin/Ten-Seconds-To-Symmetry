@@ -31,7 +31,7 @@ public class Timer extends LinearLayout {
         TextView textView = (TextView) getChildAt(0);
         textView.setText("0 ");
 
-        textView = (TextView) getChildAt(1);
+        textView = (TextView) getChildAt(2);
         textView.setText(" 0");
         textView.setGravity(Gravity.START);
 

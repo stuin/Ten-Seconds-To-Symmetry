@@ -39,32 +39,41 @@ public class Cell extends FrameLayout {
 
 		setMinimumWidth(Round.scale);
 		setMinimumHeight(Round.scale);
-		setBackgroundColor(getColor());
+		setColor();
 		setOnClickListener(clickListener);
     }
 	
-	private int getColor() {
+	public Cell clone() {
+		Cell cell = new Cell(getContext(), color, x, y);
+		cell.mark = mark;
+		return cell;
+	}
+	
+	void setColor() {
 		switch(color) {
             case 0:
-                return Color.RED;
+                setBackgroundColor(Color.RED);
+				break;
             case 1:
-                return Color.GREEN;
+                setBackgroundColor(Color.GREEN);
+				break;
             case 2:
-                return Color.BLUE;
+                setBackgroundColor(Color.BLUE);
+				break;
             case 3:
-                return Color.WHITE;
+                setBackgroundColor(Color.WHITE);
+				break;
             case 4:
-                return Color.BLACK;
+                setBackgroundColor(Color.BLACK);
+				break;
 		}
-		return 0;
 	}
 
     void display() {
         Space space = new Space(getContext());
         space.setMinimumHeight(Round.scale);
         space.setMinimumWidth(Round.scale);
-        space.setBackgroundColor(Color.BLACK);
-        space.setAlpha(.25f);
+        space.setBackgroundColor(getResources().getColor(R.color.app_layout));
         addView(space);
     }
 }

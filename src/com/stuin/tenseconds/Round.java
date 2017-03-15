@@ -38,7 +38,7 @@ public class Round {
     static void reset() {
         Round.size = 5;
         Round.colors = 3;
-        Round.moving = true;
+        Round.moving = false;
         Round.next = false;
     }
 }

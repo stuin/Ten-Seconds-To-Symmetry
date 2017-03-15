@@ -20,7 +20,6 @@
 
     <style name="style_background" parent="style_base">
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:background">@color/color_black</item>
-        <item name="android:alpha">.25</item>
+        <item name="android:background">@color/app_layout</item>
     </style>
 </resources>

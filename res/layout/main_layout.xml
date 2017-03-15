@@ -14,6 +14,13 @@
             style="@style/style_base"
             android:text="@string/app_name"
             android:layout_alignParentTop="true"/>
+			
+	<TextView
+			android:id="@+id/BotText"
+			style="@style/style_background"
+			android:layout_alignParentBottom="true"
+			android:onClick="startGame"
+			android:text="@string/app_start"/>
 
     <com.stuin.tenseconds.Views.Player
             style="@style/style_base"
@@ -65,14 +72,6 @@
         </com.stuin.tenseconds.Views.Grid>
 
     </com.stuin.tenseconds.Views.Player>
-
-    <TextView
-            android:id="@+id/BotText"
-            style="@style/style_background"
-            android:layout_alignParentBottom="true"
-            android:onClick="startGame"
-            android:text="@string/app_start"/>
-
 
 </RelativeLayout>
 
