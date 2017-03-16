@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.stuin.tenseconds.Views.Drawer;
 import com.stuin.tenseconds.Views.Grid;
 import com.stuin.tenseconds.Views.Player;
 
@@ -49,21 +50,34 @@ public class MainActivity extends Activity {
     private void setup(RelativeLayout relativeLayout) {
         Round.length = relativeLayout.getHeight() / 2;
         if(relativeLayout.getWidth() > Round.length) Round.length = relativeLayout.getWidth();
+        Round.text = Round.length / 45;
 
         TextView textView = (TextView) findViewById(R.id.TopText);
-        textView.setTextSize(Round.length / 45);
+        textView.setTextSize(Round.text);
         textView.setTranslationY(Round.length / 2.5f);
 
         textView = (TextView) findViewById(R.id.BotText);
-        textView.setTextSize(Round.length / 45);
+        textView.setTextSize(Round.text);
         textView.setTranslationY(Round.length / -2.5f);
     }
 
 
     public void startGame(View view) {
-        if(!Round.moving) {
+        if(!player.getMoving()) {
             Round.generate(this);
             player.start();
+            findViewById(R.id.DrawerButton).setVisibility(View.GONE);
+        }
+    }
+
+    public void drawer(View view) {
+        switch(view.getId()) {
+            case R.id.DrawerButton:
+                ((Drawer) findViewById(R.id.DrawerLayout)).open();
+                break;
+            case R.id.DrawerLayout:case R.id.Relative:
+                ((Drawer) findViewById(R.id.DrawerLayout)).drawerSlide.close();
+                break;
         }
     }
 }

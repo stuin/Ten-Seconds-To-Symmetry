@@ -5,17 +5,14 @@ import android.util.AttributeSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.GridLayout;
 import com.stuin.tenseconds.Round;
-import android.transition.*;
-import android.widget.*;
-import com.stuin.tenseconds.R;
+import com.stuin.tenseconds.Slider;
 
 /**
  * Created by Stuart on 3/12/2017.
  */
 public class Grid extends GridLayout {
 	private boolean top;
-	private TranslateAnimation enterAnimation;
-	private TranslateAnimation exitAnimation;
+	Slider slider = new Slider(this);
 	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
@@ -27,16 +24,13 @@ public class Grid extends GridLayout {
 				int s = Round.length;
 				if(top) s = -s;
 
-				enterAnimation = new TranslateAnimation(0, 0, s, 0);
-				enterAnimation.setDuration(500);
-
-				exitAnimation = new TranslateAnimation(0, 0, 0, s);
-				exitAnimation.setDuration(500);
+				slider.setup(false, s);
 			}
 		});
     }
 
     void enter() {
+    	removeAllViewsInLayout();
         setColumnCount(Round.size);
         
 		if(top) {
@@ -51,25 +45,10 @@ public class Grid extends GridLayout {
 			marked.display();
 		}
 		
-		startAnimation(enterAnimation);
-		Round.moving = true;
-		postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				Round.moving = false;
-			}
-		}, enterAnimation.getDuration());
+		slider.open();
     }
 
     void exit() {
-    	startAnimation(exitAnimation);
-    	Round.moving = true;
-    	postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				removeAllViewsInLayout();
-				Round.moving = false;
-			}
-		}, exitAnimation.getDuration());
+    	slider.close();
 	}
 }

@@ -2,6 +2,7 @@ package com.stuin.tenseconds.Views;
 import android.widget.*;
 import android.content.*;
 import android.util.*;
+import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Scoreboard;
 
 public class Player extends LinearLayout {
@@ -17,6 +18,10 @@ public class Player extends LinearLayout {
 		((Timer) getChildAt(1)).clear();
 		
 		postDelayed(title, 100);
+	}
+
+	public boolean getMoving() {
+		return ((Grid) getChildAt(0)).slider.moving;
 	}
 	
 	private Runnable title = new Runnable() {
@@ -35,6 +40,7 @@ public class Player extends LinearLayout {
 	private void clear() {
 		((Grid) getChildAt(0)).exit();
 		((Grid) getChildAt(2)).exit();
+		((RelativeLayout) getParent()).findViewById(R.id.DrawerButton).setVisibility(VISIBLE);
 	}
 
 	void win() {

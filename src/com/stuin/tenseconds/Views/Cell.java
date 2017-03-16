@@ -29,9 +29,9 @@ public class Cell extends FrameLayout {
         OnClickListener clickListener = new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!Round.moving) {
-                    Player player = (Player) getParent().getParent();
+                Player player = (Player) getParent().getParent();
 
+                if(!player.getMoving()) {
                     if(mark == -1) player.lose();
                     else player.win();
                 }
