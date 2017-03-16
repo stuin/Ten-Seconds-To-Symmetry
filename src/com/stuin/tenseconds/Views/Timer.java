@@ -11,6 +11,8 @@ import android.widget.TextView;
  * Created by Stuart on 3/12/2017.
  */
 public class Timer extends LinearLayout {
+    int time = 1000;
+
     public Timer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
     }
@@ -36,9 +38,5 @@ public class Timer extends LinearLayout {
         textView.setGravity(Gravity.START);
 
         return this;
-    }
-
-    int end() {
-        return 10000;
     }
 }

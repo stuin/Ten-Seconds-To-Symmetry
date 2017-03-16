@@ -17,27 +17,16 @@ public class Grid extends GridLayout {
     }
 
     void reset() {
-        removeAllViewsInLayout();
-        setVisibility(VISIBLE);
         setColumnCount(Round.size);
-
         
 		if(top) {
-			for(Cell c : Round.cells) {
-				addView(c);
-				c.display();
-				if(c.mark != -1) marked = c;
-			}
-			//marked = (Cell) getChildAt(Round.pos);
+			for(Cell c : Round.cells) addView(c);
+			marked = (Cell) getChildAt(Round.pos);
 			marked.color = marked.mark;
 			marked.setColor();
-			marked.display();
 		} else {
-			for(Cell c : Round.cells) {
-				addView(c.clone());
-			}
+			for(Cell c : Round.cells) addView(c.copy());
 			marked = (Cell) getChildAt(Round.pos);
-			marked.display();
 		}
     }
 }

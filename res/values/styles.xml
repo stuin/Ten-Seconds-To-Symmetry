@@ -2,14 +2,14 @@
 <resources>
     <dimen name="app_quart">150sp</dimen>
 	
-	<style name="style_app">
+	<style name="style_app" parent="android:Theme.Holo">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:textViewStyle">@style/style_base</item>
+        <item name="android:textViewStyle">@style/style_text</item>
         <item name="android:progressBarStyle">@android:style/Widget.ProgressBar.Horizontal</item>
 	</style>
 
-    <style name="style_base">
+    <style name="style_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/app_text</item>
@@ -18,7 +18,7 @@
 		<item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="style_background" parent="style_base">
+    <style name="style_background" parent="style_text">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@color/app_layout</item>
     </style>

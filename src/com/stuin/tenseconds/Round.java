@@ -21,7 +21,7 @@ public class Round {
     static int length;
 
     static void generate(Context context) {
-        scale = length / (size + 1);
+        scale = length / (size + 2);
 
         cells = new ArrayList<>();
         Random rand = new Random();
@@ -31,8 +31,9 @@ public class Round {
         }
 		
 		pos = rand.nextInt(cells.size());
-        cells.get(pos).mark = rand.nextInt(colors - 1);
-        if(cells.get(pos).mark == cells.get(pos).color) cells.get(pos).mark = colors - 1;
+        Cell marked = cells.get(pos);
+        marked.mark = rand.nextInt(colors - 1);
+        //if(marked.mark == marked.color) marked.mark = colors - 1;
     }
 
     static void reset() {

@@ -1,6 +1,7 @@
 package com.stuin.tenseconds.Views;
 
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Space;
@@ -43,7 +44,7 @@ public class Cell extends FrameLayout {
 		setOnClickListener(clickListener);
     }
 	
-	public Cell clone() {
+	Cell copy() {
 		Cell cell = new Cell(getContext(), color, x, y);
 		cell.mark = mark;
 		return cell;
@@ -70,10 +71,9 @@ public class Cell extends FrameLayout {
 	}
 
     void display() {
-        Space space = new Space(getContext());
+        TextView space = new TextView(new ContextThemeWrapper(getContext(), R.style.style_background));
         space.setMinimumHeight(Round.scale);
         space.setMinimumWidth(Round.scale);
-        space.setBackgroundColor(getResources().getColor(R.color.app_layout));
         addView(space);
     }
 }

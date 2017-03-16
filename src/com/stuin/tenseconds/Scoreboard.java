@@ -2,6 +2,7 @@ package com.stuin.tenseconds;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.stuin.tenseconds.Views.Player;
 import com.stuin.tenseconds.Views.Timer;
@@ -15,7 +16,7 @@ public class Scoreboard {
 	private boolean expanded;
 
 
-	public Scoreboard(Player player) {
+	Scoreboard(Player player) {
 	    this.player = player;
 	    sharedPreferences = player.getContext().getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
 
@@ -43,25 +44,27 @@ public class Scoreboard {
 	        Round.next = !Round.next;
         }
 
+		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		String text = "+" + score + '+';
-		((TextView) player.getChildAt(0)).setText(text);
+		((TextView) relativeLayout.getChildAt(0)).setText(text);
 
-		((TextView) player.getChildAt(1)).setText(labels[4]);
+		((TextView) relativeLayout.getChildAt(1)).setText(labels[4]);
     }
 
     public void done(boolean win) {
 		String text = labels[0] + score;
 		if(win) text = labels[1] + score;
-		((TextView) player.findViewById(R.id.TopText)).setText(text);
 
-		Timer timer = (Timer) player.getChildAt(2);
+		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
+		((TextView) relativeLayout.getChildAt(0)).setText(text);
+		((TextView) relativeLayout.getChildAt(1)).setText(labels[5]);
+
+		Timer timer = (Timer) player.getChildAt(1);
 		if(score > highScore) {
 			timer.write(labels[2]);
 
 			sharedPreferences.edit().putInt("HighScore", score).apply();
 			highScore = score;
 		} else timer.write(labels[3] + highScore);
-
-		((TextView) player.findViewById(R.id.BotText)).setText(labels[5]);
     }
 }

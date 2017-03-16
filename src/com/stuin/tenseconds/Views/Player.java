@@ -17,23 +17,26 @@ public class Player extends LinearLayout {
 		((Timer) getChildAt(1)).clear();
 	}
 
-	void clear() {
-		getChildAt(0).setVisibility(GONE);
-		getChildAt(2).setVisibility(GONE);
+	public void clear() {
+		((Grid) getChildAt(0)).removeAllViewsInLayout();
+		((Grid) getChildAt(2)).removeAllViewsInLayout();
 	}
 
 	void win() {
 		clear();
-		scoreboard.win(((Timer) getChildAt(1)).end());
+		scoreboard.win(((Timer) getChildAt(1)).time);
 	}
 
 	void lose() {
 		((Grid) getChildAt(0)).marked.display();
 		((Grid) getChildAt(2)).marked.display();
 
-		
-
-		scoreboard.done(false);
-		clear();
+		postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				scoreboard.done(false);
+				clear();
+			}
+		},0);
 	}
 }

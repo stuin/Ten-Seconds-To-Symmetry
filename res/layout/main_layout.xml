@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:extra="http://schemas.android.com/apk/res/com.stuin.tensecondstosymmetry"
 
         android:id="@+id/Relative"
         android:orientation="vertical"
@@ -11,7 +10,7 @@
 
     <TextView
             android:id="@+id/TopText"
-            style="@style/style_base"
+            style="@style/style_text"
             android:text="@string/app_name"
             android:layout_alignParentTop="true"/>
 			
@@ -23,15 +22,14 @@
 			android:text="@string/app_start"/>
 
     <com.stuin.tenseconds.Views.Player
-            style="@style/style_base"
+            style="@style/style_text"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:id="@+id/PlayerLayout">
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/TopGrid"
-                style="@style/style_base"
-                android:visibility="gone">
+                style="@style/style_text">
 
         </com.stuin.tenseconds.Views.Grid>
 
@@ -66,8 +64,7 @@
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/BotGrid"
-                style="@style/style_base"
-                android:visibility="gone">
+                style="@style/style_text">
 
         </com.stuin.tenseconds.Views.Grid>
 
