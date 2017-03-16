@@ -25,14 +25,16 @@
     <com.stuin.tenseconds.Views.Player
             style="@style/style_text"
             android:orientation="vertical"
+            android:gravity="center"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:id="@+id/PlayerLayout">
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/TopGrid"
                 style="@style/style_text"
-				stuin:top="true"
-				android:visibility="gone">
+                android:layout_marginBottom="15dp"
+				stuin:top="true">
 
         </com.stuin.tenseconds.Views.Grid>
 
@@ -68,7 +70,7 @@
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/BotGrid"
                 style="@style/style_text"
-				android:visibility="gone">
+                android:layout_marginTop="15dp">
 
         </com.stuin.tenseconds.Views.Grid>
 

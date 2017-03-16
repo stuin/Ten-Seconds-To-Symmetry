@@ -3,8 +3,6 @@ import android.widget.*;
 import android.content.*;
 import android.util.*;
 import com.stuin.tenseconds.Scoreboard;
-import com.stuin.tenseconds.R;
-import android.view.animation.*;
 
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
@@ -14,8 +12,8 @@ public class Player extends LinearLayout {
 	}
 
 	public void start() {
-		((Grid) getChildAt(0)).reset();
-		((Grid) getChildAt(2)).reset();
+		((Grid) getChildAt(0)).enter();
+		((Grid) getChildAt(2)).enter();
 		((Timer) getChildAt(1)).clear();
 		
 		postDelayed(title, 100);
@@ -34,9 +32,9 @@ public class Player extends LinearLayout {
 		}
 	};
 
-	public void clear() {
-		((Grid) getChildAt(0)).setVisibility(GONE);
-		((Grid) getChildAt(2)).setVisibility(GONE);
+	private void clear() {
+		((Grid) getChildAt(0)).exit();
+		((Grid) getChildAt(2)).exit();
 	}
 
 	void win() {

@@ -33,7 +33,7 @@ public class Round {
 		pos = rand.nextInt(cells.size());
         Cell marked = cells.get(pos);
         marked.mark = rand.nextInt(colors - 1);
-        //if(marked.mark == marked.color) marked.mark = colors - 1;
+        if(marked.mark == marked.color) marked.mark = colors - 1;
     }
 
     static void reset() {
