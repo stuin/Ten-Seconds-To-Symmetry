@@ -66,5 +66,7 @@ public class Scoreboard {
 			sharedPreferences.edit().putInt("HighScore", score).apply();
 			highScore = score;
 		} else timer.write(labels[3] + highScore);
+		
+		Round.reset();
     }
 }

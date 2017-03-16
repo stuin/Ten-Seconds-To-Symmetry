@@ -51,7 +51,7 @@
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:max="10"/>
+					android:progressDrawable="@drawable/progressbar"/>
 
             <TextView
                     android:id="@+id/Right"

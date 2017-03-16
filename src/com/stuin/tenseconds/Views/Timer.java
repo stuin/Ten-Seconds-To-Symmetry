@@ -23,19 +23,19 @@ public class Timer extends LinearLayout {
 
         TextView textView = (TextView) getChildAt(2);
         textView.setText(text);
-        textView.setGravity(Gravity.CENTER);
     }
 
     Timer clear() {
         ProgressBar progressBar = (ProgressBar) getChildAt(1);
+		progressBar.setVisibility(VISIBLE);
         progressBar.setProgress(0);
 
         TextView textView = (TextView) getChildAt(0);
+		textView.setVisibility(VISIBLE);
         textView.setText("0 ");
 
         textView = (TextView) getChildAt(2);
         textView.setText(" 0");
-        textView.setGravity(Gravity.START);
 
         return this;
     }

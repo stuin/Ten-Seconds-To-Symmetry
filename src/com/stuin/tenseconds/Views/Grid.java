@@ -24,9 +24,11 @@ public class Grid extends GridLayout {
 			marked = (Cell) getChildAt(Round.pos);
 			marked.color = marked.mark;
 			marked.setColor();
+			marked.display();
 		} else {
 			for(Cell c : Round.cells) addView(c.copy());
 			marked = (Cell) getChildAt(Round.pos);
+			marked.display();
 		}
     }
 }
