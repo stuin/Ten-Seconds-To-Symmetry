@@ -1,80 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:stuin="http://schemas.android.com/apk/res/com.stuin.tenseconds"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:stuin="http://schemas.android.com/apk/res/com.stuin.tenseconds"
+	android:id="@+id/Relative"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/app_background">
 
-        android:id="@+id/Relative"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/app_background">
-
-    <TextView
-            android:id="@+id/TopText"
-            style="@style/style_text"
-            android:text="@string/app_name"
-            android:layout_alignParentTop="true"/>
-			
 	<TextView
-			android:id="@+id/BotText"
+		android:id="@+id/TopText"
+		style="@style/style_text"
+		android:text="@string/app_name"
+		android:layout_alignParentTop="true"/>
+
+	<TextView
+		android:id="@+id/BotText"
+		style="@style/style_background"
+		android:layout_alignParentBottom="true"
+		android:onClick="startGame"
+		android:text="@string/app_start"/>
+
+	<com.stuin.tenseconds.Views.Player
+		style="@style/style_text"
+		android:orientation="vertical"
+		android:gravity="center"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/PlayerLayout">
+
+		<com.stuin.tenseconds.Views.Grid
+			android:id="@+id/TopGrid"
+			style="@style/style_text"
+			android:layout_marginBottom="15dp"
+			stuin:top="true">
+
+		</com.stuin.tenseconds.Views.Grid>
+
+		<com.stuin.tenseconds.Views.Timer
 			style="@style/style_background"
-			android:layout_alignParentBottom="true"
-			android:onClick="startGame"
-			android:text="@string/app_start"/>
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/TimerLayout">
 
-    <com.stuin.tenseconds.Views.Player
-            style="@style/style_text"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/PlayerLayout">
+			<TextView
+				android:id="@+id/Left"
+				android:text="@string/app_time"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="end"/>
 
-        <com.stuin.tenseconds.Views.Grid
-                android:id="@+id/TopGrid"
-                style="@style/style_text"
-                android:layout_marginBottom="15dp"
-				stuin:top="true">
+			<ProgressBar
+				android:id="@+id/progressBar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:progressDrawable="@drawable/progressbar"/>
 
-        </com.stuin.tenseconds.Views.Grid>
+			<TextView
+				android:id="@+id/Right"
+				android:text="@string/app_time"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="start"/>
 
-        <com.stuin.tenseconds.Views.Timer
-                style="@style/style_background"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TimerLayout">
+		</com.stuin.tenseconds.Views.Timer>
 
-            <TextView
-                    android:id="@+id/Left"
-                    android:text="@string/app_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"/>
+		<com.stuin.tenseconds.Views.Grid
+			android:id="@+id/BotGrid"
+			style="@style/style_text"
+			android:layout_marginTop="15dp">
 
-            <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-					android:progressDrawable="@drawable/progressbar"/>
+		</com.stuin.tenseconds.Views.Grid>
 
-            <TextView
-                    android:id="@+id/Right"
-                    android:text="@string/app_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"/>
+	</com.stuin.tenseconds.Views.Player>
+	
+	<Button
+		android:id="@+id/DrawerButton"
+		android:height="15dp"
+		android:width="15dp"
+		android:text="@string/app_time"
+		android:layout_alignParentTop="true"
+		/>
 
-        </com.stuin.tenseconds.Views.Timer>
-
-        <com.stuin.tenseconds.Views.Grid
-                android:id="@+id/BotGrid"
-                style="@style/style_text"
-                android:layout_marginTop="15dp">
-
-        </com.stuin.tenseconds.Views.Grid>
-
-    </com.stuin.tenseconds.Views.Player>
+	<com.stuin.tenseconds.Drawer
+		android:id="@+id/DrawerLayout"
+		style="@style/style_background"
+		android:layout_height="match_parent"
+		android:layout_width="wrap_content"
+		android:orientation="vertical"
+		android:layout_alignParentEnd="true"
+		android:visibility="gone">
+		
+		
+		
+	</com.stuin.tenseconds.Drawer>
 
 </RelativeLayout>
 
