@@ -102,22 +102,29 @@
             android:visibility="gone"
             android:onClick="drawer">
 
+		<TextView
+			style="@style/style_line"/>
         <TextView
-                android:text="@string/app_in"
+                android:text="@string/menu_in"
                 style="@style/style_background"
                 android:id="@+id/Sign_In"/>
         <TextView
-                android:text="@string/app_out"
+                android:text="@string/menu_out"
                 style="@style/style_background"
                 android:id="@+id/Sign_Out"
                 android:visibility="gone"/>
         <TextView
-                style="@style/style_line"
-                android:background="@color/app_text"/>
-
+                style="@style/style_line"/>
+		<TextView
+				style="@style/style_text"
+				android:text="@string/menu_blind"/>
+		<Switch
+			style="@style/style_text"/>
+		<TextView
+			style="@style/style_line"/>
         <TextView
                 style="@style/style_text"
-                android:text="@string/app_credits"/>
+                android:text="@string/menu_credits"/>
 
 
     </com.stuin.tenseconds.Views.Drawer>
