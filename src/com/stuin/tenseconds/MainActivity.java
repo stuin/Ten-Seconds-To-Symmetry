@@ -21,7 +21,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_layout);
 
         Round.reset();
-        ((Grid) findViewById(R.id.TopGrid)).top = true;
 
         player = (Player) findViewById(R.id.PlayerLayout);
         player.scoreboard = new Scoreboard(player);

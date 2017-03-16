@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:stuin="http://schemas.android.com/apk/res/com.stuin.tenseconds"
 
         android:id="@+id/Relative"
         android:orientation="vertical"
@@ -29,7 +30,9 @@
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/TopGrid"
-                style="@style/style_text">
+                style="@style/style_text"
+				stuin:top="true"
+				android:visibility="gone">
 
         </com.stuin.tenseconds.Views.Grid>
 
@@ -64,7 +67,8 @@
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/BotGrid"
-                style="@style/style_text">
+                style="@style/style_text"
+				android:visibility="gone">
 
         </com.stuin.tenseconds.Views.Grid>
 

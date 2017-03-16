@@ -4,19 +4,35 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
 import com.stuin.tenseconds.Round;
+import android.transition.*;
+import android.widget.*;
+import com.stuin.tenseconds.R;
 
 /**
  * Created by Stuart on 3/12/2017.
  */
 public class Grid extends GridLayout {
-	public boolean top = false;
+	public boolean top;
 	Cell marked;
+	Grid grid = this;
 	
     public Grid(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+		top = attributeSet.getAttributeBooleanValue("stuin","top",false);
+		
+		//post(slideSet);
     }
+	
+	Runnable slideSet = new Runnable() {
+		public void run() {
+			Slide slide = new Slide();
+			slide.onAppear((RelativeLayout) grid.getParent().getParent(), grid, new TransitionValues(), new TransitionValues());
+			slide.onDisappear((RelativeLayout) grid.getParent().getParent(), grid, new TransitionValues(), new TransitionValues()); 
+		}
+	};
 
     void reset() {
+		removeAllViewsInLayout();
         setColumnCount(Round.size);
         
 		if(top) {
@@ -30,5 +46,7 @@ public class Grid extends GridLayout {
 			marked = (Cell) getChildAt(Round.pos);
 			marked.display();
 		}
+		
+		setVisibility(VISIBLE);
     }
 }

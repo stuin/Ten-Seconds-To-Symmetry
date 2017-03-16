@@ -4,6 +4,7 @@ import android.content.*;
 import android.util.*;
 import com.stuin.tenseconds.Scoreboard;
 import com.stuin.tenseconds.R;
+import android.view.animation.*;
 
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
@@ -23,9 +24,9 @@ public class Player extends LinearLayout {
 	private Runnable title = new Runnable() {
 		public void run() {
 			TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(0);
-			if(textView.getText().length() > 10) {
+			if(textView.getText().length() > 20) {
 				String text = textView.getText().toString();
-				text = text.substring(1, text.length() - 1);
+				text = text.substring(1, text.length());
 				textView.setText(text);
 
 				postDelayed(title, 200);
@@ -34,8 +35,8 @@ public class Player extends LinearLayout {
 	};
 
 	public void clear() {
-		((Grid) getChildAt(0)).removeAllViewsInLayout();
-		((Grid) getChildAt(2)).removeAllViewsInLayout();
+		((Grid) getChildAt(0)).setVisibility(GONE);
+		((Grid) getChildAt(2)).setVisibility(GONE);
 	}
 
 	void win() {

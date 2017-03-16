@@ -18,7 +18,7 @@ public class Round {
     public static int scale;
 	public static int pos;
     public static List<Cell> cells;
-    static int length;
+    public static int length;
 
     static void generate(Context context) {
         scale = length / (size + 2);
