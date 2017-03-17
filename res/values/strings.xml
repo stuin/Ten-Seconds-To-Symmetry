@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ten Seconds To Symmetry</string>
+    <string name="app_start"> Start Game </string>
+    <string name="app_blank"> </string>
+	
+    <string name="menu_in">WIP</string>
+    <string name="menu_out">Sign Out</string>
+	<string name="menu_blind">Colorblind</string>
+    <string name="menu_credits">App Made by \n Stuart Irwin</string>
+
+
+    <string-array name="app_labels">
+        <item>Game Lost:" "</item>
+        <item>Complete:" "</item>
+
+        <item>New High Score</item>
+        <item>High Score:" "</item>
+
+        <item>Next Round</item>
+        <item>Restart</item>
+    </string-array>
+</resources>

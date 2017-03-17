@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TenSecondsToSymmetry.iml" filepath="$PROJECT_DIR$/TenSecondsToSymmetry.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../android-basic-samples-master/android-basic-samples-master/BasicSamples/libraries/BaseGameUtils/src/main/main.iml" filepath="$PROJECT_DIR$/../android-basic-samples-master/android-basic-samples-master/BasicSamples/libraries/BaseGameUtils/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TenSeconds.iml" filepath="$PROJECT_DIR$/TenSeconds.iml" />
     </modules>
   </component>
 </project>
