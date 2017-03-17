@@ -3,11 +3,10 @@ package com.stuin.tenseconds;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.Switch;
-import android.widget.TextView;
-import com.stuin.tenseconds.Views.Drawer;
+import android.widget.*;
+import com.stuin.tenseconds.Animations.SliderSync;
 import com.stuin.tenseconds.Views.Player;
+import com.stuin.tenseconds.Views.Timer;
 
 /**
  * Created by Stuart on 2/14/2017.
@@ -45,7 +44,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        //player.clear();
+        player.clear();
     }
 
     private void setup(RelativeLayout relativeLayout) {
@@ -59,6 +58,22 @@ public class MainActivity extends Activity {
         textView = (TextView) findViewById(R.id.BotText);
         textView.setTextSize(Round.text);
         textView.setTranslationY(Round.length / -2.5f);
+
+        LinearLayout drawer = (LinearLayout) findViewById(R.id.DrawerLayout);
+        FrameLayout icon = (FrameLayout) findViewById(R.id.DrawerButton);
+
+        player.slideDrawer = new SliderSync(drawer, icon);
+        player.slideDrawer.setup(true, Round.length, 200, 200);
+
+        for(int i = 0; i < drawer.getChildCount(); i++) {
+            if(drawer.getChildAt(i) instanceof TextView) {
+                textView = (TextView) drawer.getChildAt(i);
+                textView.setTextSize(Round.text);
+            } else if(drawer.getChildAt(i) instanceof Switch) {
+                Switch view = (Switch) drawer.getChildAt(i);
+                view.setChecked(Round.colorblind);
+            }
+        }
     }
 
 
@@ -67,21 +82,32 @@ public class MainActivity extends Activity {
             Round.generate(this);
             player.start();
             findViewById(R.id.DrawerButton).setVisibility(View.GONE);
-            ((Drawer) findViewById(R.id.DrawerLayout)).drawerSlide.exit();
+            player.slideDrawer.hide();
         }
     }
 
     public void drawer(View view) {
         switch(view.getId()) {
             case R.id.DrawerButton:
-                ((Drawer) findViewById(R.id.DrawerLayout)).open();
+                player.slideDrawer.showPrimary();
                 break;
             case R.id.DrawerLayout:case R.id.Relative:
-                ((Drawer) findViewById(R.id.DrawerLayout)).drawerSlide.exit();
+                player.slideDrawer.showSecondary();
                 break;
             case R.id.Colorblind:
                 player.scoreboard.colorblind(view);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!Round.playing) {
+            if(!player.slideDrawer.showPrimary()) {
+                ((TextView) findViewById(R.id.TopText)).setText(getResources().getText(R.string.app_name));
+                ((TextView) findViewById(R.id.BotText)).setText(getResources().getText(R.string.app_start));
+                ((Timer) findViewById(R.id.TimerLayout)).write("");
+            }
+        } else player.clear();
     }
 }

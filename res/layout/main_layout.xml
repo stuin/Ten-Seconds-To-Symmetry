@@ -81,20 +81,26 @@
 
     </com.stuin.tenseconds.Views.Player>
 
-    <ImageView
+    <FrameLayout
             android:id="@+id/DrawerButton"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_margin="20dp"
-            android:contentDescription="@string/app_blank"
-            android:background="@drawable/menu"
-            android:alpha=".25"
-            android:onClick="drawer"/>
+            android:onClick="drawer">
 
-    <com.stuin.tenseconds.Views.Drawer
+        <ImageView
+                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:layout_margin="15dp"
+                android:contentDescription="@string/app_blank"
+                android:background="@drawable/menu"
+                android:alpha=".25"/>
+    </FrameLayout>
+
+
+    <LinearLayout
             android:id="@+id/DrawerLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -136,6 +142,6 @@
                 style="@style/style_line"/>
 
 
-    </com.stuin.tenseconds.Views.Drawer>
+    </LinearLayout>
 </RelativeLayout>
 
