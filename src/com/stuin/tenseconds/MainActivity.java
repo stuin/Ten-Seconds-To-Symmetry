@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(!Round.playing) {
-            if(!player.slideDrawer.showPrimary()) {
+            if(!player.slideDrawer.showSecondary()) {
                 ((TextView) findViewById(R.id.TopText)).setText(getResources().getText(R.string.app_name));
                 ((TextView) findViewById(R.id.BotText)).setText(getResources().getText(R.string.app_start));
                 ((Timer) findViewById(R.id.TimerLayout)).write("");

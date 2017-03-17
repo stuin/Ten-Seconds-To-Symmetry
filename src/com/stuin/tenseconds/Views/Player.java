@@ -43,6 +43,8 @@ public class Player extends LinearLayout {
 
 		((Grid) getChildAt(0)).exit();
 		((Grid) getChildAt(2)).exit();
+		((Timer) getChildAt(1)).end();
+		
 		slideDrawer.showSecondary();
 	}
 
