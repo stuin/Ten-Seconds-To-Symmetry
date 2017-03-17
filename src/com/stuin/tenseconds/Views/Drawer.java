@@ -14,14 +14,20 @@ public class Drawer extends LinearLayout {
 
 	public void open() {
 		if(drawerSlide.unSet) {
-			drawerSlide.setup(true, Round.length / 2);
+			drawerSlide.setup(true, Round.length / 2, 200);
 
-			((TextView) getChildAt(0)).setTextSize(Round.text);
-			((TextView) getChildAt(1)).setTextSize(Round.text);
-			((TextView) getChildAt(3)).setTextSize(Round.text);
+			for(int i = 0; i < getChildCount(); i++) {
+				if(getChildAt(i) instanceof TextView) {
+					TextView textView = (TextView) getChildAt(i);
+					textView.setTextSize(Round.text);
+				} else if(getChildAt(i) instanceof Switch) {
+					Switch view = (Switch) getChildAt(i);
+					view.setChecked(Round.colorblind);
+				}
+			}
 		}
 
-		drawerSlide.open();
+		drawerSlide.enter();
 	}
 
 }

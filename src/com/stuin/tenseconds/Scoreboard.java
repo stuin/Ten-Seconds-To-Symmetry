@@ -2,7 +2,9 @@ package com.stuin.tenseconds;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import com.stuin.tenseconds.Views.Player;
 import com.stuin.tenseconds.Views.Timer;
@@ -22,12 +24,13 @@ public class Scoreboard {
 
 	    highScore = sharedPreferences.getInt("HighScore", 0);
 	    expanded = sharedPreferences.getBoolean("Expanded", false);
+	    Round.colorblind = sharedPreferences.getBoolean("Colorblind", false);
 
 	    labels = player.getResources().getStringArray(R.array.app_labels);
     }
 
     public void win(int time) {
-	    score += time * (Round.size /2) * Round.colors;
+	    score += time * (Round.size / 2) * Round.colors;
 
 	    if(Round.size == 8 && Round.next) {
 	        if((Round.colors == 5 && !expanded) || Round.colors == 8) {
@@ -69,4 +72,9 @@ public class Scoreboard {
 		
 		Round.reset();
     }
+
+    void colorblind(View view) {
+		Round.colorblind = ((Switch) view).isChecked();
+		sharedPreferences.edit().putBoolean("Colorblind", Round.colorblind).apply();
+	}
 }

@@ -10,13 +10,15 @@
     <style name="style_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/app_text</item>
         <item name="android:layout_centerHorizontal">true</item>
-		<item name="android:layout_centerVertical">true</item>
-		<item name="android:layout_gravity">center</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/app_text</item>
     </style>
 
     <style name="style_background" parent="style_text">
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@color/app_layout</item>
     </style>

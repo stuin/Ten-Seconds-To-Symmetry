@@ -2,6 +2,7 @@ package com.stuin.tenseconds.Views;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Space;
@@ -29,9 +30,8 @@ public class Cell extends FrameLayout {
         OnClickListener clickListener = new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Player player = (Player) getParent().getParent();
-
-                if(!player.getMoving()) {
+                if(!Round.moving) {
+                    Player player = (Player) getParent().getParent();
                     if(mark == -1) player.lose();
                     else player.win();
                 }
@@ -40,7 +40,7 @@ public class Cell extends FrameLayout {
 
 		setMinimumWidth(Round.scale);
 		setMinimumHeight(Round.scale);
-		setColor();
+		if(mark == -1) setColor(color);
 		setOnClickListener(clickListener);
     }
 	
@@ -50,7 +50,7 @@ public class Cell extends FrameLayout {
 		return cell;
 	}
 	
-	void setColor() {
+	void setColor(int color) {
 		switch(color) {
             case 0:
                 setBackgroundColor(Color.RED);
@@ -68,6 +68,17 @@ public class Cell extends FrameLayout {
                 setBackgroundColor(Color.BLACK);
 				break;
 		}
+
+		if(Round.colorblind) {
+		    TextView textView = new TextView(new ContextThemeWrapper(getContext(), R.style.style_text));
+		    textView.setText(String.valueOf(color));
+		    textView.setWidth(Round.scale);
+		    textView.setGravity(Gravity.CENTER);
+		    textView.setTextSize(Round.text);
+
+            removeAllViewsInLayout();
+		    addView(textView);
+        }
 	}
 
     void display() {

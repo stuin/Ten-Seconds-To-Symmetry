@@ -35,7 +35,7 @@
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/TopGrid"
                 style="@style/style_text"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="10dp"
                 stuin:top="true">
 
         </com.stuin.tenseconds.Views.Grid>
@@ -43,6 +43,7 @@
         <com.stuin.tenseconds.Views.Timer
                 style="@style/style_background"
                 android:orientation="horizontal"
+                android:padding="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/TimerLayout">
@@ -58,6 +59,7 @@
                     android:id="@+id/progressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:max="1000"
                     android:progressDrawable="@drawable/progressbar"
                     android:visibility="gone"/>
 
@@ -73,7 +75,7 @@
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/BotGrid"
                 style="@style/style_text"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="10dp">
 
         </com.stuin.tenseconds.Views.Grid>
 
@@ -86,6 +88,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:layout_margin="20dp"
             android:contentDescription="@string/app_blank"
             android:background="@drawable/menu"
             android:alpha=".25"
@@ -119,9 +122,11 @@
 				style="@style/style_text"
 				android:text="@string/menu_blind"/>
 		<Switch
-			style="@style/style_text"/>
+			    style="@style/style_text"
+                android:id="@+id/Colorblind"
+                android:onClick="drawer"/>
 		<TextView
-			style="@style/style_line"/>
+			    style="@style/style_line"/>
         <TextView
                 style="@style/style_text"
                 android:text="@string/menu_credits"/>

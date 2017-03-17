@@ -15,13 +15,9 @@ public class Player extends LinearLayout {
 	public void start() {
 		((Grid) getChildAt(0)).enter();
 		((Grid) getChildAt(2)).enter();
-		((Timer) getChildAt(1)).clear();
+		((Timer) getChildAt(1)).start();
 		
 		postDelayed(title, 100);
-	}
-
-	public boolean getMoving() {
-		return ((Grid) getChildAt(0)).slider.moving;
 	}
 	
 	private Runnable title = new Runnable() {
@@ -45,10 +41,11 @@ public class Player extends LinearLayout {
 
 	void win() {
 		clear();
-		scoreboard.win(((Timer) getChildAt(1)).time);
+		scoreboard.win(((Timer) getChildAt(1)).end() / 10);
 	}
 
 	void lose() {
+		((Timer) getChildAt(1)).end();
 		((Grid) getChildAt(0)).marked.display();
 		((Grid) getChildAt(2)).marked.display();
 
@@ -58,6 +55,6 @@ public class Player extends LinearLayout {
 				scoreboard.done(false);
 				clear();
 			}
-		},0);
+		},1000);
 	}
 }

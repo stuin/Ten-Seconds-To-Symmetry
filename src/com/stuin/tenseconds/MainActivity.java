@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import com.stuin.tenseconds.Views.Drawer;
-import com.stuin.tenseconds.Views.Grid;
 import com.stuin.tenseconds.Views.Player;
 
 /**
@@ -25,6 +25,7 @@ public class MainActivity extends Activity {
 
         player = (Player) findViewById(R.id.PlayerLayout);
         player.scoreboard = new Scoreboard(player);
+        ((Switch) findViewById(R.id.Colorblind)).setChecked(Round.colorblind);
 
         relativeLayout = (RelativeLayout) findViewById(R.id.Relative);
         relativeLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -63,10 +64,11 @@ public class MainActivity extends Activity {
 
 
     public void startGame(View view) {
-        if(!player.getMoving()) {
+        if(!Round.moving) {
             Round.generate(this);
             player.start();
             findViewById(R.id.DrawerButton).setVisibility(View.GONE);
+            ((Drawer) findViewById(R.id.DrawerLayout)).drawerSlide.exit();
         }
     }
 
@@ -76,7 +78,10 @@ public class MainActivity extends Activity {
                 ((Drawer) findViewById(R.id.DrawerLayout)).open();
                 break;
             case R.id.DrawerLayout:case R.id.Relative:
-                ((Drawer) findViewById(R.id.DrawerLayout)).drawerSlide.close();
+                ((Drawer) findViewById(R.id.DrawerLayout)).drawerSlide.exit();
+                break;
+            case R.id.Colorblind:
+                player.scoreboard.colorblind(view);
                 break;
         }
     }
