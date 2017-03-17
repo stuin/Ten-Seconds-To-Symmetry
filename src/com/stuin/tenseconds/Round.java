@@ -25,7 +25,7 @@ public class Round {
     static boolean next;
 
     static void generate(Context context) {
-        scale = (length - 30) / (size + 2);
+        scale = length / (size + 1);
 
         cells = new ArrayList<>();
         Random rand = new Random();

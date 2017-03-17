@@ -50,8 +50,7 @@ public class MainActivity extends Activity {
 
     private void setup(RelativeLayout relativeLayout) {
         Round.length = relativeLayout.getHeight() / 2;
-        if(relativeLayout.getWidth() > Round.length) Round.length = relativeLayout.getWidth();
-        Round.text = Round.length / 45;
+        Round.text = Round.length / 40;
 
         TextView textView = (TextView) findViewById(R.id.TopText);
         textView.setTextSize(Round.text);

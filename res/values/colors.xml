@@ -3,4 +3,5 @@
     <color name="app_background">#ffb100</color>
     <color name="app_text">#ffffff</color>
 	<color name="app_layout">#4C000000</color>
+    <color name="app_menu">#80000000</color>
 </resources>

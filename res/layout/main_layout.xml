@@ -96,10 +96,12 @@
 
     <com.stuin.tenseconds.Views.Drawer
             android:id="@+id/DrawerLayout"
-            style="@style/style_background"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@color/app_menu"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:gravity="center"
             android:orientation="vertical"
             android:padding="10dp"
             android:visibility="gone"
@@ -130,6 +132,8 @@
         <TextView
                 style="@style/style_text"
                 android:text="@string/menu_credits"/>
+        <TextView
+                style="@style/style_line"/>
 
 
     </com.stuin.tenseconds.Views.Drawer>

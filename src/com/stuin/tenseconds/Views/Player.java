@@ -23,12 +23,12 @@ public class Player extends LinearLayout {
 	private Runnable title = new Runnable() {
 		public void run() {
 			TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(0);
-			if(textView.getText().length() > 20) {
+			if(textView.getText().length() > 15) {
 				String text = textView.getText().toString();
 				text = text.substring(1, text.length());
 				textView.setText(text);
 
-				postDelayed(title, 200);
+				postDelayed(title, 75);
 			}
 		}
 	};

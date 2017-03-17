@@ -14,7 +14,7 @@ public class Drawer extends LinearLayout {
 
 	public void open() {
 		if(drawerSlide.unSet) {
-			drawerSlide.setup(true, Round.length / 2, 200);
+			drawerSlide.setup(true, Round.length, 250);
 
 			for(int i = 0; i < getChildCount(); i++) {
 				if(getChildAt(i) instanceof TextView) {
