@@ -3,11 +3,9 @@ package com.stuin.tenseconds.Views;
 import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.stuin.tenseconds.Round;
 
 /**
  * Created by Stuart on 3/12/2017.

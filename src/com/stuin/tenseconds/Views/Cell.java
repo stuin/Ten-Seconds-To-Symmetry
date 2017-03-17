@@ -5,8 +5,6 @@ import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Space;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.graphics.*;
 import com.stuin.tenseconds.*;
