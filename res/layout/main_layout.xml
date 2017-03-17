@@ -124,15 +124,18 @@
                 style="@style/style_background"
                 android:id="@+id/Sign_Out"
                 android:visibility="gone"/>
-        <!--TextView
-                style="@style/style_line"/>
+        <TextView
+                style="@style/style_line"
+				android:visibility="gone"/>
 		<TextView
 				style="@style/style_text"
-				android:text="@string/menu_blind"/>
+				android:text="@string/menu_blind"
+				android:visibility="gone"/>
 		<Switch
 			    style="@style/style_text"
                 android:id="@+id/Colorblind"
-                android:onClick="drawer"/-->
+                android:onClick="drawer"
+				android:visibility="gone"/>
 		<TextView
 			    style="@style/style_line"/>
         <TextView

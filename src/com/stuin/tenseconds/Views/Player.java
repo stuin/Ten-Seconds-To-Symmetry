@@ -21,7 +21,6 @@ public class Player extends LinearLayout {
 		((Grid) getChildAt(0)).enter();
 		((Grid) getChildAt(2)).enter();
 		((Timer) getChildAt(1)).start();
-		slideDrawer.showPrimary();
 		
 		postDelayed(title, 100);
 	}
