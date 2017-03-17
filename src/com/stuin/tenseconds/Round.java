@@ -14,9 +14,10 @@ public class Round {
     public static int length;
     public static int scale;
     public static int text;
+    public static boolean colorblind;
 
     public static boolean moving;
-    public static boolean colorblind;
+    public static boolean playing;
 	public static int pos;
     public static List<Cell> cells;
 
@@ -44,6 +45,7 @@ public class Round {
         Round.size = 5;
         Round.colors = 3;
         Round.moving = false;
+        Round.playing = false;
         Round.next = false;
     }
 }

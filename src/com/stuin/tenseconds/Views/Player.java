@@ -2,21 +2,26 @@ package com.stuin.tenseconds.Views;
 import android.widget.*;
 import android.content.*;
 import android.util.*;
+import com.stuin.tenseconds.Animations.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 import com.stuin.tenseconds.Scoreboard;
 
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
+	public SliderSync slideDrawer;
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
 	}
 
 	public void start() {
+		Round.playing = true;
+
 		((Grid) getChildAt(0)).enter();
 		((Grid) getChildAt(2)).enter();
 		((Timer) getChildAt(1)).start();
+		slideDrawer.showPrimary();
 		
 		postDelayed(title, 100);
 	}
@@ -34,10 +39,12 @@ public class Player extends LinearLayout {
 		}
 	};
 
-	private void clear() {
+	public void clear() {
+		Round.playing = false;
+
 		((Grid) getChildAt(0)).exit();
 		((Grid) getChildAt(2)).exit();
-		((RelativeLayout) getParent()).findViewById(R.id.DrawerButton).setVisibility(VISIBLE);
+		slideDrawer.showSecondary();
 	}
 
 	void win() {
