@@ -118,7 +118,7 @@
                 style="@style/style_background"
                 android:id="@+id/Sign_Out"
                 android:visibility="gone"/>
-        <TextView
+        <!--TextView
                 style="@style/style_line"/>
 		<TextView
 				style="@style/style_text"
@@ -126,7 +126,7 @@
 		<Switch
 			    style="@style/style_text"
                 android:id="@+id/Colorblind"
-                android:onClick="drawer"/>
+                android:onClick="drawer"/-->
 		<TextView
 			    style="@style/style_line"/>
         <TextView
