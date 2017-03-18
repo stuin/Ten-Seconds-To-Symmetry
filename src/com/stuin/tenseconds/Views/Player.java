@@ -19,7 +19,6 @@ public class Player extends LinearLayout {
 
 	public void start() {
 		Round.moving = true;
-		Round.playing = true;
 		Round.loss = false;
 
 		((Grid) getChildAt(0)).enter();
@@ -44,7 +43,6 @@ public class Player extends LinearLayout {
 
 	public void clear() {
 		Round.moving = true;
-		Round.playing = false;
 
 		((Grid) getChildAt(0)).slider.exit();
 		((Grid) getChildAt(2)).slider.exit();
@@ -72,7 +70,6 @@ public class Player extends LinearLayout {
 
 	void lose() {
 		Round.moving = true;
-		Round.loss = true;
 
 		((Timer) getChildAt(1)).end();
 		((Grid) getChildAt(0)).marked.display();
@@ -86,5 +83,9 @@ public class Player extends LinearLayout {
 				scoreboard.done(false);
 			}
 		},1000);
+	}
+
+	public boolean playing() {
+		return ((Grid) getChildAt(0)).slider.shown();
 	}
 }

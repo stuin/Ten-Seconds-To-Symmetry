@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 
 
     public void startGame(View view) {
-        if(!Round.moving) {
+        if(!Round.moving && !player.playing()) {
             Round.generate(this);
             player.start();
             player.slideDrawer.hide();
@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if(!Round.playing) {
+        if(!player.playing()) {
             if(!player.slideDrawer.showSecondary() && Round.loss) player.menu();
         } else if(!Round.moving) player.clear();
     }

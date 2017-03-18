@@ -32,13 +32,13 @@ public class Scoreboard {
     public void win(int time) {
 	    score += time * (Round.size / 2) * Round.colors;
 
-	    next();
-
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		String text = "+" + score + '+';
 		((TextView) relativeLayout.getChildAt(0)).setText(text);
 
 		((TextView) relativeLayout.getChildAt(1)).setText(labels[4]);
+
+		next();
     }
 
     public void done(boolean win) {
@@ -58,10 +58,12 @@ public class Scoreboard {
 		} else timer.write(labels[3] + highScore);
 		
 		Round.reset();
+		Round.loss = true;
+		score = 0;
     }
 
     void save() {
-		if(!Round.loss) {
+		if(!Round.loss && score > 0) {
 			String file = Round.count + ":" + score;
 
 			sharedPreferences.edit().putString("Save", file).apply();
@@ -84,15 +86,14 @@ public class Scoreboard {
 	private void next() {
 		if(!Round.next) Round.next = true;
 		else {
-			if(Round.size != 8) Round.size++;
+			if(Round.size != 9) Round.size++;
 			else {
-				if((Round.colors == 5 && !expanded) || Round.colors == 8) {
-					done(true);
-					return;
+				if((Round.colors == 5 && !expanded) || Round.colors == 8) done(true);
+				else {
+					Round.colors++;
+					Round.size = 5;
+					Round.next = false;
 				}
-				Round.colors++;
-				Round.size = 5;
-				Round.next = false;
 			}
 		}
 	}
