@@ -10,7 +10,6 @@ import com.stuin.tenseconds.Scoreboard;
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
 	public SliderSync slideDrawer;
-	public boolean loss = false;
 
 	private boolean menu = true;
 
@@ -21,7 +20,7 @@ public class Player extends LinearLayout {
 	public void start() {
 		Round.moving = true;
 		Round.playing = true;
-		loss = false;
+		Round.loss = false;
 
 		((Grid) getChildAt(0)).enter();
 		((Grid) getChildAt(2)).enter();
@@ -65,6 +64,7 @@ public class Player extends LinearLayout {
 
 	void win() {
 		Round.moving = true;
+		Round.count++;
 		menu = false;
 		clear();
 		scoreboard.win(((Timer) getChildAt(1)).end() / 10);
@@ -72,7 +72,7 @@ public class Player extends LinearLayout {
 
 	void lose() {
 		Round.moving = true;
-		loss = true;
+		Round.loss = true;
 
 		((Timer) getChildAt(1)).end();
 		((Grid) getChildAt(0)).marked.display();

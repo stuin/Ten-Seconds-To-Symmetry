@@ -36,7 +36,8 @@
                 android:id="@+id/TopGrid"
                 style="@style/style_text"
                 android:layout_marginBottom="10dp"
-                stuin:top="true">
+                stuin:top="true"
+                android:visibility="gone">
 
         </com.stuin.tenseconds.Views.Grid>
 
@@ -89,7 +90,8 @@
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/BotGrid"
                 style="@style/style_text"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
 
         </com.stuin.tenseconds.Views.Grid>
 
@@ -134,13 +136,11 @@
                 style="@style/style_background"
                 android:id="@+id/Sign_In"/>
         <TextView
-                android:text="@string/menu_out"
-                style="@style/style_background"
-                android:id="@+id/Sign_Out"
-                android:visibility="gone"/>
+                style="@style/style_line"/>
         <TextView
-                style="@style/style_line"
-				android:visibility="gone"/>
+                android:id="@+id/Level"
+                style="@style/style_text"/>
+
 		<TextView
 				style="@style/style_text"
 				android:text="@string/menu_blind"
@@ -150,6 +150,7 @@
                 android:id="@+id/Colorblind"
                 android:onClick="drawer"
 				android:visibility="gone"/>
+
 		<TextView
 			    style="@style/style_line"/>
         <TextView

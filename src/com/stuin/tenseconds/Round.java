@@ -24,6 +24,8 @@ public class Round {
     public static int size;
     public static int colors;
     public static boolean next;
+    public static int count;
+    public static boolean loss = false;
 
     static void generate(Context context) {
         scale = length / (size + 1);
@@ -42,6 +44,7 @@ public class Round {
     }
 
     static void reset() {
+        Round.count = 0;
         Round.size = 5;
         Round.colors = 3;
         Round.moving = false;

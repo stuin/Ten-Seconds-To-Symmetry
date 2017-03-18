@@ -32,20 +32,7 @@ public class Scoreboard {
     public void win(int time) {
 	    score += time * (Round.size / 2) * Round.colors;
 
-	    if(Round.size == 8 && Round.next) {
-	        if((Round.colors == 5 && !expanded) || Round.colors == 8) {
-	        	done(true);
-	        	return;
-			}
-			else {
-	            Round.colors++;
-	            Round.size = 5;
-	            Round.next = false;
-            }
-        } else {
-	        if(Round.next) Round.size++;
-	        Round.next = !Round.next;
-        }
+	    next();
 
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		String text = "+" + score + '+';
@@ -72,6 +59,43 @@ public class Scoreboard {
 		
 		Round.reset();
     }
+
+    void save() {
+		if(!Round.loss) {
+			String file = Round.count + ":" + score;
+
+			sharedPreferences.edit().putString("Save", file).apply();
+		}
+	}
+
+	void load() {
+		String file = sharedPreferences.getString("Save", " ");
+		if(!file.equals(" ")) {
+			Round.count = Integer.valueOf(file.split(":")[0]);
+			score = Integer.valueOf(file.split(":")[1]);
+
+			for(int i = 0; i < Round.count; i++) next();
+
+			sharedPreferences.edit().putString("Save", " ").apply();
+			win(0);
+		}
+	}
+
+	private void next() {
+		if(!Round.next) Round.next = true;
+		else {
+			if(Round.size != 8) Round.size++;
+			else {
+				if((Round.colors == 5 && !expanded) || Round.colors == 8) {
+					done(true);
+					return;
+				}
+				Round.colors++;
+				Round.size = 5;
+				Round.next = false;
+			}
+		}
+	}
 
     void colorblind(View view) {
 		Round.colorblind = ((Switch) view).isChecked();

@@ -19,8 +19,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        Round.reset();
-
         player = (Player) findViewById(R.id.PlayerLayout);
         player.scoreboard = new Scoreboard(player);
         ((Switch) findViewById(R.id.Colorblind)).setChecked(Round.colorblind);
@@ -43,13 +41,15 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Round.moving = false;
+        Round.reset();
+        player.scoreboard.load();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         player.clear();
+        player.scoreboard.save();
     }
 
     private void setup(RelativeLayout relativeLayout) {
@@ -86,7 +86,6 @@ public class MainActivity extends Activity {
         if(!Round.moving) {
             Round.generate(this);
             player.start();
-            findViewById(R.id.DrawerButton).setVisibility(View.GONE);
             player.slideDrawer.hide();
         }
     }
@@ -95,6 +94,7 @@ public class MainActivity extends Activity {
         switch(view.getId()) {
             case R.id.DrawerButton:
                 player.slideDrawer.showPrimary();
+                ((TextView) findViewById(R.id.Level)).setText("Level " + Round.count);
                 break;
             case R.id.DrawerLayout:case R.id.Relative:
                 player.slideDrawer.showSecondary();
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(!Round.playing) {
-            if(!player.slideDrawer.showSecondary() && player.loss) player.menu();
+            if(!player.slideDrawer.showSecondary() && Round.loss) player.menu();
         } else if(!Round.moving) player.clear();
     }
 }
