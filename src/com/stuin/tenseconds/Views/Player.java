@@ -19,6 +19,7 @@ public class Player extends LinearLayout {
 	}
 
 	public void start() {
+		Round.moving = true;
 		Round.playing = true;
 		loss = false;
 
@@ -34,7 +35,7 @@ public class Player extends LinearLayout {
 			TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(0);
 			if(textView.getText().length() > 15) {
 				String text = textView.getText().toString();
-				text = text.substring(1, text.length());
+				text = text.substring(0, text.length() - 1);
 				textView.setText(text);
 
 				postDelayed(title, 75);
@@ -43,10 +44,11 @@ public class Player extends LinearLayout {
 	};
 
 	public void clear() {
+		Round.moving = true;
 		Round.playing = false;
 
-		((Grid) getChildAt(0)).exit();
-		((Grid) getChildAt(2)).exit();
+		((Grid) getChildAt(0)).slider.exit();
+		((Grid) getChildAt(2)).slider.exit();
 		((Timer) getChildAt(1)).end();
 
 		slideDrawer.showSecondary();
@@ -58,7 +60,7 @@ public class Player extends LinearLayout {
 	public void menu() {
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.TopText)).setText(getResources().getText(R.string.app_name));
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.BotText)).setText(getResources().getText(R.string.app_start));
-		((Timer) findViewById(R.id.TimerLayout)).write("");
+		((Timer) findViewById(R.id.TimerLayout)).clear();
 	}
 
 	void win() {

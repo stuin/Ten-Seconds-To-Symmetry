@@ -9,6 +9,8 @@ public class SliderSync {
     private Slider primary;
     private Slider secondary;
 
+    public boolean unSet = true;
+
     public SliderSync(View prime, View second) {
         primary = new Slider(prime);
         secondary = new Slider(second);
@@ -18,6 +20,7 @@ public class SliderSync {
     }
 
     public void setup(boolean side, int startP, int startS, int duration) {
+        unSet = false;
         primary.setup(side, startP, duration);
         secondary.setup(side, startS, duration);
     }
@@ -34,5 +37,9 @@ public class SliderSync {
 
     public boolean hide() {
         return (primary.exit() || secondary.exit());
+    }
+
+    public boolean show() {
+        return (primary.enter() || secondary.enter());
     }
 }

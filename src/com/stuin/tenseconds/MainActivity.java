@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
 
     private void setup(RelativeLayout relativeLayout) {
         Round.length = relativeLayout.getHeight() / 2;
-        Round.text = Round.length / 40;
+        Round.text = relativeLayout.getWidth() / 40;
 
         TextView textView = (TextView) findViewById(R.id.TopText);
         textView.setTextSize(Round.text);
@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
         FrameLayout icon = (FrameLayout) findViewById(R.id.DrawerButton);
 
         player.slideDrawer = new SliderSync(drawer, icon);
-        player.slideDrawer.setup(true, Round.length, 200, 200);
+        player.slideDrawer.setup(true, Round.length, 200, 250);
 
         for(int i = 0; i < drawer.getChildCount(); i++) {
             if(drawer.getChildAt(i) instanceof TextView) {

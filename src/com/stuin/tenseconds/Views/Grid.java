@@ -11,8 +11,8 @@ import com.stuin.tenseconds.Animations.Slider;
  */
 public class Grid extends GridLayout {
 	private boolean top;
-	private Slider slider = new Slider(this);
 
+	Slider slider = new Slider(this);
 	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
@@ -55,12 +55,10 @@ public class Grid extends GridLayout {
 			marked.setColor(marked.color);
 		}
 
-		Round.moving = true;
 		slider.enter();
     }
 
     void exit() {
-    	Round.moving = true;
     	slider.exit();
 	}
 }
