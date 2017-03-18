@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
 import com.stuin.tenseconds.Round;
-import com.stuin.tenseconds.Animations.Slider;
+import com.stuin.cleanvisuals.Slider;
 
 /**
  * Created by Stuart on 3/12/2017.

@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
-import com.stuin.tenseconds.Animations.SliderSync;
+import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.Views.Player;
-import com.stuin.tenseconds.Views.Timer;
 
 /**
  * Created by Stuart on 2/14/2017.

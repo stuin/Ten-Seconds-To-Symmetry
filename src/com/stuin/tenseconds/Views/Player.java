@@ -2,7 +2,7 @@ package com.stuin.tenseconds.Views;
 import android.widget.*;
 import android.content.*;
 import android.util.*;
-import com.stuin.tenseconds.Animations.SliderSync;
+import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 import com.stuin.tenseconds.Scoreboard;
