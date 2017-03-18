@@ -1,4 +1,4 @@
-package com.stuin.tenseconds;
+package com.stuin.tenseconds.Animations;
 
 import android.view.View;
 import android.view.animation.TranslateAnimation;
@@ -9,9 +9,9 @@ import android.view.animation.TranslateAnimation;
 public class Slider {
     private TranslateAnimation enterAnimation;
     private TranslateAnimation exitAnimation;
-    private boolean shown;
     private View view;
 
+    public boolean shown;
     public boolean unSet = true;
     public Endings endings;
 
@@ -31,7 +31,7 @@ public class Slider {
         exitAnimation.setDuration(time);
     }
 
-    public void enter() {
+    public boolean enter() {
         if(!shown) {
             view.setVisibility(View.VISIBLE);
             view.startAnimation(enterAnimation);
@@ -43,10 +43,12 @@ public class Slider {
                     if(endings != null) endings.enter();
                 }
             }, enterAnimation.getDuration());
+            return true;
         }
+        return false;
     }
 
-    public void exit() {
+    public boolean exit() {
         if(shown) {
             view.startAnimation(exitAnimation);
 
@@ -58,7 +60,9 @@ public class Slider {
                     if(endings != null) endings.exit();
                 }
             }, exitAnimation.getDuration());
+            return true;
         }
+        return false;
     }
 
     public interface Endings {
