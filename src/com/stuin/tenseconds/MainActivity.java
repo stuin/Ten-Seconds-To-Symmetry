@@ -42,6 +42,12 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Round.moving = false;
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         player.clear();
@@ -103,11 +109,7 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(!Round.playing) {
-            if(!player.slideDrawer.showSecondary()) {
-                ((TextView) findViewById(R.id.TopText)).setText(getResources().getText(R.string.app_name));
-                ((TextView) findViewById(R.id.BotText)).setText(getResources().getText(R.string.app_start));
-                ((Timer) findViewById(R.id.TimerLayout)).write("");
-            }
-        } else player.clear();
+            if(!player.slideDrawer.showSecondary() && player.loss) player.menu();
+        } else if(!Round.moving) player.clear();
     }
 }

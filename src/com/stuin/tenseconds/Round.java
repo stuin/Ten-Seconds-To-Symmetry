@@ -22,8 +22,8 @@ public class Round {
     public static List<Cell> cells;
 
     public static int size;
-    static int colors;
-    static boolean next;
+    public static int colors;
+    public static boolean next;
 
     static void generate(Context context) {
         scale = length / (size + 1);

@@ -10,6 +10,9 @@ import com.stuin.tenseconds.Scoreboard;
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
 	public SliderSync slideDrawer;
+	public boolean loss = false;
+
+	private boolean menu = true;
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
@@ -17,6 +20,7 @@ public class Player extends LinearLayout {
 
 	public void start() {
 		Round.playing = true;
+		loss = false;
 
 		((Grid) getChildAt(0)).enter();
 		((Grid) getChildAt(2)).enter();
@@ -44,18 +48,30 @@ public class Player extends LinearLayout {
 		((Grid) getChildAt(0)).exit();
 		((Grid) getChildAt(2)).exit();
 		((Timer) getChildAt(1)).end();
-		
+
 		slideDrawer.showSecondary();
+
+		if(Round.size == 5 && Round.colors == 3 && !Round.next && menu) menu();
+		menu = true;
+	}
+
+	public void menu() {
+		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.TopText)).setText(getResources().getText(R.string.app_name));
+		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.BotText)).setText(getResources().getText(R.string.app_start));
+		((Timer) findViewById(R.id.TimerLayout)).write("");
 	}
 
 	void win() {
 		Round.moving = true;
+		menu = false;
 		clear();
 		scoreboard.win(((Timer) getChildAt(1)).end() / 10);
 	}
 
 	void lose() {
 		Round.moving = true;
+		loss = true;
+
 		((Timer) getChildAt(1)).end();
 		((Grid) getChildAt(0)).marked.display();
 		((Grid) getChildAt(2)).marked.display();
@@ -63,8 +79,9 @@ public class Player extends LinearLayout {
 		postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				scoreboard.done(false);
+				menu = false;
 				clear();
+				scoreboard.done(false);
 			}
 		},1000);
 	}
