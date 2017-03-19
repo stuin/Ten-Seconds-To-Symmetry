@@ -142,14 +142,11 @@
                 style="@style/style_text"/>
 
 		<TextView
-				style="@style/style_text"
-				android:text="@string/menu_blind"
-				android:visibility="gone"/>
-		<Switch
-			    style="@style/style_text"
                 android:id="@+id/Colorblind"
-                android:onClick="drawer"
-				android:visibility="gone"/>
+				style="@style/style_background"
+				android:text="@string/menu_blind"
+				android:visibility="gone"
+                android:onClick="drawer"/>
 
 		<TextView
 			    style="@style/style_line"/>

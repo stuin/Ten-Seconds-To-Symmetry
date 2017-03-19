@@ -12,34 +12,31 @@ import com.stuin.tenseconds.Views.Player;
  */
 public class MainActivity extends Activity {
     private Player player;
-    private RelativeLayout relativeLayout;
+    private boolean unSet = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
+        //Start scoreboard system
         player = (Player) findViewById(R.id.PlayerLayout);
         player.scoreboard = new Scoreboard(player);
-        ((Switch) findViewById(R.id.Colorblind)).setChecked(Round.colorblind);
+        //((TextView) findViewById(R.id.Colorblind)).setChecked(Round.colorblind);
 
-        relativeLayout = (RelativeLayout) findViewById(R.id.Relative);
-        relativeLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-                setup((RelativeLayout) view);
-            }
-        });
+        //Run setup when ready
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.Relative);
         relativeLayout.post(new Runnable() {
             @Override
             public void run() {
-                setup(relativeLayout);
+                setup();
             }
         });
     }
 
     @Override
     protected void onResume() {
+        //Refresh and load game
         super.onResume();
         Round.reset();
         player.scoreboard.load();
@@ -47,42 +44,52 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onPause() {
+        //Save and pause game
         super.onPause();
         player.clear();
         player.scoreboard.save();
     }
 
-    private void setup(RelativeLayout relativeLayout) {
-        Round.length = relativeLayout.getHeight() / 2;
-        Round.text = relativeLayout.getWidth() / 40;
+    private void setup() {
+        unSet = false;
 
+        //Set various dimensions
+        int text = findViewById(R.id.Relative).getWidth() / 40;
+        Round.length = findViewById(R.id.Relative).getHeight() / 2;
+
+        //Prepare the title text
         TextView textView = (TextView) findViewById(R.id.TopText);
-        textView.setTextSize(Round.text);
+        textView.setTextSize(text);
         textView.setTranslationY(Round.length / 2.5f);
 
+        //Prepare the button
         textView = (TextView) findViewById(R.id.BotText);
-        textView.setTextSize(Round.text);
+        textView.setTextSize(text);
         textView.setTranslationY(Round.length / -2.5f);
 
+        //Get drawer and button
         LinearLayout drawer = (LinearLayout) findViewById(R.id.DrawerLayout);
         FrameLayout icon = (FrameLayout) findViewById(R.id.DrawerButton);
 
+        //Make fancy animation
         player.slideDrawer = new SliderSync(drawer, icon);
         player.slideDrawer.setup(true, Round.length, 200, 250);
 
+        //Set text in drawer
         for(int i = 0; i < drawer.getChildCount(); i++) {
             if(drawer.getChildAt(i) instanceof TextView) {
                 textView = (TextView) drawer.getChildAt(i);
-                textView.setTextSize(Round.text);
-            } else if(drawer.getChildAt(i) instanceof Switch) {
-                Switch view = (Switch) drawer.getChildAt(i);
-                view.setChecked(Round.colorblind);
+                textView.setTextSize(text);
             }
         }
     }
 
 
     public void startGame(View view) {
+        //Make sure dimensions set
+        if(unSet) setup();
+
+        //Begin next round
         if(!Round.moving && !player.playing()) {
             Round.generate(this);
             player.start();
@@ -93,13 +100,19 @@ public class MainActivity extends Activity {
     public void drawer(View view) {
         switch(view.getId()) {
             case R.id.DrawerButton:
+                //Show drawer
                 player.slideDrawer.showPrimary();
-                ((TextView) findViewById(R.id.Level)).setText("Level " + Round.count);
+
+                //Write current level
+                String text = "Level " + Round.count;
+                ((TextView) findViewById(R.id.Level)).setText(text);
                 break;
             case R.id.DrawerLayout:case R.id.Relative:
+                //Hide drawer
                 player.slideDrawer.showSecondary();
                 break;
             case R.id.Colorblind:
+                //Toggle theoretical colorblind mode
                 player.scoreboard.colorblind(view);
                 break;
         }
@@ -108,7 +121,9 @@ public class MainActivity extends Activity {
     @Override
     public void onBackPressed() {
         if(!player.playing()) {
+            //Hide drawer or go to home screen
             if(!player.slideDrawer.showSecondary() && Round.loss) player.menu();
+            //Pause game
         } else if(!Round.moving) player.clear();
     }
 }

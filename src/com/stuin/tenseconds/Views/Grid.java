@@ -46,12 +46,16 @@ public class Grid extends GridLayout {
         setColumnCount(Round.size);
         
 		if(top) {
-			for(Cell c : Round.cells) addView(c);
-			marked = (Cell) getChildAt(Round.pos);
+			for(Cell c : Round.cells) {
+				addView(c);
+				if(c.mark > -1) marked = c;
+			}
 			marked.setColor(marked.mark);
 		} else {
-			for(Cell c : Round.cells) addView(c.copy());
-			marked = (Cell) getChildAt(Round.pos);
+			for(Cell c : Round.cells) {
+				addView(c.copy());
+				if(c.mark > -1) marked = c;
+			}
 			marked.setColor(marked.color);
 		}
 
