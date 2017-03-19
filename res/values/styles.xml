@@ -21,6 +21,7 @@
         <item name="android:paddingLeft">5dp</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:background">@color/app_layout</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="style_line" parent="style_text">

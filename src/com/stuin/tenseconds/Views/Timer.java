@@ -21,6 +21,13 @@ public class Timer extends FrameLayout {
 
     public Timer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+        post(new Runnable() {
+            @Override
+            public void run() {
+                linearLayout = (LinearLayout) getChildAt(0);
+                sliderSync = new SliderSync(linearLayout, getChildAt(1));
+            }
+        });
     }
 
     void clear() {
@@ -49,8 +56,6 @@ public class Timer extends FrameLayout {
     void start() {
         if(sliderSync.unSet) {
             //Setup animation if not done yet
-            linearLayout = (LinearLayout) getChildAt(0);
-            sliderSync = new SliderSync(linearLayout, getChildAt(1));
             sliderSync.setup(true, -Round.length, Round.length, 500);
         }
 

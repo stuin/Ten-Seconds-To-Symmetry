@@ -30,33 +30,37 @@ public class Grid extends GridLayout {
 				Round.moving = false;
 			}
 		};
-		
-		post(new Runnable() {
-			public void run() {
-				int s = Round.length;
-				if(top) s = -s;
-
-				slider.setup(false, s, 700);
-			}
-		});
     }
 
     void enter() {
+    	if(slider.unSet) {
+			int s = Round.length;
+			if(top) s = -s;
+
+			slider.setup(false, s, 700);
+		}
+
 		removeAllViewsInLayout();
         setColumnCount(Round.size);
         
 		if(top) {
 			for(Cell c : Round.cells) {
 				addView(c);
-				if(c.mark > -1) marked = c;
+				if(c.mark > -1) {
+					marked = c;
+					marked.setColor(marked.mark);
+				}
+				else c.setColor(c.color);
 			}
-			marked.setColor(marked.mark);
 		} else {
 			for(Cell c : Round.cells) {
-				addView(c.copy());
-				if(c.mark > -1) marked = c;
+				c = c.copy();
+				addView(c);
+				if(c.mark > -1) {
+					marked = c;
+					marked.setColor(marked.color);
+				} else c.setColor(c.color);
 			}
-			marked.setColor(marked.color);
 		}
 
 		slider.enter();

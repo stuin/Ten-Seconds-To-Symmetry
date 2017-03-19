@@ -19,11 +19,11 @@ public class Cell extends FrameLayout {
     public int color;
     public int mark = -1;
 
-    public Cell(Context context, int color, int x, int y, int scale) {
+    public Cell(Context context, int color, int nx, int ny, int scale) {
         super(context);
         this.color = color;
-        this.x = x;
-        this.y = y;
+        this.x = nx;
+        this.y = ny;
         this.scale = scale;
 
         OnClickListener clickListener = new OnClickListener() {
@@ -31,15 +31,24 @@ public class Cell extends FrameLayout {
             public void onClick(View view) {
                 if(!Round.moving) {
                     Player player = (Player) getParent().getParent();
-                    if(mark == -1) player.lose();
-                    else player.win();
+                    if(mark == -1) {
+                        for(int nx = x - 1; nx <= x + 1; nx++) for(int ny = y - 1; ny <= y + 1; ny++) {
+                            if(nx > -1 && nx < Round.size && ny > -1 && ny < Round.size) {
+                                int pos = ny * Round.size + nx;
+                                if(Round.cells.get(pos).mark > -1) {
+                                    player.win();
+                                    return;
+                                }
+                            }
+                        }
+                        player.lose();
+                    } else player.win();
                 }
             }
         };
 
 		setMinimumWidth(scale);
 		setMinimumHeight(scale);
-		if(mark == -1) setColor(color);
 		setOnClickListener(clickListener);
     }
 	
