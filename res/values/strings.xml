@@ -2,13 +2,13 @@
 <resources>
     <string name="app_name">Ten Seconds To Symmetry</string>
     <string name="app_start"> Start Game </string>
-    <string name="app_blank"> </string>
+    <string name="app_time"> 0 </string>
 	
     <string name="menu_in">WIP</string>
     <string name="menu_out">Sign Out</string>
 	<string name="menu_blind">Colorblind</string>
+    <string name="menu_level">Level: </string>
     <string name="menu_credits">App Made by \n Stuart Irwin</string>
-
 
     <string-array name="app_labels">
         <item>Game Lost:" "</item>

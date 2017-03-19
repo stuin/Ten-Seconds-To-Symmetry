@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.stuin.tenseconds" android:versionCode="9" android:versionName="2.01">
+          package="com.stuin.tenseconds" android:installLocation="auto"
+          android:versionCode="10" android:versionName="2.1">
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="24"/>
 
     <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@style/style_app" android:allowBackup="false">

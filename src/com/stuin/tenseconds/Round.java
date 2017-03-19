@@ -12,40 +12,38 @@ import java.util.Random;
  */
 public class Round {
     public static int length;
-    public static int scale;
-    public static int text;
     public static boolean colorblind;
 
     public static boolean moving;
-    public static boolean playing;
-	public static int pos;
     public static List<Cell> cells;
 
     public static int size;
     public static int colors;
     public static boolean next;
+    public static int count;
+    public static boolean loss = false;
 
     static void generate(Context context) {
-        scale = length / (size + 1);
+        int scale = length / (size + 1);
 
         cells = new ArrayList<>();
         Random rand = new Random();
 
         for(int y = 0; y < size; y++) for(int x = 0; x < size; x++) {
-            cells.add(new Cell(context, rand.nextInt(colors), x, y));
+            cells.add(new Cell(context, rand.nextInt(colors), x, y, scale));
         }
 		
-		pos = rand.nextInt(cells.size());
+		int pos = rand.nextInt(cells.size());
         Cell marked = cells.get(pos);
         marked.mark = rand.nextInt(colors - 1);
         if(marked.mark == marked.color) marked.mark = colors - 1;
     }
 
     static void reset() {
-        Round.size = 5;
-        Round.colors = 3;
-        Round.moving = false;
-        Round.playing = false;
-        Round.next = false;
+        count = 0;
+        size = 5;
+        colors = 3;
+        moving = false;
+        next = false;
     }
 }

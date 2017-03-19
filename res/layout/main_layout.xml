@@ -36,46 +36,62 @@
                 android:id="@+id/TopGrid"
                 style="@style/style_text"
                 android:layout_marginBottom="10dp"
-                stuin:top="true">
+                stuin:top="true"
+                android:visibility="gone">
 
         </com.stuin.tenseconds.Views.Grid>
 
         <com.stuin.tenseconds.Views.Timer
                 style="@style/style_background"
-                android:orientation="horizontal"
                 android:padding="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/TimerLayout">
 
-            <TextView
-                    android:id="@+id/Left"
-                    android:text="@string/app_blank"
+            <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"/>
+                    android:layout_gravity="center">
 
-            <ProgressBar
-                    android:id="@+id/progressBar"
+                <TextView
+                        android:id="@+id/Left"
+                        android:text="@string/app_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"/>
+
+                <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:max="1000"
+                        android:progressDrawable="@drawable/progressbar"/>
+
+                <TextView
+                        android:id="@+id/Right"
+                        android:text="@string/app_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/TextBar"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:max="1000"
-                    android:progressDrawable="@drawable/progressbar"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:visibility="gone"/>
-
-            <TextView
-                    android:id="@+id/Right"
-                    android:text="@string/app_blank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"/>
 
         </com.stuin.tenseconds.Views.Timer>
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/BotGrid"
                 style="@style/style_text"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:visibility="gone">
 
         </com.stuin.tenseconds.Views.Grid>
 
@@ -94,7 +110,7 @@
                 android:layout_height="30dp"
                 android:layout_width="30dp"
                 android:layout_margin="15dp"
-                android:contentDescription="@string/app_blank"
+                android:contentDescription="@string/app_time"
                 android:background="@drawable/menu"
                 android:alpha=".25"/>
     </FrameLayout>
@@ -120,22 +136,18 @@
                 style="@style/style_background"
                 android:id="@+id/Sign_In"/>
         <TextView
-                android:text="@string/menu_out"
-                style="@style/style_background"
-                android:id="@+id/Sign_Out"
-                android:visibility="gone"/>
+                style="@style/style_line"/>
         <TextView
-                style="@style/style_line"
-				android:visibility="gone"/>
+                android:id="@+id/Level"
+                style="@style/style_text"/>
+
 		<TextView
-				style="@style/style_text"
-				android:text="@string/menu_blind"
-				android:visibility="gone"/>
-		<Switch
-			    style="@style/style_text"
                 android:id="@+id/Colorblind"
-                android:onClick="drawer"
-				android:visibility="gone"/>
+				style="@style/style_background"
+				android:text="@string/menu_blind"
+				android:visibility="gone"
+                android:onClick="drawer"/>
+
 		<TextView
 			    style="@style/style_line"/>
         <TextView

@@ -2,7 +2,7 @@ package com.stuin.tenseconds.Views;
 import android.widget.*;
 import android.content.*;
 import android.util.*;
-import com.stuin.tenseconds.Animations.SliderSync;
+import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 import com.stuin.tenseconds.Scoreboard;
@@ -10,7 +10,6 @@ import com.stuin.tenseconds.Scoreboard;
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
 	public SliderSync slideDrawer;
-	public boolean loss = false;
 
 	private boolean menu = true;
 
@@ -19,8 +18,8 @@ public class Player extends LinearLayout {
 	}
 
 	public void start() {
-		Round.playing = true;
-		loss = false;
+		Round.moving = true;
+		Round.loss = false;
 
 		((Grid) getChildAt(0)).enter();
 		((Grid) getChildAt(2)).enter();
@@ -34,7 +33,7 @@ public class Player extends LinearLayout {
 			TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(0);
 			if(textView.getText().length() > 15) {
 				String text = textView.getText().toString();
-				text = text.substring(1, text.length());
+				text = text.substring(0, text.length() - 1);
 				textView.setText(text);
 
 				postDelayed(title, 75);
@@ -43,10 +42,10 @@ public class Player extends LinearLayout {
 	};
 
 	public void clear() {
-		Round.playing = false;
+		Round.moving = true;
 
-		((Grid) getChildAt(0)).exit();
-		((Grid) getChildAt(2)).exit();
+		((Grid) getChildAt(0)).slider.exit();
+		((Grid) getChildAt(2)).slider.exit();
 		((Timer) getChildAt(1)).end();
 
 		slideDrawer.showSecondary();
@@ -58,11 +57,12 @@ public class Player extends LinearLayout {
 	public void menu() {
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.TopText)).setText(getResources().getText(R.string.app_name));
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.BotText)).setText(getResources().getText(R.string.app_start));
-		((Timer) findViewById(R.id.TimerLayout)).write("");
+		((Timer) findViewById(R.id.TimerLayout)).clear();
 	}
 
 	void win() {
 		Round.moving = true;
+		Round.count++;
 		menu = false;
 		clear();
 		scoreboard.win(((Timer) getChildAt(1)).end() / 10);
@@ -70,7 +70,6 @@ public class Player extends LinearLayout {
 
 	void lose() {
 		Round.moving = true;
-		loss = true;
 
 		((Timer) getChildAt(1)).end();
 		((Grid) getChildAt(0)).marked.display();
@@ -84,5 +83,9 @@ public class Player extends LinearLayout {
 				scoreboard.done(false);
 			}
 		},1000);
+	}
+
+	public boolean playing() {
+		return ((Grid) getChildAt(0)).slider.shown();
 	}
 }

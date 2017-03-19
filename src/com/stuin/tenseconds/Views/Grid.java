@@ -4,15 +4,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
 import com.stuin.tenseconds.Round;
-import com.stuin.tenseconds.Animations.Slider;
+import com.stuin.cleanvisuals.Slider;
 
 /**
  * Created by Stuart on 3/12/2017.
  */
 public class Grid extends GridLayout {
 	private boolean top;
-	private Slider slider = new Slider(this);
 
+	Slider slider = new Slider(this);
 	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
@@ -30,37 +30,43 @@ public class Grid extends GridLayout {
 				Round.moving = false;
 			}
 		};
-		
-		post(new Runnable() {
-			public void run() {
-				int s = Round.length;
-				if(top) s = -s;
-
-				slider.setup(false, s, 700);
-			}
-		});
     }
 
     void enter() {
+    	if(slider.unSet) {
+			int s = Round.length;
+			if(top) s = -s;
+
+			slider.setup(false, s, 700);
+		}
+
 		removeAllViewsInLayout();
         setColumnCount(Round.size);
         
 		if(top) {
-			for(Cell c : Round.cells) addView(c);
-			marked = (Cell) getChildAt(Round.pos);
-			marked.setColor(marked.mark);
+			for(Cell c : Round.cells) {
+				addView(c);
+				if(c.mark > -1) {
+					marked = c;
+					marked.setColor(marked.mark);
+				}
+				else c.setColor(c.color);
+			}
 		} else {
-			for(Cell c : Round.cells) addView(c.copy());
-			marked = (Cell) getChildAt(Round.pos);
-			marked.setColor(marked.color);
+			for(Cell c : Round.cells) {
+				c = c.copy();
+				addView(c);
+				if(c.mark > -1) {
+					marked = c;
+					marked.setColor(marked.color);
+				} else c.setColor(c.color);
+			}
 		}
 
-		Round.moving = true;
 		slider.enter();
     }
 
     void exit() {
-    	Round.moving = true;
     	slider.exit();
 	}
 }
