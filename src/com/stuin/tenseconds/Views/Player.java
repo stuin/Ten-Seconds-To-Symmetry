@@ -72,8 +72,8 @@ public class Player extends LinearLayout {
 		Round.moving = true;
 
 		((Timer) getChildAt(1)).end();
-		((Grid) getChildAt(0)).marked.display();
-		((Grid) getChildAt(2)).marked.display();
+		((Grid) getChildAt(0)).show();
+		((Grid) getChildAt(2)).show();
 
 		postDelayed(new Runnable() {
 			@Override

@@ -46,4 +46,11 @@ public class Round {
         moving = false;
         next = false;
     }
+
+    static String separate(int score) {
+        String text = "" + score;
+        for(int i = 3; i < text.length(); i += 4)
+            text = text.substring(0, text.length() -  i) + ',' + text.substring(text.length() - i);
+        return text;
+    }
 }
