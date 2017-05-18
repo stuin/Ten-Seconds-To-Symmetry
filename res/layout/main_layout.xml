@@ -10,31 +10,31 @@
         android:background="@color/app_background">
 
     <TextView
-            android:id="@+id/TopText"
+            android:id="@+id/Top_Text"
             style="@style/style_text"
             android:text="@string/app_name"
             android:layout_alignParentTop="true"/>
 
     <TextView
-            android:id="@+id/BotText"
+            android:id="@+id/Bot_Text"
             style="@style/style_background"
             android:layout_alignParentBottom="true"
             android:onClick="startGame"
             android:text="@string/app_start"/>
 
     <com.stuin.tenseconds.Views.Player
-            style="@style/style_text"
+            style="@style/style_base"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/PlayerLayout"
+            android:id="@+id/Player_Layout"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
         <com.stuin.tenseconds.Views.Grid
-                android:id="@+id/TopGrid"
-                style="@style/style_text"
+                android:id="@+id/Top_Grid"
+                style="@style/style_base"
                 android:layout_marginBottom="10dp"
                 stuin:top="true"
                 android:visibility="gone">
@@ -46,7 +46,7 @@
                 android:padding="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TimerLayout">
+                android:id="@+id/Bar_Layout">
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -55,14 +55,13 @@
                     android:layout_gravity="center">
 
                 <TextView
-                        android:id="@+id/Left"
+                        android:id="@+id/Bar_Left"
+                        style="@style/style_text"
                         android:text="@string/app_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:gravity="end"/>
 
                 <ProgressBar
-                        android:id="@+id/progressBar"
+                        android:id="@+id/Bar_Progress"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingLeft="10dp"
@@ -71,25 +70,23 @@
                         android:progressDrawable="@drawable/progressbar"/>
 
                 <TextView
-                        android:id="@+id/Right"
+                        android:id="@+id/Bar_Right"
+                        style="@style/style_text"
                         android:text="@string/app_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:gravity="start"/>
             </LinearLayout>
 
             <TextView
-                    android:id="@+id/TextBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/Bar_Text"
+                    style="@style/style_text"
                     android:layout_gravity="center"
                     android:visibility="gone"/>
 
         </com.stuin.tenseconds.Views.Timer>
 
         <com.stuin.tenseconds.Views.Grid
-                android:id="@+id/BotGrid"
-                style="@style/style_text"
+                android:id="@+id/Bot_Grid"
+                style="@style/style_base"
                 android:layout_marginTop="10dp"
                 android:visibility="gone">
 
@@ -98,7 +95,7 @@
     </com.stuin.tenseconds.Views.Player>
 
     <FrameLayout
-            android:id="@+id/DrawerButton"
+            android:id="@+id/Drawer_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -107,9 +104,7 @@
             android:onClick="drawer">
 
         <ImageView
-                android:layout_height="30dp"
-                android:layout_width="30dp"
-                android:layout_margin="15dp"
+                style="@style/style_menu"
                 android:contentDescription="@string/app_time"
                 android:background="@drawable/menu"
                 android:alpha=".25"/>
@@ -117,7 +112,7 @@
 
 
     <LinearLayout
-            android:id="@+id/DrawerLayout"
+            android:id="@+id/Drawer_Layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@color/app_menu"
@@ -134,7 +129,7 @@
         <TextView
                 android:text="@string/menu_in"
                 style="@style/style_background"
-                android:id="@+id/Sign_In"/>
+                android:id="@+id/Drawer_SignIn"/>
         <TextView
                 style="@style/style_line"/>
         <TextView
@@ -142,7 +137,7 @@
                 style="@style/style_text"/>
 
 		<TextView
-                android:id="@+id/Colorblind"
+                android:id="@+id/Drawer_Colorblind"
 				style="@style/style_background"
 				android:text="@string/menu_blind"
 				android:visibility="gone"
@@ -153,6 +148,10 @@
         <TextView
                 style="@style/style_text"
                 android:text="@string/menu_credits"/>
+        <TextView
+                style="@style/style_text"
+                android:text=""
+                android:id="@+id/Drawer_version"/>
         <TextView
                 style="@style/style_line"/>
 

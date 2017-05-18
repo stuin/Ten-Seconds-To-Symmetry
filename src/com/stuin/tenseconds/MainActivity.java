@@ -1,6 +1,7 @@
 package com.stuin.tenseconds;
 
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -20,7 +21,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_layout);
 
         //Start scoreboard system
-        player = (Player) findViewById(R.id.PlayerLayout);
+        player = (Player) findViewById(R.id.Player_Layout);
         player.scoreboard = new Scoreboard(player);
         //((TextView) findViewById(R.id.Colorblind)).setChecked(Round.colorblind);
 
@@ -54,34 +55,25 @@ public class MainActivity extends Activity {
         unSet = false;
 
         //Set various dimensions
-        int text = findViewById(R.id.Relative).getWidth() / 40;
         Round.length = findViewById(R.id.Relative).getHeight() / 2;
+        findViewById(R.id.Top_Text).setTranslationY(Round.length / 2.5f);
+        findViewById(R.id.Bot_Text).setTranslationY(Round.length / -2.5f);
 
-        //Prepare the title text
-        TextView textView = (TextView) findViewById(R.id.TopText);
-        textView.setTextSize(text);
-        textView.setTranslationY(Round.length / 2.5f);
-
-        //Prepare the button
-        textView = (TextView) findViewById(R.id.BotText);
-        textView.setTextSize(text);
-        textView.setTranslationY(Round.length / -2.5f);
-
-        //Get drawer and button
-        LinearLayout drawer = (LinearLayout) findViewById(R.id.DrawerLayout);
-        FrameLayout icon = (FrameLayout) findViewById(R.id.DrawerButton);
-
-        //Make fancy animation
+        //Set drawer animation
+        LinearLayout drawer = (LinearLayout) findViewById(R.id.Drawer_Layout);
+        FrameLayout icon = (FrameLayout) findViewById(R.id.Drawer_Button);
         player.slideDrawer = new SliderSync(drawer, icon);
         player.slideDrawer.setup(true, Round.length, 200, 250);
 
-        //Set text in drawer
-        for(int i = 0; i < drawer.getChildCount(); i++) {
-            if(drawer.getChildAt(i) instanceof TextView) {
-                textView = (TextView) drawer.getChildAt(i);
-                textView.setTextSize(text);
-            }
+        //Show app version
+        String string;
+        try {
+            string = 'v' + getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            if(BuildConfig.DEBUG) string += "a";
+        } catch(PackageManager.NameNotFoundException e) {
+            string = "Version not found";
         }
+        ((TextView) findViewById(R.id.Drawer_version)).setText(string);
     }
 
 
@@ -99,7 +91,7 @@ public class MainActivity extends Activity {
 
     public void drawer(View view) {
         switch(view.getId()) {
-            case R.id.DrawerButton:
+            case R.id.Drawer_Button:
                 //Show drawer
                 player.slideDrawer.showPrimary();
 
@@ -107,11 +99,11 @@ public class MainActivity extends Activity {
                 String text = "Level " + Round.count;
                 ((TextView) findViewById(R.id.Level)).setText(text);
                 break;
-            case R.id.DrawerLayout:case R.id.Relative:
+            case R.id.Drawer_Layout:case R.id.Relative:
                 //Hide drawer
                 player.slideDrawer.showSecondary();
                 break;
-            case R.id.Colorblind:
+            case R.id.Drawer_Colorblind:
                 //Toggle theoretical colorblind mode
                 player.scoreboard.colorblind(view);
                 break;

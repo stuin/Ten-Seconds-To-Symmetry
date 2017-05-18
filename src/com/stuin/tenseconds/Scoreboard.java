@@ -33,7 +33,7 @@ public class Scoreboard {
 	    score += time * (Round.size / 2) * Round.colors;
 
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
-		String text = "+" + score + '+';
+		String text = '+' + Round.separate(score) + '+';
 		((TextView) relativeLayout.getChildAt(0)).setText(text);
 
 		((TextView) relativeLayout.getChildAt(1)).setText(labels[4]);
@@ -42,8 +42,8 @@ public class Scoreboard {
     }
 
     public void done(boolean win) {
-		String text = labels[0] + score;
-		if(win) text = labels[1] + score;
+		String text = labels[0] + Round.separate(score);
+		if(win) text = labels[1] + Round.separate(score);
 
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		((TextView) relativeLayout.getChildAt(0)).setText(text);
@@ -55,7 +55,7 @@ public class Scoreboard {
 
 			sharedPreferences.edit().putInt("HighScore", score).apply();
 			highScore = score;
-		} else timer.write(labels[3] + highScore);
+		} else timer.write(labels[3] + Round.separate(highScore));
 		
 		Round.reset();
 		Round.loss = true;

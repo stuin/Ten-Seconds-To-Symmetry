@@ -55,9 +55,9 @@ public class Player extends LinearLayout {
 	}
 
 	public void menu() {
-		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.TopText)).setText(getResources().getText(R.string.app_name));
-		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.BotText)).setText(getResources().getText(R.string.app_start));
-		((Timer) findViewById(R.id.TimerLayout)).clear();
+		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Top_Text)).setText(getResources().getText(R.string.app_name));
+		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Bot_Text)).setText(getResources().getText(R.string.app_start));
+		((Timer) findViewById(R.id.Bar_Layout)).clear();
 	}
 
 	void win() {
@@ -72,8 +72,8 @@ public class Player extends LinearLayout {
 		Round.moving = true;
 
 		((Timer) getChildAt(1)).end();
-		((Grid) getChildAt(0)).marked.display();
-		((Grid) getChildAt(2)).marked.display();
+		((Grid) getChildAt(0)).show();
+		((Grid) getChildAt(2)).show();
 
 		postDelayed(new Runnable() {
 			@Override

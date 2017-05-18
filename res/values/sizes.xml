@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="style_text" parent="style_base">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="style_menu">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_margin">15dp</item>
+    </style>
+</resources>

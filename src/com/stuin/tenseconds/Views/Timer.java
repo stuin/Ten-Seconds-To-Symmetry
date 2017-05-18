@@ -26,6 +26,10 @@ public class Timer extends FrameLayout {
             public void run() {
                 linearLayout = (LinearLayout) getChildAt(0);
                 sliderSync = new SliderSync(linearLayout, getChildAt(1));
+
+                ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
+                progressBar.getLayoutParams().width = getWidth() / 4;
+                progressBar.invalidate();
             }
         });
     }
