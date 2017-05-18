@@ -55,35 +55,17 @@ public class MainActivity extends Activity {
         unSet = false;
 
         //Set various dimensions
-        int text = findViewById(R.id.Relative).getWidth() / 40;
         Round.length = findViewById(R.id.Relative).getHeight() / 2;
+        findViewById(R.id.Top_Text).setTranslationY(Round.length / 2.5f);
+        findViewById(R.id.Bot_Text).setTranslationY(Round.length / -2.5f);
 
-        //Prepare the title text
-        TextView textView = (TextView) findViewById(R.id.Top_Text);
-        textView.setTextSize(text);
-        textView.setTranslationY(Round.length / 2.5f);
-
-        //Prepare the button
-        textView = (TextView) findViewById(R.id.Bot_Text);
-        textView.setTextSize(text);
-        textView.setTranslationY(Round.length / -2.5f);
-
-        //Get drawer and button
+        //Set drawer animation
         LinearLayout drawer = (LinearLayout) findViewById(R.id.Drawer_Layout);
         FrameLayout icon = (FrameLayout) findViewById(R.id.Drawer_Button);
-
-        //Make fancy animation
         player.slideDrawer = new SliderSync(drawer, icon);
         player.slideDrawer.setup(true, Round.length, 200, 250);
 
-        //Set text in drawer
-        for(int i = 0; i < drawer.getChildCount(); i++) {
-            if(drawer.getChildAt(i) instanceof TextView) {
-                textView = (TextView) drawer.getChildAt(i);
-                textView.setTextSize(text);
-            }
-        }
-
+        //Show app version
         String string;
         try {
             string = 'v' + getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
@@ -91,9 +73,7 @@ public class MainActivity extends Activity {
         } catch(PackageManager.NameNotFoundException e) {
             string = "Version not found";
         }
-        textView = (TextView) findViewById(R.id.Drawer_version);
-        textView.setText(string);
-        textView.setTextSize(text / 2);
+        ((TextView) findViewById(R.id.Drawer_version)).setText(string);
     }
 
 

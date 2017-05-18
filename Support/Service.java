@@ -1,4 +1,4 @@
-package com.stuin.tenseconds;
+package com.stuin.tenseconds.Support;
 
 import android.content.Context;
 import android.os.Bundle;

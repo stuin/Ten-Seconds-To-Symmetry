@@ -83,6 +83,7 @@ public class Cell extends FrameLayout {
         space.setBackgroundColor(getResources().getColor(R.color.app_menu));
         space.setMinimumHeight(scale);
         space.setMinimumWidth(scale);
+        space.setTextSize(0);
         addView(space);
     }
 }

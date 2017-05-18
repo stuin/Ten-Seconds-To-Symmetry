@@ -23,7 +23,7 @@
             android:text="@string/app_start"/>
 
     <com.stuin.tenseconds.Views.Player
-            style="@style/style_text"
+            style="@style/style_base"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/Top_Grid"
-                style="@style/style_text"
+                style="@style/style_base"
                 android:layout_marginBottom="10dp"
                 stuin:top="true"
                 android:visibility="gone">
@@ -56,9 +56,8 @@
 
                 <TextView
                         android:id="@+id/Bar_Left"
+                        style="@style/style_text"
                         android:text="@string/app_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:gravity="end"/>
 
                 <ProgressBar
@@ -72,16 +71,14 @@
 
                 <TextView
                         android:id="@+id/Bar_Right"
+                        style="@style/style_text"
                         android:text="@string/app_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:gravity="start"/>
             </LinearLayout>
 
             <TextView
                     android:id="@+id/Bar_Text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/style_text"
                     android:layout_gravity="center"
                     android:visibility="gone"/>
 
@@ -89,7 +86,7 @@
 
         <com.stuin.tenseconds.Views.Grid
                 android:id="@+id/Bot_Grid"
-                style="@style/style_text"
+                style="@style/style_base"
                 android:layout_marginTop="10dp"
                 android:visibility="gone">
 
@@ -107,9 +104,7 @@
             android:onClick="drawer">
 
         <ImageView
-                android:layout_height="30dp"
-                android:layout_width="30dp"
-                android:layout_margin="15dp"
+                style="@style/style_menu"
                 android:contentDescription="@string/app_time"
                 android:background="@drawable/menu"
                 android:alpha=".25"/>
