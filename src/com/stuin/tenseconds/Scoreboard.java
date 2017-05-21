@@ -86,7 +86,10 @@ public class Scoreboard {
 	private void next() {
 		if(!Round.next) Round.next = true;
 		else {
-			if(Round.size != 9) Round.size++;
+			if(Round.size != 9) {
+				Round.size++;
+				Round.next = false;
+			}
 			else {
 				if((Round.colors == 5 && !expanded) || Round.colors == 8) done(true);
 				else {
