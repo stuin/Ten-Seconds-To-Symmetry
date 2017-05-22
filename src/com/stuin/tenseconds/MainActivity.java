@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.stuin.cleanvisuals.SliderSync;
+import com.stuin.tenseconds.Support.Purchases;
 import com.stuin.tenseconds.Views.Player;
 
 /**
@@ -14,6 +15,7 @@ import com.stuin.tenseconds.Views.Player;
 public class MainActivity extends Activity {
     private Player player;
     private boolean unSet = true;
+    private Purchases purchases;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class MainActivity extends Activity {
                 setup();
             }
         });
+
+        purchases = new Purchases(this);
     }
 
     @Override

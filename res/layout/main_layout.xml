@@ -15,12 +15,14 @@
             android:text="@string/app_name"
             android:layout_alignParentTop="true"/>
 
-    <TextView
+    <Button
             android:id="@+id/Bot_Text"
             style="@style/style_background"
+            android:background="@drawable/button"
             android:layout_alignParentBottom="true"
             android:onClick="startGame"
-            android:text="@string/app_start"/>
+            android:text="@string/app_start"
+            android:gravity="center"/>
 
     <com.stuin.tenseconds.Views.Player
             style="@style/style_base"
@@ -106,7 +108,7 @@
         <ImageView
                 style="@style/style_menu"
                 android:contentDescription="@string/app_time"
-                android:background="@drawable/menu"
+                android:background="@mipmap/menu"
                 android:alpha=".25"/>
     </FrameLayout>
 
