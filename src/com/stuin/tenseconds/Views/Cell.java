@@ -12,14 +12,17 @@ import com.stuin.tenseconds.*;
  * Created by Stuart on 3/14/2017.
  */
 public class Cell extends FrameLayout {
+	//Square placement
     private int x;
     private int y;
     private int scale;
 
+	//Square features
     public int color;
     public int mark = -1;
 
     public Cell(Context context, int color, int nx, int ny, int scale) {
+		//Create cell
         super(context);
         this.color = color;
         this.x = nx;
@@ -30,35 +33,42 @@ public class Cell extends FrameLayout {
             @Override
             public void onClick(View view) {
                 if(!Round.moving) {
+					//Check if correct
                     Player player = (Player) getParent().getParent();
                     if(mark == -1) {
+						//Find adjacent cells
                         for(int nx = x - 1; nx <= x + 1; nx++) for(int ny = y - 1; ny <= y + 1; ny++) {
                             if(nx > -1 && nx < Round.size && ny > -1 && ny < Round.size) {
                                 int pos = ny * Round.size + nx;
+								//Check if win
                                 if(Round.cells.get(pos).mark > -1) {
-                                    player.win();
+                                    player.Win();
                                     return;
                                 }
                             }
                         }
-                        player.lose();
-                    } else player.win();
+						//If loss or direct hit
+                        player.Lose();
+                    } else player.Win();
                 }
             }
         };
 
+		//Finalize cell
 		setMinimumWidth(scale);
 		setMinimumHeight(scale);
 		setOnClickListener(clickListener);
     }
 	
-	Cell copy() {
+	Cell Copy() {
+		//Create opposite cell
 		Cell cell = new Cell(getContext(), color, x, y, scale);
 		cell.mark = mark;
 		return cell;
 	}
 	
 	void setColor(int color) {
+		//Display color of square
 		switch(color) {
             case 0:
                 setBackgroundColor(Color.RED);
@@ -79,6 +89,7 @@ public class Cell extends FrameLayout {
 	}
 
     void display() {
+		//Create shade over cell
         TextView space = new TextView(new ContextThemeWrapper(getContext(), R.style.style_background));
         space.setBackgroundColor(getResources().getColor(R.color.app_menu));
         space.setMinimumHeight(scale);

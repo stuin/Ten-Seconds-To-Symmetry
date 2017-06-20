@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
         relativeLayout.post(new Runnable() {
             @Override
             public void run() {
-                setup();
+                Setup();
             }
         });
 
@@ -43,19 +43,19 @@ public class MainActivity extends Activity {
     protected void onResume() {
         //Refresh and load game
         super.onResume();
-        Round.reset();
-        player.scoreboard.load();
+        Round.Reset();
+        player.scoreboard.Load();
     }
 
     @Override
     protected void onPause() {
         //Save and pause game
         super.onPause();
-        player.clear();
-        player.scoreboard.save();
+        player.Clear();
+        player.scoreboard.Save();
     }
 
-    private void setup() {
+    private void Setup() {
         unSet = false;
 
         //Set various dimensions
@@ -81,19 +81,19 @@ public class MainActivity extends Activity {
     }
 
 
-    public void startGame(View view) {
+    public void StartGame(View view) {
         //Make sure dimensions set
-        if(unSet) setup();
+        if(unSet) Setup();
 
         //Begin next round
-        if(!Round.moving && !player.playing()) {
-            Round.generate(this);
-            player.start();
+        if(!Round.moving && !player.Playing()) {
+            Round.Generate(this);
+            player.Start();
             player.slideDrawer.hide();
         }
     }
 
-    public void drawer(View view) {
+    public void Drawer(View view) {
         switch(view.getId()) {
             case R.id.Drawer_Button:
                 //Show drawer
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
                 player.slideDrawer.showSecondary();
                 break;
             case R.id.Drawer_Colorblind:
-                //Toggle theoretical colorblind mode
+                //Toggle WIP colorblind mode
                 player.scoreboard.colorblind(view);
                 break;
         }
@@ -116,10 +116,10 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        if(!player.playing()) {
+        if(!player.Playing()) {
             //Hide drawer or go to home screen
-            if(!player.slideDrawer.showSecondary() && Round.loss) player.menu();
+            if(!player.slideDrawer.showSecondary() && Round.loss) player.Menu();
             //Pause game
-        } else if(!Round.moving) player.clear();
+        } else if(!Round.moving) player.Clear();
     }
 }

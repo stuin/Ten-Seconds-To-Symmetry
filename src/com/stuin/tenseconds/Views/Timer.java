@@ -21,12 +21,15 @@ public class Timer extends FrameLayout {
 
     public Timer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+		//Wait to do formatting
         post(new Runnable() {
             @Override
             public void run() {
+				//Find parts
                 linearLayout = (LinearLayout) getChildAt(0);
                 sliderSync = new SliderSync(linearLayout, getChildAt(1));
 
+				//Resize timer bar
                 ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
                 progressBar.getLayoutParams().width = getWidth() / 4;
                 progressBar.invalidate();
@@ -34,7 +37,7 @@ public class Timer extends FrameLayout {
         });
     }
 
-    void clear() {
+    void Clear() {
         //Clear timer bar
         ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
         progressBar.setProgress(0);
@@ -48,7 +51,7 @@ public class Timer extends FrameLayout {
         sliderSync.showPrimary();
     }
 
-    public void write(String text) {
+    public void Write(String text) {
         //Write message
         TextView textView = (TextView) getChildAt(1);
         textView.setText(text);
@@ -57,19 +60,19 @@ public class Timer extends FrameLayout {
         sliderSync.showSecondary();
     }
 
-    void start() {
+    void Start() {
         if(sliderSync.unSet) {
             //Setup animation if not done yet
             sliderSync.setup(true, -Round.length, Round.length, 500);
         }
 
         //Start timer at 0
-        clear();
+        Clear();
         sliderSync.showPrimary();
         countDownTimer.start();
     }
 
-    int end() {
+    int End() {
         //Get remaining time
         countDownTimer.cancel();
         return time;
@@ -91,7 +94,7 @@ public class Timer extends FrameLayout {
 
         @Override
         public void onFinish() {
-            ((Player) getParent()).lose();
+            ((Player) getParent()).Lose();
         }
     };
 }

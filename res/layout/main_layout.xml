@@ -6,7 +6,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="drawer"
+        android:onClick="Drawer"
         android:background="@color/app_background">
 
     <TextView
@@ -19,7 +19,7 @@
             android:id="@+id/Bot_Text"
             style="@style/style_background"
             android:layout_alignParentBottom="true"
-            android:onClick="startGame"
+            android:onClick="StartGame"
             android:text="@string/app_start"/>
 
     <com.stuin.tenseconds.Views.Player
@@ -101,7 +101,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:onClick="drawer">
+            android:onClick="Drawer">
 
         <ImageView
                 style="@style/style_menu"
@@ -122,7 +122,7 @@
             android:orientation="vertical"
             android:padding="10dp"
             android:visibility="gone"
-            android:onClick="drawer">
+            android:onClick="Drawer">
 
 		<TextView
 			style="@style/style_line"/>
@@ -141,7 +141,7 @@
 				style="@style/style_background"
 				android:text="@string/menu_blind"
 				android:visibility="gone"
-                android:onClick="drawer"/>
+                android:onClick="Drawer"/>
 
 		<TextView
 			    style="@style/style_line"/>
