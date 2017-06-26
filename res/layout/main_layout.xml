@@ -135,14 +135,13 @@
         <TextView
                 android:id="@+id/Level"
                 style="@style/style_text"/>
-
 		<TextView
-                android:id="@+id/Drawer_Colorblind"
+			style="@style/style_line"/>
+		<TextView
+                android:id="@+id/Drawer_Tutorial"
 				style="@style/style_background"
-				android:text="@string/menu_blind"
-				android:visibility="gone"
+				android:text="@string/menu_tutor"
                 android:onClick="Drawer"/>
-
 		<TextView
 			    style="@style/style_line"/>
         <TextView

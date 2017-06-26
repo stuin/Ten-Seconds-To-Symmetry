@@ -33,7 +33,11 @@ public class Player extends LinearLayout {
 		
 		if(Settings.Get("Tutorial")) {
 			if(tutorial == null) tutorial = new Tutorial(timer);
+			tutorial.run = true;
 			tutorial.Next();
+		} else {
+			if(tutorial != null) tutorial = null;
+			timer.Show();
 		}
 		
 		postDelayed(title, 100);
@@ -49,6 +53,7 @@ public class Player extends LinearLayout {
 				text = text.substring(0, text.length() - 1);
 				textView.setText(text);
 
+				//if(tutorial != null) tutorial.Next();
 				postDelayed(title, 75);
 			}
 		}
@@ -75,7 +80,10 @@ public class Player extends LinearLayout {
 			.setText(getResources().getText(R.string.app_name));
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Bot_Text))
 			.setText(getResources().getText(R.string.app_start));
-		((Timer) findViewById(R.id.Bar_Layout)).Clear();
+		
+		Timer timer = (Timer) findViewById(R.id.Bar_Layout);
+		timer.Clear();
+		timer.Show();
 	}
 
 	void Win() {

@@ -49,7 +49,7 @@ public class Timer extends FrameLayout {
         ((TextView) linearLayout.getChildAt(2)).setText(text);
 
         //Display timer
-        sliderSync.showPrimary();
+        //sliderSync.showPrimary();
     }
 
     public void Write(String text) {
@@ -69,15 +69,22 @@ public class Timer extends FrameLayout {
 
         //Start timer at 0
         Clear();
-        //sliderSync.showPrimary();
+		endTutorial = false;
         countDownTimer.start();
     }
 
     int End() {
         //Get remaining time
         countDownTimer.cancel();
+		Show();
         return time;
     }
+	
+	void Show() {
+		sliderSync.showPrimary();
+	}
+	
+	private boolean endTutorial = false;
 
     private CountDownTimer countDownTimer = new CountDownTimer(10000, 10) {
         @Override
@@ -93,7 +100,10 @@ public class Timer extends FrameLayout {
             ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
 			
 			//Hide tutorial text
-			if(time < 6000 && Settings.Get("Tutorial")) sliderSync.showPrimary();
+			if(!endTutorial && time < 6000 && Settings.Get("Tutorial")) {
+				sliderSync.showPrimary();
+				endTutorial = true;
+			}
         }
 
         @Override

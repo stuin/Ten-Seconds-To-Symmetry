@@ -6,6 +6,7 @@ public class Tutorial
 {
 	private int part = 0;
 	private Timer timer;
+	public boolean run = true;
 	private String[] text = {
 		"Just find the changed square,",
 		"Each level is unique,",
@@ -21,6 +22,7 @@ public class Tutorial
 		if(part < text.length) {
 			timer.Write(text[part]);
 			part++;
-		} else Settings.Set("Tutorial", false);
+			run = false;
+		} else if(run) Settings.Set("Tutorial", false);
 	}
 }

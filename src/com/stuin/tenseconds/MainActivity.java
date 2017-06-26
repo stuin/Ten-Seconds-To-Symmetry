@@ -101,15 +101,17 @@ public class MainActivity extends Activity {
                 //Write current level
                 String text = "Level " + Round.count;
                 ((TextView) findViewById(R.id.Level)).setText(text);
+				
+				//Hide tutorial button
+				if(Round.count != 0) findViewById(R.id.Drawer_Tutorial).setVisibility(View.GONE);
                 break;
             case R.id.Drawer_Layout:case R.id.Relative:
                 //Hide drawer
                 player.slideDrawer.showSecondary();
                 break;
-            case R.id.Drawer_Colorblind:
-                //Toggle WIP colorblind mode
-				Settings.Set("Colorblind", ((Switch) view).isChecked());
-                break;
+            case R.id.Drawer_Tutorial:
+				Settings.Set("Tutorial", true);
+				break;
         }
     }
 
