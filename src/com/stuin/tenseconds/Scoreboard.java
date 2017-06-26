@@ -31,7 +31,7 @@ public class Scoreboard {
 	    labels = player.getResources().getStringArray(R.array.app_labels);
 		
 		//Check tutorial start
-		if(highScore == -1) Settings.Set("Tutorial", true);
+		//if(highScore == -1) Settings.Set("Tutorial", true);
     }
 
     public void Win(int time) {

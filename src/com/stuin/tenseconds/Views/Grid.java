@@ -53,7 +53,7 @@ public class Grid extends GridLayout {
 		for(Cell c : Round.cells) {
 			if(top) c = c.Copy();
 			addView(c);
-			if(c.mark > -1) {
+			if(c.mark > -1 && top) {
 				marked = c;
 				marked.setColor(marked.mark);
 			}

@@ -69,13 +69,11 @@ public class Timer extends FrameLayout {
 
         //Start timer at 0
         Clear();
-        sliderSync.showPrimary();
+        //sliderSync.showPrimary();
         countDownTimer.start();
     }
 
     int End() {
-		sliderSync.showPrimary();
-		
         //Get remaining time
         countDownTimer.cancel();
         return time;
@@ -95,7 +93,7 @@ public class Timer extends FrameLayout {
             ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
 			
 			//Hide tutorial text
-			if(time < 4000 && Settings.Get("Tutorial")) sliderSync.showPrimary();
+			if(time < 6000 && Settings.Get("Tutorial")) sliderSync.showPrimary();
         }
 
         @Override

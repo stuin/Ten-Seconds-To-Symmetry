@@ -5,8 +5,8 @@ import android.preference.*;
 
 public class Settings
 {
-	private static Map<String, Boolean> values;
-	private static Map<Integer, String> ids;
+	private static Map<String, Boolean> values = new HashMap<>();
+	private static Map<Integer, String> ids = new HashMap<>();
 	private static String[] KEYS;
 	private static SharedPreferences preferences;
 	
