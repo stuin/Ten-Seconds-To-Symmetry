@@ -6,10 +6,12 @@ import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 import com.stuin.tenseconds.Scoreboard;
+import com.stuin.tenseconds.*;
 
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
 	public SliderSync slideDrawer;
+	public Tutorial tutorial = null;
 
 	private boolean menu = true;
 
@@ -25,7 +27,15 @@ public class Player extends LinearLayout {
 		//Play animations
 		((Grid) getChildAt(0)).Enter();
 		((Grid) getChildAt(2)).Enter();
-		((Timer) getChildAt(1)).Start();
+		
+		Timer timer = (Timer) getChildAt(1);
+		timer.Start();
+		
+		if(Settings.Get("Tutorial")) {
+			if(tutorial == null) tutorial = new Tutorial(timer);
+			tutorial.Next();
+		}
+		
 		postDelayed(title, 100);
 	}
 	

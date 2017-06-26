@@ -15,20 +15,23 @@ public class Scoreboard {
 	private String[] labels;
 	private int highScore;
 	private int score;
-	private boolean expanded;
 
 
 	Scoreboard(Player player) {
 		//Get save data
 	    this.player = player;
-	    sharedPreferences = player.getContext().getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
+	    sharedPreferences = player.getContext()
+			.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
+		String[] KEYS = {
+			"Expanded","Colorblind", "Tutorial"};
 
 		//Read data
-	    highScore = sharedPreferences.getInt("HighScore", 0);
-	    expanded = sharedPreferences.getBoolean("Expanded", false);
-	    Round.colorblind = sharedPreferences.getBoolean("Colorblind", false);
-
+	    highScore = sharedPreferences.getInt("HighScore", -1);
+	    Settings.Load(sharedPreferences, KEYS);
 	    labels = player.getResources().getStringArray(R.array.app_labels);
+		
+		//Check tutorial start
+		if(highScore == -1) Settings.Set("Tutorial", true);
     }
 
     public void Win(int time) {
@@ -43,7 +46,8 @@ public class Scoreboard {
 		((TextView) relativeLayout.getChildAt(1)).setText(labels[4]);
 
 		//Prepare next round
-		if(Round.size == 9 && Round.next && ((Round.colors == 5 && !Round.expanded) || Round.colors == 8)) Done(true);
+		if(Round.size == 9 && Round.next && 
+			((Round.colors == 5 && !Settings.Get("Expanded")) || Round.colors == 8)) Done(true);
 		else Round.Next();
     }
 
@@ -93,10 +97,5 @@ public class Scoreboard {
 			sharedPreferences.edit().putString("Save", " ").apply();
 			Win(0);
 		}
-	}
-
-    void colorblind(View view) {
-		Round.colorblind = ((Switch) view).isChecked();
-		sharedPreferences.edit().putBoolean("Colorblind", Round.colorblind).apply();
 	}
 }

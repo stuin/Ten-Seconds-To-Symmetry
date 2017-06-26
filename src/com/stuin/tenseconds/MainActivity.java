@@ -25,7 +25,6 @@ public class MainActivity extends Activity {
         //Start scoreboard system
         player = (Player) findViewById(R.id.Player_Layout);
         player.scoreboard = new Scoreboard(player);
-        //((TextView) findViewById(R.id.Colorblind)).setChecked(Round.colorblind);
 
         //Run setup when ready
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.Relative);
@@ -109,7 +108,7 @@ public class MainActivity extends Activity {
                 break;
             case R.id.Drawer_Colorblind:
                 //Toggle WIP colorblind mode
-                player.scoreboard.colorblind(view);
+				Settings.Set("Colorblind", ((Switch) view).isChecked());
                 break;
         }
     }

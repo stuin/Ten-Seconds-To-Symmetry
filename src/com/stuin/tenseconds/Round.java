@@ -11,15 +11,11 @@ import java.util.Random;
  * Created by Stuart on 3/14/2017.
  */
 public class Round {
-	//App settings
-    public static int length;
-    public static boolean colorblind;
-	static boolean expanded;
-
 	//Technical variables
     public static boolean moving;
     public static List<Cell> cells;
 	public static boolean loss = false;
+	public static int length;
 
 	//Difficulty level
     public static int size;
@@ -76,7 +72,8 @@ public class Round {
 		//Add commas to number
         String text = "" + score;
         for(int i = 3; i < text.length(); i += 4)
-            text = text.substring(0, text.length() -  i) + ',' + text.substring(text.length() - i);
+            text = text.substring(0, text.length() -  i)
+			+ ',' + text.substring(text.length() - i);
         return text;
     }
 }
