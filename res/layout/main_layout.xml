@@ -6,7 +6,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="drawer"
+        android:onClick="Drawer"
         android:background="@color/app_background">
 
     <TextView
@@ -20,7 +20,7 @@
             style="@style/style_background"
             android:background="@drawable/button"
             android:layout_alignParentBottom="true"
-            android:onClick="startGame"
+            android:onClick="StartGame"
             android:text="@string/app_start"/>
 
     <com.stuin.tenseconds.Views.Player
@@ -102,7 +102,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:onClick="drawer">
+            android:onClick="Drawer">
 
         <ImageView
                 style="@style/style_menu"
@@ -123,7 +123,7 @@
             android:orientation="vertical"
             android:padding="10dp"
             android:visibility="gone"
-            android:onClick="drawer">
+            android:onClick="Drawer">
 
 		<TextView
 			style="@style/style_line"/>
@@ -137,14 +137,13 @@
         <TextView
                 android:id="@+id/Level"
                 style="@style/style_text"/>
-
 		<TextView
-                android:id="@+id/Drawer_Colorblind"
+			style="@style/style_line"/>
+		<TextView
+                android:id="@+id/Drawer_Tutorial"
 				style="@style/style_background"
-				android:text="@string/menu_blind"
-				android:visibility="gone"
-                android:onClick="drawer"/>
-
+				android:text="@string/menu_tutor"
+                android:onClick="Drawer"/>
 		<TextView
 			    style="@style/style_line"/>
         <TextView

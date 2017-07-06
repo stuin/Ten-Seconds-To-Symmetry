@@ -15,54 +15,68 @@ public class Scoreboard {
 	private String[] labels;
 	private int highScore;
 	private int score;
-	private boolean expanded;
 
 
 	Scoreboard(Player player) {
+		//Get save data
 	    this.player = player;
-	    sharedPreferences = player.getContext().getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
+	    sharedPreferences = player.getContext()
+			.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
+		String[] KEYS = {
+			"Expanded","Colorblind", "Tutorial"};
 
-	    highScore = sharedPreferences.getInt("HighScore", 0);
-	    expanded = sharedPreferences.getBoolean("Expanded", false);
-	    Round.colorblind = sharedPreferences.getBoolean("Colorblind", false);
-
+		//Read data
+	    highScore = sharedPreferences.getInt("HighScore", -1);
+	    Settings.Load(sharedPreferences, KEYS);
 	    labels = player.getResources().getStringArray(R.array.app_labels);
+		
+		//Check tutorial start
+		Settings.Set("Tutorial", highScore == -1);
     }
 
-    public void win(int time) {
+    public void Win(int time) {
+		//Calculate score
 	    score += time * (Round.size / 2) * Round.colors;
 
+		//Show win screen
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
-		String text = '+' + Round.separate(score) + '+';
+		String text = '+' + Round.Separate(score) + '+';
 		((TextView) relativeLayout.getChildAt(0)).setText(text);
 
 		((TextView) relativeLayout.getChildAt(1)).setText(labels[4]);
 
-		next();
+		//Prepare next round
+		if(Round.size == 9 && Round.next && 
+			((Round.colors == 5 && !Settings.Get("Expanded")) || Round.colors == 8)) Done(true);
+		else Round.Next();
     }
 
-    public void done(boolean win) {
-		String text = labels[0] + Round.separate(score);
-		if(win) text = labels[1] + Round.separate(score);
-
+    public void Done(boolean win) {
+		//Write score at top
+		String text = labels[0] + Round.Separate(score);
+		if(win) text = labels[1] + Round.Separate(score);
+		
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		((TextView) relativeLayout.getChildAt(0)).setText(text);
 		((TextView) relativeLayout.getChildAt(1)).setText(labels[5]);
 
+		//show high score data
 		Timer timer = (Timer) player.getChildAt(1);
 		if(score > highScore) {
-			timer.write(labels[2]);
+			timer.Write(labels[2]);
 
 			sharedPreferences.edit().putInt("HighScore", score).apply();
 			highScore = score;
-		} else timer.write(labels[3] + Round.separate(highScore));
+		} else timer.Write(labels[3] + Round.Separate(highScore));
 		
-		Round.reset();
+		//Prepare for restart
+		Round.Reset();
 		Round.loss = true;
 		score = 0;
     }
 
-    void save() {
+    void Save() {
+		//Create save data
 		if(!Round.loss && score > 0) {
 			String file = Round.count + ":" + score;
 
@@ -70,38 +84,18 @@ public class Scoreboard {
 		}
 	}
 
-	void load() {
+	void Load() {
+		//Read save data
 		String file = sharedPreferences.getString("Save", " ");
 		if(!file.equals(" ")) {
 			Round.count = Integer.valueOf(file.split(":")[0]);
 			score = Integer.valueOf(file.split(":")[1]);
 
-			for(int i = 0; i < Round.count; i++) next();
+			//Set correct round
+			for(int i = 0; i < Round.count; i++) Round.Next();
 
 			sharedPreferences.edit().putString("Save", " ").apply();
-			win(0);
+			Win(0);
 		}
-	}
-
-	private void next() {
-		if(!Round.next) Round.next = true;
-		else {
-			if(Round.size != 9) {
-				Round.size++;
-				Round.next = false;
-			} else {
-				if((Round.colors == 5 && !expanded) || Round.colors == 8) done(true);
-				else {
-					Round.colors++;
-					Round.size = 5;
-					Round.next = false;
-				}
-			}
-		}
-	}
-
-    void colorblind(View view) {
-		Round.colorblind = ((Switch) view).isChecked();
-		sharedPreferences.edit().putBoolean("Colorblind", Round.colorblind).apply();
 	}
 }

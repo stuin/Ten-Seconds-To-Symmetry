@@ -12,13 +12,16 @@ import com.stuin.cleanvisuals.Slider;
 public class Grid extends GridLayout {
 	private boolean top;
 
+	//Parts of grid
 	Slider slider = new Slider(this);
 	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+		//Get custom value
 		top = attributeSet.getAttributeBooleanValue("http://schemas.android.com/apk/res/com.stuin.tenseconds","top",false);
 
+		//Add ending to slide
 		slider.endings = new Slider.Endings() {
 			@Override
 			public void enter() {
@@ -33,7 +36,8 @@ public class Grid extends GridLayout {
 		};
     }
 
-    void enter() {
+    void Enter() {
+		//Make sure animation set up
     	if(slider.unSet) {
 			int s = Round.length;
 			if(top) s = -s;
@@ -41,37 +45,32 @@ public class Grid extends GridLayout {
 			slider.setup(false, s, 700);
 		}
 
+		//Clear old grid
 		removeAllViewsInLayout();
         setColumnCount(Round.size);
         
-		if(top) {
-			for(Cell c : Round.cells) {
-				addView(c);
-				if(c.mark > -1) {
-					marked = c;
-					marked.setColor(marked.mark);
-				}
-				else c.setColor(c.color);
+		//Place new grid
+		for(Cell c : Round.cells) {
+			if(top) c = c.Copy();
+			addView(c);
+			if(c.mark > -1 && top) {
+				marked = c;
+				marked.setColor(marked.mark);
 			}
-		} else {
-			for(Cell c : Round.cells) {
-				c = c.copy();
-				addView(c);
-				if(c.mark > -1) {
-					marked = c;
-					marked.setColor(marked.color);
-				} else c.setColor(c.color);
-			}
+			else c.setColor(c.color);
 		}
-
+		
+		//Start animation
 		slider.enter();
     }
 
-    void exit() {
+    void Exit() {
+		//Start leaving animation
     	slider.exit();
 	}
 
-	void show() {
+	void Show() {
+		//Shade all but awnser
 		for(int i = 0; i < getChildCount(); i++) {
 			Cell c = (Cell) getChildAt(i);
 			if(c.mark == -1) c.display();
