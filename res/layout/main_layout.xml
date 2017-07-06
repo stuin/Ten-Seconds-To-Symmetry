@@ -125,25 +125,33 @@
             android:visibility="gone"
             android:onClick="Drawer">
 
-		<TextView
-			style="@style/style_line"/>
-        <ToggleButton
-                android:text="@string/menu_in"
-                style="@style/style_background"
-                android:background="@drawable/button"
-                android:id="@+id/Drawer_SignIn"/>
         <TextView
                 style="@style/style_line"/>
         <TextView
-                android:id="@+id/Level"
+                android:id="@+id/Drawer_Level"
                 style="@style/style_text"/>
-		<TextView
-			style="@style/style_line"/>
-		<TextView
-                android:id="@+id/Drawer_Tutorial"
-				style="@style/style_background"
-				android:text="@string/menu_tutor"
+        <TextView
+                style="@style/style_line"/>
+        <LinearLayout
+                android:id="@+id/Drawer_Modes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+            <Button
+                    android:id="@+id/Drawer_Tutorial"
+                    style="@style/style_background"
+                    android:background="@drawable/button"
+                    android:text="@string/menu_tutor"
+                    android:onClick="Drawer"/>
+        </LinearLayout>
+        <Button
+                android:id="@+id/Drawer_Quit"
+                style="@style/style_background"
+                android:background="@drawable/button"
+                android:text="@string/menu_quit"
                 android:onClick="Drawer"/>
+
 		<TextView
 			    style="@style/style_line"/>
         <TextView
@@ -152,7 +160,7 @@
         <TextView
                 style="@style/style_text"
                 android:text=""
-                android:id="@+id/Drawer_version"/>
+                android:id="@+id/Drawer_Version"/>
         <TextView
                 style="@style/style_line"/>
 

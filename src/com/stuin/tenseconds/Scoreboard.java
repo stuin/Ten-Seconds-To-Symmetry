@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.stuin.tenseconds.Views.Player;
 import com.stuin.tenseconds.Views.Timer;
 
@@ -15,6 +16,7 @@ public class Scoreboard {
 	private String[] labels;
 	private int highScore;
 	private int score;
+	private boolean message = true;
 
 
 	Scoreboard(Player player) {
@@ -73,6 +75,13 @@ public class Scoreboard {
 		Round.Reset();
 		Round.loss = true;
 		score = 0;
+
+		if(message) {
+			//Show menu button
+			Toast toast = Toast.makeText(player.getContext(), labels[6], Toast.LENGTH_SHORT);
+			toast.show();
+			message = false;
+		}
     }
 
     void Save() {

@@ -1,6 +1,7 @@
 package com.stuin.tenseconds;
 
 import android.content.Context;
+import android.view.View;
 import com.stuin.tenseconds.Views.Cell;
 
 import java.util.ArrayList;
@@ -75,5 +76,10 @@ public class Round {
             text = text.substring(0, text.length() -  i)
 			+ ',' + text.substring(text.length() - i);
         return text;
+    }
+
+    public static void Visible(View view, boolean bool) {
+        if(bool) view.setVisibility(View.VISIBLE);
+        else view.setVisibility(View.GONE);
     }
 }

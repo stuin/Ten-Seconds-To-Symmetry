@@ -72,7 +72,10 @@ public class MainActivity extends Activity {
         } catch(PackageManager.NameNotFoundException e) {
             string = "Version not found";
         }
-        ((TextView) findViewById(R.id.Drawer_version)).setText(string);
+        ((TextView) findViewById(R.id.Drawer_Version)).setText(string);
+
+        //Link settings switches
+        Settings.LinkId(R.id.Drawer_Tutorial, "Tutorial");
     }
 
 
@@ -96,17 +99,23 @@ public class MainActivity extends Activity {
 
                 //Write current level
                 String text = "Level " + Round.count;
-                ((TextView) findViewById(R.id.Level)).setText(text);
+                ((TextView) findViewById(R.id.Drawer_Level)).setText(text);
 				
-				//Hide tutorial button
-				if(Round.count != 0) findViewById(R.id.Drawer_Tutorial).setVisibility(View.GONE);
+				//Hide gamemode list
+				Round.Visible(findViewById(R.id.Drawer_Modes), Round.count == 0);
+                Round.Visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
                 break;
             case R.id.Drawer_Layout:case R.id.Relative:
                 //Hide drawer
                 player.slideDrawer.showSecondary();
                 break;
+            case R.id.Drawer_Quit:
+                ((Player) findViewById(R.id.Player_Layout)).scoreboard.Done(false);
+                break;
             case R.id.Drawer_Tutorial:
-				Settings.Set("Tutorial", true);
+                //Load Gamemode
+				Settings.SetId(view.getId(), true);
+                StartGame(null);
 				break;
         }
     }
