@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 
         //Start scoreboard system
         player = (Player) findViewById(R.id.Player_Layout);
-        player.scoreboard = new Scoreboard(player);
+        player.scoreboard = new Single(player);
 
         //Run setup when ready
         RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.Relative);
@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
     protected void onResume() {
         //Refresh and load game
         super.onResume();
-        Round.Reset();
         player.scoreboard.Load();
     }
 

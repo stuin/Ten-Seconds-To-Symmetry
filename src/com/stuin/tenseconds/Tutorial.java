@@ -4,9 +4,11 @@ import org.xml.sax.helpers.*;
 
 public class Tutorial
 {
+	public boolean run = true;
+
 	private int part = 0;
 	private Timer timer;
-	public boolean run = true;
+
 	private String[] text = {
 		"Just find the changed square,",
 		"Each level is unique,",

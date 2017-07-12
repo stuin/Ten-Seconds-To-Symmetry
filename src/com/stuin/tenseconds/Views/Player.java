@@ -11,12 +11,21 @@ import com.stuin.tenseconds.*;
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
 	public SliderSync slideDrawer;
-	public Tutorial tutorial = null;
+	public SharedPreferences sharedPreferences;
 
+	private Tutorial tutorial = null;
 	private boolean menu = true;
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
+
+		//Get save data
+		String[] KEYS = {
+				"Expanded", "Tutorial", "Toast"};
+		sharedPreferences = context.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
+		Settings.Load(sharedPreferences, KEYS);
+
+		//Settings.Set("Expanded", true);
 	}
 
 	public void Start() {
@@ -53,7 +62,6 @@ public class Player extends LinearLayout {
 				text = text.substring(0, text.length() - 1);
 				textView.setText(text);
 
-				//if(tutorial != null) tutorial.Next();
 				postDelayed(title, 75);
 			}
 		}
@@ -86,7 +94,7 @@ public class Player extends LinearLayout {
 		timer.Show();
 	}
 
-	void Win() {
+	void Win(boolean top) {
 		//Set end variables
 		Round.moving = true;
 		Round.count++;
@@ -94,7 +102,7 @@ public class Player extends LinearLayout {
 		
 		//Clear and set score
 		Clear();
-		scoreboard.Win(((Timer) getChildAt(1)).End() / 10);
+		scoreboard.Win(((Timer) getChildAt(1)).End() / 10, top);
 	}
 
 	void Lose() {

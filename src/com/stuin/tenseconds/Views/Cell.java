@@ -16,6 +16,7 @@ public class Cell extends FrameLayout {
     private int x;
     private int y;
     private int scale;
+    private boolean top;
 
 	//Square features
     public int color;
@@ -42,14 +43,14 @@ public class Cell extends FrameLayout {
                                 int pos = ny * Round.size + nx;
 								//Check if win
                                 if(Round.cells.get(pos).mark > -1) {
-                                    player.Win();
+                                    player.Win(top);
                                     return;
                                 }
                             }
                         }
 						//If loss or direct hit
                         player.Lose();
-                    } else player.Win();
+                    } else player.Win(top);
                 }
             }
         };
@@ -64,6 +65,7 @@ public class Cell extends FrameLayout {
 		//Create opposite cell
 		Cell cell = new Cell(getContext(), color, x, y, scale);
 		cell.mark = mark;
+		cell.top = true;
 		return cell;
 	}
 	
@@ -85,6 +87,15 @@ public class Cell extends FrameLayout {
             case 4:
                 setBackgroundColor(Color.BLACK);
 				break;
+            case 5:
+                setBackgroundColor(Color.YELLOW);
+                break;
+            case 6:
+                setBackgroundColor(Color.MAGENTA);
+                break;
+            case 7:
+                setBackgroundColor(Color.CYAN);
+                break;
 		}
 	}
 

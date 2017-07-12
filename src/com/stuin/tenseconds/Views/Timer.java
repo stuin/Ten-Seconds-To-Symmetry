@@ -100,8 +100,8 @@ public class Timer extends FrameLayout {
             ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
 			
 			//Hide tutorial text
-			if(!endTutorial && time < 6000 && Settings.Get("Tutorial")) {
-				sliderSync.showPrimary();
+			if(!endTutorial && time < 6000) {
+				if(Settings.Get("Tutorial")) sliderSync.showPrimary();
 				endTutorial = true;
 			}
         }

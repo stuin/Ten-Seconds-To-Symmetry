@@ -78,7 +78,7 @@ public class Round {
         return text;
     }
 
-    public static void Visible(View view, boolean bool) {
+    static void Visible(View view, boolean bool) {
         if(bool) view.setVisibility(View.VISIBLE);
         else view.setVisibility(View.GONE);
     }
