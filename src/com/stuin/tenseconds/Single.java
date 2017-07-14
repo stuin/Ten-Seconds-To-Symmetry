@@ -1,13 +1,11 @@
 package com.stuin.tenseconds;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import com.stuin.tenseconds.R;
-import com.stuin.tenseconds.Round;
-import com.stuin.tenseconds.Settings;
 import com.stuin.tenseconds.Views.Player;
+import com.stuin.tenseconds.Views.RateDialog;
 import com.stuin.tenseconds.Views.Timer;
 
 public class Single implements Scoreboard {
@@ -70,11 +68,9 @@ public class Single implements Scoreboard {
 		Round.loss = true;
 		score = 0;
 
-		if(!Settings.Get("Toast")) {
-			//Show menu button
-			Toast toast = Toast.makeText(player.getContext(), labels[6], Toast.LENGTH_SHORT);
-			toast.show();
-			Settings.Set("Toast", true);
+		if(!Settings.Get("Rated")) {
+			RateDialog rateDialog = new RateDialog();
+			rateDialog.show(((Activity) player.getContext()).getFragmentManager(), "RateDialog");
 		}
     }
 

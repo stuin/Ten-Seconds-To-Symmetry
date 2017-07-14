@@ -1,4 +1,5 @@
 package com.stuin.tenseconds.Views;
+
 import android.widget.*;
 import android.content.*;
 import android.util.*;
@@ -21,11 +22,9 @@ public class Player extends LinearLayout {
 
 		//Get save data
 		String[] KEYS = {
-				"Expanded", "Tutorial", "Toast"};
+				"Expanded", "Tutorial", "Rated", "Versus"};
 		sharedPreferences = context.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
 		Settings.Load(sharedPreferences, KEYS);
-
-		//Settings.Set("Expanded", true);
 	}
 
 	public void Start() {

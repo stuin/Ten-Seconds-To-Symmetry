@@ -1,7 +1,9 @@
 package com.stuin.tenseconds;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
@@ -75,6 +77,7 @@ public class MainActivity extends Activity {
 
         //Link settings switches
         Settings.LinkId(R.id.Drawer_Tutorial, "Tutorial");
+        Settings.LinkId(R.id.Drawer_Versus, "Versus");
     }
 
 
@@ -95,23 +98,25 @@ public class MainActivity extends Activity {
             case R.id.Drawer_Button:
                 //Show drawer
                 player.slideDrawer.showPrimary();
-
-                //Write current level
-                String text = "Level " + Round.count;
-                ((TextView) findViewById(R.id.Drawer_Level)).setText(text);
 				
-				//Hide gamemode list
+				//Hide certain buttons
 				Round.Visible(findViewById(R.id.Drawer_Modes), Round.count == 0);
                 Round.Visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
+                Round.Visible(findViewById(R.id.Drawer_Rate), !Settings.Get("Rated"));
                 break;
             case R.id.Drawer_Layout:case R.id.Relative:
                 //Hide drawer
                 player.slideDrawer.showSecondary();
                 break;
             case R.id.Drawer_Quit:
-                ((Player) findViewById(R.id.Player_Layout)).scoreboard.Done(false);
+                //Quit game
+                player.scoreboard.Done(false);
                 break;
-            case R.id.Drawer_Tutorial:
+            case R.id.Drawer_Rate:
+                //Rate app
+                Rate();
+                break;
+            case R.id.Drawer_Tutorial:case R.id.Drawer_Versus:
                 //Load Gamemode
 				Settings.SetId(view.getId(), true);
                 StartGame(null);
@@ -126,5 +131,14 @@ public class MainActivity extends Activity {
             if(!player.slideDrawer.showSecondary() && Round.loss) player.Menu();
             //Pause game
         } else if(!Round.moving) player.Clear();
+    }
+
+    public void Rate() {
+        Settings.Set("Rated", true);
+
+        //Open app site
+        Uri url = Uri.parse(getResources().getString(R.string.app_url));
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
+        startActivity(launchBrowser);
     }
 }

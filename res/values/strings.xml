@@ -3,13 +3,15 @@
     <string name="app_name">Ten Seconds To Symmetry</string>
     <string name="app_start"> Start Game </string>
     <string name="app_time"> 0 </string>
+    <string name="app_url">https://play.google.com/store/apps/details?id=com.stuin.tenseconds</string>
 	
     <string name="menu_in">WIP</string>
     <string name="menu_out">Sign Out</string>
+    <string name="menu_rate">Rate</string>
 	<string name="menu_blind">Colorblind</string>
-	<string name="menu_tutor">Start Tutorial</string>
+	<string name="menu_tutor">Tutorial</string>
+    <string name="menu_versus">Versus</string>
     <string name="menu_quit">Quit Game</string>
-    <string name="menu_level">Level: </string>
     <string name="menu_credits">App Made by \n Stuart Irwin</string>
 
     <string-array name="app_labels">
@@ -21,7 +23,11 @@
 
         <item>Next Round</item>
         <item>Restart</item>
+    </string-array>
 
-        <item>Press Back for Main Menu</item>
+    <string-array name="app_dialog">
+        <item>Would you rate this app?</item>
+        <item>Sure</item>
+        <item>Not now</item>
     </string-array>
 </resources>
