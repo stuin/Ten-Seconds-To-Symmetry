@@ -12,11 +12,11 @@ import com.stuin.tenseconds.*;
 
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
-	public SliderSync slideDrawer;
 	public SharedPreferences sharedPreferences;
 
-	private Tutorial tutorial = null;
 	private boolean menu = true;
+	private int tutorial = 0;
+	private String[] tutorialText;
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
@@ -39,13 +39,21 @@ public class Player extends LinearLayout {
 		
 		Timer timer = (Timer) getChildAt(1);
 		timer.Start();
-		
+
+		//Run tutorial
 		if(Settings.Get("Tutorial")) {
-			if(tutorial == null) tutorial = new Tutorial(timer);
-			tutorial.run = true;
-			tutorial.Next();
+			//Load text
+			if(tutorialText == null) tutorialText = getResources().getStringArray(R.array.app_tutor);
+			if(tutorial < tutorialText.length) {
+				timer.Write(tutorialText[tutorial]);
+				tutorial++;
+			} else {
+				//End tutorial
+				Settings.Set("Tutorial", false);
+				tutorial = 0;
+				timer.Show();
+			}
 		} else {
-			if(tutorial != null) tutorial = null;
 			timer.Show();
 		}
 		
@@ -75,7 +83,7 @@ public class Player extends LinearLayout {
 		((Grid) getChildAt(2)).slider.exit();
 		((Timer) getChildAt(1)).End();
 
-		slideDrawer.showSecondary();
+		((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).slideDrawer.showSecondary();
 
 		//Set next round
 		if(Round.size == 5 && Round.colors == 3 && !Round.next && menu) Menu();
@@ -88,8 +96,9 @@ public class Player extends LinearLayout {
 			.setText(getResources().getText(R.string.app_name));
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Bot_Text))
 			.setText(getResources().getText(R.string.app_start));
-		
-		Timer timer = (Timer) findViewById(R.id.Bar_Layout);
+
+		//End timer
+		Timer timer = ((Timer) getChildAt(1));
 		timer.Clear();
 		timer.Show();
 	}
@@ -107,7 +116,7 @@ public class Player extends LinearLayout {
 
 	void Lose() {
 		Round.moving = true;
-		if(tutorial != null) tutorial.part = 0;
+		if(tutorial > 0) tutorial = 0;
 
 		//Show correct answer
 		((Timer) getChildAt(1)).End();

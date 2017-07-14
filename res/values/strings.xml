@@ -30,4 +30,12 @@
         <item>Sure</item>
         <item>Not now</item>
     </string-array>
+
+    <string-array name="app_tutor">
+        <item>Just find the changed square,</item>
+        <item>Each level is unique,</item>
+        <item>They grow as you progress,</item>
+        <item>So go fast for higher score,</item>
+        <item>And keep an eye on the timer.</item>
+    </string-array>
 </resources>

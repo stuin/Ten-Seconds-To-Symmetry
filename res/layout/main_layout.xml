@@ -112,7 +112,7 @@
     </FrameLayout>
 
 
-    <LinearLayout
+    <com.stuin.tenseconds.Views.Drawer
             android:id="@+id/Drawer_Layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -163,7 +163,6 @@
         <TextView
                 style="@style/style_line"/>
 
-
-    </LinearLayout>
+    </com.stuin.tenseconds.Views.Drawer>
 </RelativeLayout>
 
