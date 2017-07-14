@@ -1,14 +1,14 @@
 package com.stuin.tenseconds;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import com.stuin.cleanvisuals.Settings;
 import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.Views.Player;
+import com.stuin.tenseconds.Views.RateDialog;
 
 /**
  * Created by Stuart on 2/14/2017.
@@ -69,7 +69,14 @@ public class MainActivity extends Activity {
         String string;
         try {
             string = 'v' + getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-            if(BuildConfig.DEBUG) string += "a";
+            //Unlock debug mode
+            if(BuildConfig.DEBUG) {
+                string += "a";
+
+                Settings.Set("Expanded", true);
+                Settings.Set("Rated", false);
+                //Settings.Set("RateDialog", false);
+            }
         } catch(PackageManager.NameNotFoundException e) {
             string = "Version not found";
         }
@@ -114,7 +121,8 @@ public class MainActivity extends Activity {
                 break;
             case R.id.Drawer_Rate:
                 //Rate app
-                Rate();
+                RateDialog rateDialog = new RateDialog();
+                rateDialog.show(getFragmentManager(), "RateDialog");
                 break;
             case R.id.Drawer_Tutorial:case R.id.Drawer_Versus:
                 //Load Gamemode
@@ -131,14 +139,5 @@ public class MainActivity extends Activity {
             if(!player.slideDrawer.showSecondary() && Round.loss) player.Menu();
             //Pause game
         } else if(!Round.moving) player.Clear();
-    }
-
-    public void Rate() {
-        Settings.Set("Rated", true);
-
-        //Open app site
-        Uri url = Uri.parse(getResources().getString(R.string.app_url));
-        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
-        startActivity(launchBrowser);
     }
 }

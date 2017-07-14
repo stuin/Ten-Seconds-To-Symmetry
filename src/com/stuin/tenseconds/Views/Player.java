@@ -3,6 +3,7 @@ package com.stuin.tenseconds.Views;
 import android.widget.*;
 import android.content.*;
 import android.util.*;
+import com.stuin.cleanvisuals.Settings;
 import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
@@ -22,7 +23,7 @@ public class Player extends LinearLayout {
 
 		//Get save data
 		String[] KEYS = {
-				"Expanded", "Tutorial", "Rated", "Versus"};
+				"Expanded", "Tutorial", "Rated", "RateDialog", "Versus"};
 		sharedPreferences = context.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
 		Settings.Load(sharedPreferences, KEYS);
 	}
@@ -106,6 +107,7 @@ public class Player extends LinearLayout {
 
 	void Lose() {
 		Round.moving = true;
+		if(tutorial != null) tutorial.part = 0;
 
 		//Show correct answer
 		((Timer) getChildAt(1)).End();

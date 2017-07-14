@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Views.Player;
 import com.stuin.tenseconds.Views.RateDialog;
 import com.stuin.tenseconds.Views.Timer;
@@ -68,7 +69,8 @@ public class Single implements Scoreboard {
 		Round.loss = true;
 		score = 0;
 
-		if(!Settings.Get("Rated")) {
+		//Show rating menu dialog
+		if(!Settings.Get("Rated") && !Settings.Get("RateDialog")) {
 			RateDialog rateDialog = new RateDialog();
 			rateDialog.show(((Activity) player.getContext()).getFragmentManager(), "RateDialog");
 		}

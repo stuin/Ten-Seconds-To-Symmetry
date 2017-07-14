@@ -7,7 +7,7 @@
 	
     <string name="menu_in">WIP</string>
     <string name="menu_out">Sign Out</string>
-    <string name="menu_rate">Rate</string>
+    <string name="menu_rate">Rate App</string>
 	<string name="menu_blind">Colorblind</string>
 	<string name="menu_tutor">Tutorial</string>
     <string name="menu_versus">Versus</string>
@@ -26,7 +26,7 @@
     </string-array>
 
     <string-array name="app_dialog">
-        <item>Would you rate this app?</item>
+        <item>Would you like to rate this app?</item>
         <item>Sure</item>
         <item>Not now</item>
     </string-array>

@@ -1,12 +1,13 @@
 package com.stuin.tenseconds;
+
+import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Views.*;
-import org.xml.sax.helpers.*;
 
 public class Tutorial
 {
 	public boolean run = true;
+	public int part = 0;
 
-	private int part = 0;
 	private Timer timer;
 
 	private String[] text = {

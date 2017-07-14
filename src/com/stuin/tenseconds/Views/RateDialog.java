@@ -7,9 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import com.stuin.tenseconds.MainActivity;
+import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.R;
-import com.stuin.tenseconds.Settings;
 
 /**
  * Created by Stuart on 7/14/2017.
@@ -25,13 +24,18 @@ public class RateDialog extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
+                Settings.Set("Rated", true);
 
-                ((MainActivity) getActivity()).Rate();
+                //Open app site
+                Uri url = Uri.parse(getResources().getString(R.string.app_url));
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
+                startActivity(launchBrowser);
             }
         }).setNegativeButton(labels[2], new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
+                Settings.Set("RateDialog", true);
             }
         });
         return builder.create();

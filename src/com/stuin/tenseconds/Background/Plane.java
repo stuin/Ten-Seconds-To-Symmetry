@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+import com.stuin.cleanvisuals.Range;
 
 import java.util.List;
 import java.util.Random;

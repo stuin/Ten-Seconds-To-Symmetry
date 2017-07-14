@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
-import com.stuin.tenseconds.*;
 
 /**
  * Created by Stuart on 3/12/2017.
@@ -101,7 +100,7 @@ public class Timer extends FrameLayout {
 			
 			//Hide tutorial text
 			if(!endTutorial && time < 6000) {
-				if(Settings.Get("Tutorial")) sliderSync.showPrimary();
+			    sliderSync.showPrimary();
 				endTutorial = true;
 			}
         }
