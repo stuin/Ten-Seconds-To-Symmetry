@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Views.Drawer;
 import com.stuin.tenseconds.Views.Player;
 
@@ -22,11 +23,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_layout);
 
         //Start scoreboard system
-        player = (Player) findViewById(R.id.Player_Layout);
+        player = (Player) findViewById(R.id.Main_Player);
         player.scoreboard = new Single(player);
 
         //Run setup when ready
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.Relative);
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.Main_Layout);
         relativeLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -54,9 +55,9 @@ public class MainActivity extends Activity {
         unSet = false;
 
         //Set various dimensions
-        Round.length = findViewById(R.id.Relative).getHeight() / 2;
+        Round.length = findViewById(R.id.Main_Layout).getHeight() / 2;
         findViewById(R.id.Top_Text).setTranslationY(Round.length / 2.5f);
-        findViewById(R.id.Bot_Text).setTranslationY(Round.length / -2.5f);
+        findViewById(R.id.Bot_Button).setTranslationY(Round.length / -2.5f);
 
         drawer = (Drawer) findViewById(R.id.Drawer_Layout);
         drawer.Setup(this);
@@ -87,6 +88,7 @@ public class MainActivity extends Activity {
         if(!player.Playing()) {
             //Hide drawer or go to home screen
             if(!drawer.slideDrawer.showSecondary() && Round.loss) player.Menu();
+            else if(Settings.Get("Versus")) player.scoreboard.Save();
             //Pause game
         } else if(!Round.moving) player.Clear();
     }

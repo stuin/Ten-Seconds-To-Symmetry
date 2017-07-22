@@ -2,7 +2,7 @@
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:stuin="http://schemas.android.com/apk/res/com.stuin.tenseconds"
-        android:id="@+id/Relative"
+        android:id="@+id/Main_Layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,12 +16,18 @@
             android:layout_alignParentTop="true"/>
 
     <Button
-            android:id="@+id/Bot_Text"
+            android:id="@+id/Bot_Button"
             style="@style/style_background"
             android:background="@drawable/button"
             android:layout_alignParentBottom="true"
             android:onClick="StartGame"
             android:text="@string/app_start"/>
+
+    <TextView
+            android:id="@+id/Bot_Text"
+            style="@style/style_text"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"/>
 
     <com.stuin.tenseconds.Views.Player
             style="@style/style_base"
@@ -29,7 +35,7 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/Player_Layout"
+            android:id="@+id/Main_Player"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 

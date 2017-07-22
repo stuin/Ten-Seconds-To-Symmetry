@@ -67,7 +67,7 @@ public class Drawer extends LinearLayout {
                 Round.Visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
                 Round.Visible(findViewById(R.id.Drawer_Rate), !Settings.Get("Rated"));
                 break;
-            case R.id.Drawer_Layout:case R.id.Relative:
+            case R.id.Drawer_Layout:case R.id.Main_Layout:
                 //Hide drawer
                 slideDrawer.showSecondary();
                 break;

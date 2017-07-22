@@ -16,7 +16,7 @@ public class Single implements Scoreboard {
 	private int highScore;
 	private int score;
 
-	Single(Player player) {
+	public Single(Player player) {
 		//Set variables
 	    this.player = player;
 	    sharedPreferences = player.sharedPreferences;

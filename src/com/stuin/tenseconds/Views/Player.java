@@ -4,10 +4,6 @@ import android.widget.*;
 import android.content.*;
 import android.util.*;
 import com.stuin.cleanvisuals.Settings;
-import com.stuin.cleanvisuals.SliderSync;
-import com.stuin.tenseconds.R;
-import com.stuin.tenseconds.Round;
-import com.stuin.tenseconds.Scoreboard;
 import com.stuin.tenseconds.*;
 
 public class Player extends LinearLayout {
@@ -36,9 +32,14 @@ public class Player extends LinearLayout {
 		//Play animations
 		((Grid) getChildAt(0)).Enter();
 		((Grid) getChildAt(2)).Enter();
-		
+
+		//Start timer
 		Timer timer = (Timer) getChildAt(1);
 		timer.Start();
+
+		//Check for versus mode
+		if(Settings.Get("Versus")) scoreboard = new Versus(this);
+		else if(scoreboard.getClass() == Versus.class) scoreboard = new Single(this);
 
 		//Run tutorial
 		if(Settings.Get("Tutorial")) {
@@ -56,7 +57,8 @@ public class Player extends LinearLayout {
 		} else {
 			timer.Show();
 		}
-		
+
+		//Run text animation
 		postDelayed(title, 100);
 	}
 	
@@ -94,7 +96,7 @@ public class Player extends LinearLayout {
 		//Set text to main menu
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Top_Text))
 			.setText(getResources().getText(R.string.app_name));
-		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Bot_Text))
+		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Bot_Button))
 			.setText(getResources().getText(R.string.app_start));
 
 		//End timer

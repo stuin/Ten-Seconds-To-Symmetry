@@ -25,6 +25,12 @@
         <item>Restart</item>
     </string-array>
 
+    <string-array name="app_versus">
+        <item>You Win:" "</item>
+        <item>You Lose:" "</item>
+        <item>Tie:" "</item>
+    </string-array>
+
     <string-array name="app_dialog">
         <item>Would you like to rate this app?</item>
         <item>Sure</item>

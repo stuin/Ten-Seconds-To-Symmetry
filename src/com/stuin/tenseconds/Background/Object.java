@@ -48,14 +48,7 @@ public class Object extends ImageView {
             if(distance > plane.length) {
                 shown = false;
                 setVisibility(View.GONE);
-
-                //Wait to restart
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Start();
-                    }
-                }, plane.resetTime);
+                plane.waiting.push(this);
             }
         }
     }

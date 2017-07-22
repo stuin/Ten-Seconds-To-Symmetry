@@ -8,23 +8,25 @@ import com.stuin.cleanvisuals.Range;
 
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 /**
  * Created by Stuart on 7/13/2017.
  */
 public class Plane extends RelativeLayout {
     public List<Object> objects;
+    public Stack<Object> waiting;
     public Random rand;
     public boolean on = true;
     public int updateTime = 1;
+    public int time = 0;
 
     public boolean top;
     public int length;
     public int width;
     public int start;
-    public int resetTime;
     public Range speed;
-    public int startWith;
+    public int addTime;
     public Drawable drawable;
 
     //Various constructors
@@ -63,20 +65,20 @@ public class Plane extends RelativeLayout {
             if(on) {
                 //Update all objects
                 for(Object object : objects) object.Update();
-                postDelayed(update, updateTime);
+                if(time % addTime == 0) Add();
 
-                //Create more objects
-                while(startWith > 0) {
-                    Add();
-                    startWith--;
-                }
+                postDelayed(update, updateTime);
             }
         }
     };
 
     public void Add() {
-        Object object = new Object(this);
-        addView(object);
-        objects.add(object);
+        if(waiting.isEmpty()) {
+            Object object = new Object(this);
+            addView(object);
+            objects.add(object);
+        } else {
+            waiting.pop().Start();
+        }
     }
 }

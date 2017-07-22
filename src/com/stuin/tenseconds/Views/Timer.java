@@ -46,9 +46,6 @@ public class Timer extends FrameLayout {
         String text = getResources().getText(R.string.app_time).toString();
         ((TextView) linearLayout.getChildAt(0)).setText(text);
         ((TextView) linearLayout.getChildAt(2)).setText(text);
-
-        //Display timer
-        //sliderSync.showPrimary();
     }
 
     public void Write(String text) {
@@ -66,15 +63,31 @@ public class Timer extends FrameLayout {
             sliderSync.setup(true, -Round.length, Round.length, 500);
         }
 
-        //Start timer at 0
+        //Start timer at 10
         Clear();
 		endTutorial = false;
-        countDownTimer.start();
+        mainTimer.start();
+    }
+
+    public void StartReset(boolean end) {
+        Clear();
+        CountDownTimer resetTimer = new CountDownTimer(3000, 10) {
+            @Override
+            public void onTick(long l) {
+                time = (int) l;
+                SetTime(time);
+            }
+
+            @Override
+            public void onFinish() {
+                ((Player) getParent()).Start();
+            }
+        }.start();
     }
 
     int End() {
         //Get remaining time
-        countDownTimer.cancel();
+        mainTimer.cancel();
 		Show();
         return time;
     }
@@ -82,21 +95,24 @@ public class Timer extends FrameLayout {
 	void Show() {
 		sliderSync.showPrimary();
 	}
+
+	private void SetTime(int time) {
+        //Add to timer bar
+        ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
+        progressBar.setProgress(1000 - (time / 10));
+
+        //Show remaining seconds
+        ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
+        ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
+    }
 	
 	private boolean endTutorial = false;
 
-    private CountDownTimer countDownTimer = new CountDownTimer(10000, 10) {
+    private CountDownTimer mainTimer = new CountDownTimer(10000, 10) {
         @Override
         public void onTick(long l) {
             time = (int)l;
-
-            //Add to timer bar
-            ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
-            progressBar.setProgress(1000 - (time / 10));
-
-            //Show remaining seconds
-            ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
-            ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
+            SetTime(time);
 			
 			//Hide tutorial text
 			if(!endTutorial && time < 6000) {
