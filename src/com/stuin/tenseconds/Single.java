@@ -26,7 +26,7 @@ public class Single implements Scoreboard {
 	    labels = player.getResources().getStringArray(R.array.app_labels);
 		
 		//Check tutorial start
-		Settings.Set("Tutorial", highScore == -1);
+		Settings.set("Tutorial", highScore == -1);
     }
 
     public void Win(int time, boolean top) {
@@ -36,24 +36,24 @@ public class Single implements Scoreboard {
 		//Show win screen
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		String text = '+' + Round.Separate(score) + '+';
-		((TextView) relativeLayout.getChildAt(0)).setText(text);
+		((TextView) relativeLayout.getChildAt(2)).setText(text);
 
-		((TextView) relativeLayout.getChildAt(1)).setText(labels[4]);
+		((TextView) relativeLayout.getChildAt(3)).setText(labels[4]);
 
 		//Prepare next round
 		if(Round.size == 9 && Round.next && 
-			((Round.colors == 5 && !Settings.Get("Expanded")) || Round.colors == 8)) Done(true);
+			((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) Done(true);
 		else Round.Next();
     }
 
     public void Done(boolean win) {
-		//Write score at top
+		//Write score at vertical
 		String text = labels[0] + Round.Separate(score);
 		if(win) text = labels[1] + Round.Separate(score);
 		
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
-		((TextView) relativeLayout.getChildAt(0)).setText(text);
-		((TextView) relativeLayout.getChildAt(1)).setText(labels[5]);
+		((TextView) relativeLayout.getChildAt(2)).setText(text);
+		((TextView) relativeLayout.getChildAt(3)).setText(labels[5]);
 
 		//show high score data
 		Timer timer = (Timer) player.getChildAt(1);
@@ -70,7 +70,7 @@ public class Single implements Scoreboard {
 		score = 0;
 
 		//Show rating menu dialog
-		if(!Settings.Get("Rated") && !Settings.Get("RateDialog")) {
+		if(!Settings.get("Rated") && !Settings.get("RateDialog")) {
 			RateDialog rateDialog = new RateDialog();
 			rateDialog.show(((Activity) player.getContext()).getFragmentManager(), "RateDialog");
 		}

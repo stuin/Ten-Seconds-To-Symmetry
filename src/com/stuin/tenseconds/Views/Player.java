@@ -19,9 +19,10 @@ public class Player extends LinearLayout {
 
 		//Get save data
 		String[] KEYS = {
-				"Expanded", "Tutorial", "Rated", "RateDialog", "Versus"};
+				"Expanded", "Tutorial", "Rated", "RateDialog", "Versus", "Background"};
 		sharedPreferences = context.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
-		Settings.Load(sharedPreferences, KEYS);
+		Settings.load(sharedPreferences, KEYS);
+		Settings.set("Versus", false);
 	}
 
 	public void Start() {
@@ -38,13 +39,13 @@ public class Player extends LinearLayout {
 		timer.Start();
 
 		//Check for versus mode
-		if(Settings.Get("Versus")) {
+		if(Settings.get("Versus")) {
 			if(scoreboard.getClass() != Versus.class) scoreboard = new Versus(this);
 		} else if(scoreboard.getClass() == Versus.class) scoreboard = new Single(this);
 
 
 		//Run tutorial
-		if(Settings.Get("Tutorial")) {
+		if(Settings.get("Tutorial")) {
 			//Load text
 			if(tutorialText == null) tutorialText = getResources().getStringArray(R.array.app_tutor);
 			if(tutorial < tutorialText.length) {
@@ -52,7 +53,7 @@ public class Player extends LinearLayout {
 				tutorial++;
 			} else {
 				//End tutorial
-				Settings.Set("Tutorial", false);
+				Settings.set("Tutorial", false);
 				tutorial = 0;
 				timer.Show();
 			}
@@ -67,7 +68,7 @@ public class Player extends LinearLayout {
 	//Animation to fit text behind grid
 	private Runnable title = new Runnable() {
 		public void run() {
-			TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(0);
+			TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(2);
 			if(textView.getText().length() > 15) {
 				//Shrink text by one letter
 				String text = textView.getText().toString();
@@ -87,7 +88,7 @@ public class Player extends LinearLayout {
 		((Grid) getChildAt(2)).slider.exit();
 		((Timer) getChildAt(1)).End();
 
-		if(!Settings.Get("Versus"))
+		if(!Settings.get("Versus"))
 			((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).slideDrawer.showSecondary();
 
 		//Set next round

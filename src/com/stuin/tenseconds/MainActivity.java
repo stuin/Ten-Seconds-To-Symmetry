@@ -88,8 +88,8 @@ public class MainActivity extends Activity {
         if(!player.Playing()) {
             //Hide drawer or go to home screen
             if(!drawer.slideDrawer.showSecondary() && Round.loss) player.Menu();
-            if(Settings.Get("Versus")) player.scoreboard.Save();
+            if(Settings.get("Versus")) player.scoreboard.Save();
             //Pause game
-        } else if(!Round.moving) player.Clear();
+        } else if(!Round.moving && !Settings.get("Versus")) player.Clear();
     }
 }

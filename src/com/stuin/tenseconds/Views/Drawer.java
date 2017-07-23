@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.cleanvisuals.SliderSync;
 import com.stuin.tenseconds.BuildConfig;
@@ -42,8 +43,8 @@ public class Drawer extends LinearLayout {
             if(BuildConfig.DEBUG) {
                 string += "a";
 
-                Settings.Set("Expanded", true);
-                Settings.Set("Rated", false);
+                Settings.set("Expanded", true);
+                Settings.set("Rated", false);
                 //Settings.Set("RateDialog", false);
             }
         } catch(PackageManager.NameNotFoundException e) {
@@ -52,8 +53,12 @@ public class Drawer extends LinearLayout {
         ((TextView) findViewById(R.id.Drawer_Version)).setText(string);
 
         //Link settings switches
-        Settings.LinkId(R.id.Drawer_Tutorial, "Tutorial");
-        Settings.LinkId(R.id.Drawer_Versus, "Versus");
+        Settings.linkId(R.id.Drawer_Tutorial, "Tutorial");
+        Settings.linkId(R.id.Drawer_Versus, "Versus");
+
+        //Set background button
+        ToggleButton button = (ToggleButton) findViewById(R.id.Drawer_Background);
+        button.setChecked(Settings.get("Background"));
     }
 
     public void Button(View view) {
@@ -65,7 +70,7 @@ public class Drawer extends LinearLayout {
                 //Hide certain buttons
                 Round.Visible(findViewById(R.id.Drawer_Modes), Round.count == 0);
                 Round.Visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
-                Round.Visible(findViewById(R.id.Drawer_Rate), !Settings.Get("Rated"));
+                Round.Visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:
                 //Hide drawer
@@ -80,9 +85,14 @@ public class Drawer extends LinearLayout {
                 RateDialog rateDialog = new RateDialog();
                 rateDialog.show(activity.getFragmentManager(), "RateDialog");
                 break;
+            case R.id.Drawer_Background:
+                //Toggle Background
+                ToggleButton button = (ToggleButton) view;
+                Settings.set("Background", button.isChecked());
+                break;
             case R.id.Drawer_Tutorial:case R.id.Drawer_Versus:
                 //Load Gamemode
-                Settings.SetId(view.getId(), true);
+                Settings.setId(view.getId(), true);
                 activity.StartGame(null);
                 break;
         }

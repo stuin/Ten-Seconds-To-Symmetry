@@ -9,6 +9,21 @@
         android:onClick="Drawer"
         android:background="@color/app_background">
 
+    <com.stuin.tenseconds.Views.Background
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            stuin:top="true">
+
+    </com.stuin.tenseconds.Views.Background>
+
+    <com.stuin.tenseconds.Views.Background
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+    </com.stuin.tenseconds.Views.Background>
+
     <TextView
             android:id="@+id/Top_Text"
             style="@style/style_text"
@@ -137,6 +152,13 @@
                 android:id="@+id/Drawer_Rate"
                 style="@style/style_button"
                 android:text="@string/menu_rate"/>
+        <ToggleButton
+                android:id="@+id/Drawer_Background"
+                style="@style/style_button"
+                android:textOn="@string/menu_back"
+                android:textOff="@string/menu_back"/>
+        <TextView
+                style="@style/style_line"/>
         <LinearLayout
                 android:id="@+id/Drawer_Modes"
                 android:layout_width="match_parent"

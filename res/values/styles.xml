@@ -42,4 +42,8 @@
     <declare-styleable name="Grid">
         <attr name="top" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="Background">
+        <attr name="top" format="boolean"/>
+    </declare-styleable>
 </resources>

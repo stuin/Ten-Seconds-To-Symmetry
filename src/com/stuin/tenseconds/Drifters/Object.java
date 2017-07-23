@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Background;
+package com.stuin.tenseconds.Drifters;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -18,18 +18,16 @@ public class Object extends ImageView {
         super(plane.getContext());
         this.plane = plane;
         setImageDrawable(plane.drawable);
-
-        Start();
     }
 
     public void Start() {
         //Set new variables
         offset = plane.rand.nextInt(plane.width);
-        speed = plane.speed.GetInt(plane.rand);
+        speed = plane.speed.getInt(plane.rand);
         distance = plane.start;
 
         //Set new position
-        if(plane.top) setTranslationX(offset);
+        if(plane.vertical) setTranslationX(offset);
         else setTranslationY(offset);
         Shift();
 
@@ -45,17 +43,21 @@ public class Object extends ImageView {
             Shift();
 
             //When reached end
-            if(distance > plane.length) {
-                shown = false;
-                setVisibility(View.GONE);
-                plane.waiting.push(this);
+            if(Math.abs(distance - plane.start) > plane.length + plane.objectLength) {
+                Hide();
             }
         }
     }
 
+    public void Hide() {
+        shown = false;
+        setVisibility(View.GONE);
+        plane.waiting.push(this);
+    }
+
     private void Shift() {
         //Position object
-        if(plane.top) setTranslationY(distance);
+        if(plane.vertical) setTranslationY(distance);
         else setTranslationX(distance);
     }
 }

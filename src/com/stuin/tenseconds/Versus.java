@@ -20,26 +20,37 @@ public class Versus implements Scoreboard {
         relativeLayout.findViewById(R.id.Bar_Right).setRotation(180);
     }
 
+    private void Setup() {
+        //Make text place changes
+        relativeLayout.getChildAt(4).setTranslationY(Round.length / -2.5f);
+        relativeLayout.getChildAt(4).setVisibility(View.VISIBLE);
+        relativeLayout.getChildAt(3).setVisibility(View.GONE);
+        relativeLayout.getChildAt(2).setRotation(180);
+
+        Settings.set("Tutorial", false);
+        set = true;
+    }
+
     @Override
     public void Win(int time, boolean top) {
-        if(!set) Load();
+        if(!set) Setup();
 
         if(top) topScore++;
         else botScore++;
 
-        //Write top score
-        String text = '+' + Round.Separate(topScore) + " / " + Round.Separate(botScore) + '+';
+        //Write vertical score
+        String text = "+" + topScore + " / " + botScore + "+";
         if(!top) text = text.replace('+', '-');
-        ((TextView) relativeLayout.getChildAt(0)).setText(text);
+        ((TextView) relativeLayout.getChildAt(2)).setText(text);
 
         //Write bottom score
-        text = '+' + Round.Separate(botScore) + " / " + Round.Separate(topScore) + '+';
+        text = "+" + botScore + " / " + topScore + "+";
         if(top) text = text.replace('+', '-');
-        ((TextView) relativeLayout.getChildAt(2)).setText(text);
+        ((TextView) relativeLayout.getChildAt(4)).setText(text);
 
         //Prepare next round
         if(Round.size == 9 && Round.next &&
-                ((Round.colors == 5 && !Settings.Get("Expanded")) || Round.colors == 8)) Done(true);
+                ((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) Done(true);
         else Round.Next();
 
         //Start short timer
@@ -66,12 +77,12 @@ public class Versus implements Scoreboard {
         }
 
         //Add scores
-        topText += Round.Separate(topScore) + " / " + Round.Separate(botScore);
-        botText += Round.Separate(botScore) + " / " + Round.Separate(topScore);
+        topText += topScore + " / " + botScore;
+        botText += botScore + " / " + topScore;
 
         //Write to text
-        ((TextView) relativeLayout.getChildAt(0)).setText(topText);
-        ((TextView) relativeLayout.getChildAt(2)).setText(botText);
+        ((TextView) relativeLayout.getChildAt(2)).setText(topText);
+        ((TextView) relativeLayout.getChildAt(4)).setText(botText);
 
         Round.Reset();
         Round.loss = true;
@@ -81,27 +92,21 @@ public class Versus implements Scoreboard {
 
     @Override
     public void Load() {
-        //Make text place changes
-        relativeLayout.getChildAt(2).setTranslationY(Round.length / -2.5f);
-        relativeLayout.getChildAt(2).setVisibility(View.VISIBLE);
-        relativeLayout.getChildAt(1).setVisibility(View.GONE);
-        relativeLayout.getChildAt(0).setRotation(180);
 
-        Settings.Set("Tutorial", false);
-        set = true;
     }
 
     @Override
     public void Save() {
         //Reset text placing
-        relativeLayout.getChildAt(1).setVisibility(View.VISIBLE);
-        relativeLayout.getChildAt(2).setVisibility(View.GONE);
-        relativeLayout.getChildAt(0).setRotation(0);
+        relativeLayout.getChildAt(3).setVisibility(View.VISIBLE);
+        relativeLayout.getChildAt(4).setVisibility(View.GONE);
+        relativeLayout.getChildAt(2).setRotation(0);
         relativeLayout.findViewById(R.id.Bar_Right).setRotation(0);
         ((Timer) relativeLayout.findViewById(R.id.Bar_Layout)).End();
 
-        Settings.Set("Versus", false);
+        Settings.set("Versus", false);
         player.Menu();
         set = false;
+        Round.Reset();
     }
 }

@@ -19,7 +19,8 @@ public class Grid extends GridLayout {
     public Grid(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 		//Get custom value
-		top = attributeSet.getAttributeBooleanValue("http://schemas.android.com/apk/res/com.stuin.tenseconds","top",false);
+		top = attributeSet.getAttributeBooleanValue(
+				"http://schemas.android.com/apk/res/com.stuin.tenseconds","top",false);
 
 		//Add ending to slide
 		slider.endings = new Slider.Endings() {

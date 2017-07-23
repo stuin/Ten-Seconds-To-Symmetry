@@ -24,7 +24,7 @@ public class RateDialog extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-                Settings.Set("Rated", true);
+                Settings.set("Rated", true);
 
                 //Open app site
                 Uri url = Uri.parse(getResources().getString(R.string.app_url));
@@ -35,7 +35,7 @@ public class RateDialog extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-                Settings.Set("RateDialog", true);
+                Settings.set("RateDialog", true);
             }
         });
         return builder.create();
