@@ -43,14 +43,14 @@ public class Cell extends FrameLayout {
                                 int pos = ny * Round.size + nx;
 								//Check if win
                                 if(Round.cells.get(pos).mark > -1) {
-                                    player.Win(top);
+                                    player.win(top);
                                     return;
                                 }
                             }
                         }
 						//If loss or direct hit
-                        player.Lose();
-                    } else player.Win(top);
+                        player.lose();
+                    } else player.win(top);
                 }
             }
         };
@@ -61,7 +61,7 @@ public class Cell extends FrameLayout {
 		setOnClickListener(clickListener);
     }
 	
-	Cell Copy() {
+	Cell copy() {
 		//Create opposite cell
 		Cell cell = new Cell(getContext(), color, x, y, scale);
 		cell.mark = mark;

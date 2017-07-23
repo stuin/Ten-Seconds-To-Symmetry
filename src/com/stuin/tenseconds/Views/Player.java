@@ -25,18 +25,18 @@ public class Player extends LinearLayout {
 		Settings.set("Versus", false);
 	}
 
-	public void Start() {
-		//Start the round
+	public void start() {
+		//start the round
 		Round.moving = true;
 		Round.loss = false;
 		
 		//Play animations
-		((Grid) getChildAt(0)).Enter();
-		((Grid) getChildAt(2)).Enter();
+		((Grid) getChildAt(0)).enter();
+		((Grid) getChildAt(2)).enter();
 
-		//Start timer
+		//start timer
 		Timer timer = (Timer) getChildAt(1);
-		timer.Start();
+		timer.start();
 
 		//Check for versus mode
 		if(Settings.get("Versus")) {
@@ -46,19 +46,19 @@ public class Player extends LinearLayout {
 
 		//Run tutorial
 		if(Settings.get("Tutorial")) {
-			//Load text
+			//load text
 			if(tutorialText == null) tutorialText = getResources().getStringArray(R.array.app_tutor);
 			if(tutorial < tutorialText.length) {
-				timer.Write(tutorialText[tutorial]);
+				timer.write(tutorialText[tutorial]);
 				tutorial++;
 			} else {
-				//End tutorial
+				//end tutorial
 				Settings.set("Tutorial", false);
 				tutorial = 0;
-				timer.Show();
+				timer.show();
 			}
 		} else {
-			timer.Show();
+			timer.show();
 		}
 
 		//Run text animation
@@ -80,67 +80,67 @@ public class Player extends LinearLayout {
 		}
 	};
 
-	public void Clear() {
+	public void clear() {
 		Round.moving = true;
 
 		//Play leaving animations
 		((Grid) getChildAt(0)).slider.exit();
 		((Grid) getChildAt(2)).slider.exit();
-		((Timer) getChildAt(1)).End();
+		((Timer) getChildAt(1)).end();
 
 		if(!Settings.get("Versus"))
 			((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).slideDrawer.showSecondary();
 
 		//Set next round
-		if(Round.size == 5 && Round.colors == 3 && !Round.next && menu) Menu();
+		if(Round.size == 5 && Round.colors == 3 && !Round.next && menu) menu();
 		menu = true;
 	}
 
-	public void Menu() {
+	public void menu() {
 		//Set text to main menu
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Top_Text))
 			.setText(getResources().getText(R.string.app_name));
 		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Bot_Button))
 			.setText(getResources().getText(R.string.app_start));
 
-		//End timer
+		//end timer
 		Timer timer = ((Timer) getChildAt(1));
-		timer.Clear();
-		timer.Show();
+		timer.clear();
+		timer.show();
 	}
 
-	void Win(boolean top) {
+	void win(boolean top) {
 		//Set end variables
 		Round.moving = true;
 		Round.count++;
 		menu = false;
 		
-		//Clear and set score
-		Clear();
-		scoreboard.Win(((Timer) getChildAt(1)).End() / 10, top);
+		//clear and set score
+		clear();
+		scoreboard.win(((Timer) getChildAt(1)).end() / 10, top);
 	}
 
-	void Lose() {
+	void lose() {
 		Round.moving = true;
 		if(tutorial > 0) tutorial = 0;
 
-		//Show correct answer
-		((Timer) getChildAt(1)).End();
-		((Grid) getChildAt(0)).Show();
-		((Grid) getChildAt(2)).Show();
+		//show correct answer
+		((Timer) getChildAt(1)).end();
+		((Grid) getChildAt(0)).show();
+		((Grid) getChildAt(2)).show();
 		
 		//Wait and clear
 		postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				menu = false;
-				Clear();
-				scoreboard.Done(false);
+				clear();
+				scoreboard.done(false);
 			}
 		},1000);
 	}
 
-	public boolean Playing() {
+	public boolean playing() {
 		//Return if in game
 		return ((Grid) getChildAt(0)).slider.shown();
 	}

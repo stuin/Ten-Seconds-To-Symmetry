@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 import com.stuin.cleanvisuals.Settings;
-import com.stuin.cleanvisuals.SliderSync;
+import com.stuin.cleanvisuals.Slide.SliderSync;
 import com.stuin.tenseconds.BuildConfig;
 import com.stuin.tenseconds.MainActivity;
 import com.stuin.tenseconds.R;
@@ -27,7 +27,7 @@ public class Drawer extends LinearLayout {
         super(context, attributeSet);
     }
 
-    public void Setup(MainActivity activity) {
+    public void setup(MainActivity activity) {
         this.activity = activity;
 
         //Set drawer animation
@@ -35,7 +35,7 @@ public class Drawer extends LinearLayout {
         slideDrawer = new SliderSync(this, icon);
         slideDrawer.setup(true, Round.length, 200, 250);
 
-        //Show app version
+        //show app version
         String string;
         try {
             string = 'v' + activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
@@ -61,24 +61,24 @@ public class Drawer extends LinearLayout {
         button.setChecked(Settings.get("Background"));
     }
 
-    public void Button(View view) {
+    public void button(View view) {
         switch(view.getId()) {
             case R.id.Drawer_Button:
-                //Show drawer
+                //show drawer
                 slideDrawer.showPrimary();
 
-                //Hide certain buttons
-                Round.Visible(findViewById(R.id.Drawer_Modes), Round.count == 0);
-                Round.Visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
-                Round.Visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
+                //hide certain buttons
+                Round.visible(findViewById(R.id.Drawer_Modes), Round.count == 0);
+                Round.visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
+                Round.visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:
-                //Hide drawer
+                //hide drawer
                 if(slideDrawer.primaryShown()) slideDrawer.showSecondary();
                 break;
             case R.id.Drawer_Quit:
                 //Quit game
-                activity.player.scoreboard.Done(false);
+                activity.player.scoreboard.done(false);
                 break;
             case R.id.Drawer_Rate:
                 //Rate app
@@ -91,9 +91,9 @@ public class Drawer extends LinearLayout {
                 Settings.set("Background", button.isChecked());
                 break;
             case R.id.Drawer_Tutorial:case R.id.Drawer_Versus:
-                //Load Gamemode
+                //load Gamemode
                 Settings.setId(view.getId(), true);
-                activity.StartGame(null);
+                activity.startGame(null);
                 break;
         }
     }

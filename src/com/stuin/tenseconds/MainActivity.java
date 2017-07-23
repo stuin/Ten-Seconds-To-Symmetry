@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        //Start scoreboard system
+        //start scoreboard system
         player = (Player) findViewById(R.id.Main_Player);
         player.scoreboard = new Single(player);
 
@@ -31,7 +31,7 @@ public class MainActivity extends Activity {
         relativeLayout.post(new Runnable() {
             @Override
             public void run() {
-                Setup();
+                setup();
             }
         });
     }
@@ -40,18 +40,18 @@ public class MainActivity extends Activity {
     protected void onResume() {
         //Refresh and load game
         super.onResume();
-        player.scoreboard.Load();
+        player.scoreboard.load();
     }
 
     @Override
     protected void onPause() {
-        //Save and pause game
+        //save and pause game
         super.onPause();
-        player.Clear();
-        player.scoreboard.Save();
+        player.clear();
+        player.scoreboard.save();
     }
 
-    private void Setup() {
+    private void setup() {
         unSet = false;
 
         //Set various dimensions
@@ -60,36 +60,36 @@ public class MainActivity extends Activity {
         findViewById(R.id.Bot_Button).setTranslationY(Round.length / -2.5f);
 
         drawer = (Drawer) findViewById(R.id.Drawer_Layout);
-        drawer.Setup(this);
+        drawer.setup(this);
     }
 
 
-    public void StartGame(View view) {
+    public void startGame(View view) {
         //Make sure dimensions set
-        if(unSet) Setup();
+        if(unSet) setup();
 
         //Begin next round
-        if(!Round.moving && !player.Playing()) {
-            Round.Generate(this);
-            player.Start();
+        if(!Round.moving && !player.playing()) {
+            Round.generate(this);
+            player.start();
             drawer.slideDrawer.hide();
         }
     }
 
-    public void Drawer(View view) {
+    public void drawer(View view) {
         //Make sure dimensions set
-        if(unSet) Setup();
+        if(unSet) setup();
 
-        drawer.Button(view);
+        drawer.button(view);
     }
 
     @Override
     public void onBackPressed() {
-        if(!player.Playing()) {
-            //Hide drawer or go to home screen
-            if(!drawer.slideDrawer.showSecondary() && Round.loss) player.Menu();
-            if(Settings.get("Versus")) player.scoreboard.Save();
+        if(!player.playing()) {
+            //hide drawer or go to home screen
+            if(!drawer.slideDrawer.showSecondary() && Round.loss) player.menu();
+            if(Settings.get("Versus")) player.scoreboard.save();
             //Pause game
-        } else if(!Round.moving && !Settings.get("Versus")) player.Clear();
+        } else if(!Round.moving && !Settings.get("Versus")) player.clear();
     }
 }

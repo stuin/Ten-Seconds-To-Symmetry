@@ -24,8 +24,8 @@ public class Round {
     public static boolean next;
     public static int count;
 
-    public static void Generate(Context context) {
-		//Reset variables
+    public static void generate(Context context) {
+		//reset variables
         int scale = length / (size + 1);
 
         cells = new ArrayList<>();
@@ -43,7 +43,7 @@ public class Round {
         if(marked.mark == marked.color) marked.mark = colors - 1;
     }
 
-    static void Reset() {
+    static void reset() {
 		//Set to first level
         count = 0;
         size = 5;
@@ -52,16 +52,16 @@ public class Round {
         next = false;
     }
 	
-	static void Next() {
+	static void next() {
 		//Increment round settings
 		if(!Round.next) Round.next = true;
 		else {
 			if(Round.size != 9) {
-				//Next size
+				//next size
 				Round.size++;
 				Round.next = false;
 			} else {
-				//Next color
+				//next color
 				Round.colors++;
 				Round.size = 5;
 				Round.next = false;
@@ -69,8 +69,8 @@ public class Round {
 		}
 	}
 
-    static String Separate(int score) {
-		//Add commas to number
+    static String separate(int score) {
+		//add commas to number
         String text = "" + score;
         for(int i = 3; i < text.length(); i += 4)
             text = text.substring(0, text.length() -  i)
@@ -78,7 +78,7 @@ public class Round {
         return text;
     }
 
-    public static void Visible(View view, boolean bool) {
+    public static void visible(View view, boolean bool) {
         if(bool) view.setVisibility(View.VISIBLE);
         else view.setVisibility(View.GONE);
     }

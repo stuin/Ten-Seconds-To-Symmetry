@@ -6,8 +6,8 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import com.stuin.cleanvisuals.Range;
 import com.stuin.cleanvisuals.Settings;
-import com.stuin.tenseconds.Drifters.Object;
-import com.stuin.tenseconds.Drifters.Plane;
+import com.stuin.cleanvisuals.Drift.Object;
+import com.stuin.cleanvisuals.Drift.Plane;
 import com.stuin.tenseconds.R;
 
 /**
@@ -41,7 +41,7 @@ public class Background extends Plane {
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Setup();
+                        setup();
                     }
                 }, 100);
             }
@@ -49,20 +49,20 @@ public class Background extends Plane {
     }
 
     @Override
-    public void Setup() {
-        super.Setup();
+    public void setup() {
+        super.setup();
         if(top) start = length;
     }
 
     @Override
-    public void Update() {
-        super.Update();
+    public void update() {
+        super.update();
         on = Settings.get("Background");
     }
 
     @Override
-    public Object Add() {
-        Object object = super.Add();
+    public Object add() {
+        Object object = super.add();
         object.setMinimumHeight(objectLength);
         object.setMinimumWidth(objectLength);
         return object;

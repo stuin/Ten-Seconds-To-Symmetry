@@ -20,7 +20,7 @@ public class Versus implements Scoreboard {
         relativeLayout.findViewById(R.id.Bar_Right).setRotation(180);
     }
 
-    private void Setup() {
+    private void setup() {
         //Make text place changes
         relativeLayout.getChildAt(4).setTranslationY(Round.length / -2.5f);
         relativeLayout.getChildAt(4).setVisibility(View.VISIBLE);
@@ -32,33 +32,33 @@ public class Versus implements Scoreboard {
     }
 
     @Override
-    public void Win(int time, boolean top) {
-        if(!set) Setup();
+    public void win(int time, boolean top) {
+        if(!set) setup();
 
         if(top) topScore++;
         else botScore++;
 
-        //Write vertical score
+        //write vertical score
         String text = "+" + topScore + " / " + botScore + "+";
         if(!top) text = text.replace('+', '-');
         ((TextView) relativeLayout.getChildAt(2)).setText(text);
 
-        //Write bottom score
+        //write bottom score
         text = "+" + botScore + " / " + topScore + "+";
         if(top) text = text.replace('+', '-');
         ((TextView) relativeLayout.getChildAt(4)).setText(text);
 
         //Prepare next round
         if(Round.size == 9 && Round.next &&
-                ((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) Done(true);
-        else Round.Next();
+                ((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) done(true);
+        else Round.next();
 
-        //Start short timer
-        ((Timer) player.getChildAt(1)).StartReset(false);
+        //start short timer
+        ((Timer) player.getChildAt(1)).startReset(false);
     }
 
     @Override
-    public void Done(boolean win) {
+    public void done(boolean win) {
         //Make variables
         String[] labels = player.getResources().getStringArray(R.array.app_versus);
         String topText;
@@ -76,37 +76,37 @@ public class Versus implements Scoreboard {
             botText = labels[2];
         }
 
-        //Add scores
+        //add scores
         topText += topScore + " / " + botScore;
         botText += botScore + " / " + topScore;
 
-        //Write to text
+        //write to text
         ((TextView) relativeLayout.getChildAt(2)).setText(topText);
         ((TextView) relativeLayout.getChildAt(4)).setText(botText);
 
-        Round.Reset();
+        Round.reset();
         Round.loss = true;
         topScore = 0;
         botScore = 0;
     }
 
     @Override
-    public void Load() {
+    public void load() {
 
     }
 
     @Override
-    public void Save() {
-        //Reset text placing
+    public void save() {
+        //reset text placing
         relativeLayout.getChildAt(3).setVisibility(View.VISIBLE);
         relativeLayout.getChildAt(4).setVisibility(View.GONE);
         relativeLayout.getChildAt(2).setRotation(0);
         relativeLayout.findViewById(R.id.Bar_Right).setRotation(0);
-        ((Timer) relativeLayout.findViewById(R.id.Bar_Layout)).End();
+        ((Timer) relativeLayout.findViewById(R.id.Bar_Layout)).end();
 
         Settings.set("Versus", false);
-        player.Menu();
+        player.menu();
         set = false;
-        Round.Reset();
+        Round.reset();
     }
 }

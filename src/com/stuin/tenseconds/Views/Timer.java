@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.stuin.cleanvisuals.SliderSync;
+import com.stuin.cleanvisuals.Slide.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 
@@ -37,19 +37,19 @@ public class Timer extends FrameLayout {
         });
     }
 
-    void Clear() {
-        //Clear timer bar
+    void clear() {
+        //clear timer bar
         ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
         progressBar.setProgress(0);
 
-        //Clear text
+        //clear text
         String text = getResources().getText(R.string.app_time).toString();
         ((TextView) linearLayout.getChildAt(0)).setText(text);
         ((TextView) linearLayout.getChildAt(2)).setText(text);
     }
 
-    public void Write(String text) {
-        //Write message
+    public void write(String text) {
+        //write message
         TextView textView = (TextView) getChildAt(1);
         textView.setText(text);
 
@@ -57,32 +57,32 @@ public class Timer extends FrameLayout {
         sliderSync.showSecondary();
     }
 
-    void Start() {
+    void start() {
         if(sliderSync.unSet) {
-            //Setup animation if not done yet
+            //setup animation if not done yet
             sliderSync.setup(true, -Round.length, Round.length, 500);
         }
 
-        //Start timer at 10
-        Clear();
+        //start timer at 10
+        clear();
 		endTutorial = false;
         mainTimer.start();
     }
 
-    public int End() {
+    public int end() {
         //Get remaining time
         mainTimer.cancel();
         resetTimer.cancel();
-		Show();
+		show();
         return time;
     }
 	
-	void Show() {
+	void show() {
 		sliderSync.showPrimary();
 	}
 
-	private void SetTime(int time) {
-        //Show remaining seconds
+	private void setTime(int time) {
+        //show remaining seconds
         ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
         ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
     }
@@ -93,13 +93,13 @@ public class Timer extends FrameLayout {
         @Override
         public void onTick(long l) {
             time = (int)l;
-            SetTime(time);
+            setTime(time);
 
-            //Add to timer bar
+            //add to timer bar
             ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
             progressBar.setProgress(1000 - (time / 10));
 			
-			//Hide tutorial text
+			//hide tutorial text
 			if(!endTutorial && time < 6000) {
 			    sliderSync.showPrimary();
 				endTutorial = true;
@@ -108,12 +108,12 @@ public class Timer extends FrameLayout {
 
         @Override
         public void onFinish() {
-            ((Player) getParent()).Lose();
+            ((Player) getParent()).lose();
         }
     };
 
-    public void StartReset(boolean end) {
-        Clear();
+    public void startReset(boolean end) {
+        clear();
         resetTimer.start();
     }
 
@@ -121,17 +121,17 @@ public class Timer extends FrameLayout {
         @Override
         public void onTick(long l) {
             time = (int) l;
-            SetTime(time);
+            setTime(time);
 
-            //Add to timer bar
+            //add to timer bar
             ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
             progressBar.setProgress(1000 - (time / 5));
         }
 
         @Override
         public void onFinish() {
-            Round.Generate(getContext());
-            ((Player) getParent()).Start();
+            Round.generate(getContext());
+            ((Player) getParent()).start();
         }
     };
 }

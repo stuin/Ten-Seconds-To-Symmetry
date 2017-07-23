@@ -29,27 +29,27 @@ public class Single implements Scoreboard {
 		Settings.set("Tutorial", highScore == -1);
     }
 
-    public void Win(int time, boolean top) {
+    public void win(int time, boolean top) {
 		//Calculate score
 	    score += time * (Round.size / 2) * Round.colors;
 
 		//Show win screen
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
-		String text = '+' + Round.Separate(score) + '+';
+		String text = '+' + Round.separate(score) + '+';
 		((TextView) relativeLayout.getChildAt(2)).setText(text);
 
 		((TextView) relativeLayout.getChildAt(3)).setText(labels[4]);
 
 		//Prepare next round
 		if(Round.size == 9 && Round.next && 
-			((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) Done(true);
-		else Round.Next();
+			((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) done(true);
+		else Round.next();
     }
 
-    public void Done(boolean win) {
-		//Write score at vertical
-		String text = labels[0] + Round.Separate(score);
-		if(win) text = labels[1] + Round.Separate(score);
+    public void done(boolean win) {
+		//write score at vertical
+		String text = labels[0] + Round.separate(score);
+		if(win) text = labels[1] + Round.separate(score);
 		
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		((TextView) relativeLayout.getChildAt(2)).setText(text);
@@ -58,14 +58,14 @@ public class Single implements Scoreboard {
 		//show high score data
 		Timer timer = (Timer) player.getChildAt(1);
 		if(score > highScore) {
-			timer.Write(labels[2]);
+			timer.write(labels[2]);
 
 			sharedPreferences.edit().putInt("HighScore", score).apply();
 			highScore = score;
-		} else timer.Write(labels[3] + Round.Separate(highScore));
+		} else timer.write(labels[3] + Round.separate(highScore));
 		
 		//Prepare for restart
-		Round.Reset();
+		Round.reset();
 		Round.loss = true;
 		score = 0;
 
@@ -76,30 +76,30 @@ public class Single implements Scoreboard {
 		}
     }
 
-    public void Save() {
+    public void save() {
 		//Create save data
 		if(!Round.loss && score > 0) {
 			String file = Round.count + ":" + score;
 
-			sharedPreferences.edit().putString("Save", file).apply();
+			sharedPreferences.edit().putString("save", file).apply();
 		}
 	}
 
-	public void Load() {
+	public void load() {
 		//Read save data
-		String file = sharedPreferences.getString("Save", " ");
+		String file = sharedPreferences.getString("save", " ");
 
 		//Set match variables
-		Round.Reset();
+		Round.reset();
 		if(!file.equals(" ")) {
 			Round.count = Integer.valueOf(file.split(":")[0]);
 			score = Integer.valueOf(file.split(":")[1]);
 
 			//Set correct round
-			for(int i = 0; i < Round.count; i++) Round.Next();
+			for(int i = 0; i < Round.count; i++) Round.next();
 
-			sharedPreferences.edit().putString("Save", " ").apply();
-			Win(0, false);
+			sharedPreferences.edit().putString("save", " ").apply();
+			win(0, false);
 		}
 	}
 }
