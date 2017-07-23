@@ -102,7 +102,7 @@ public class Cell extends FrameLayout {
     void display() {
 		//Create shade over cell
         TextView space = new TextView(new ContextThemeWrapper(getContext(), R.style.style_background));
-        space.setBackgroundColor(getResources().getColor(R.color.app_menu));
+        space.setBackgroundColor(R.color.app_menu);
         space.setMinimumHeight(scale);
         space.setMinimumWidth(scale);
         space.setTextSize(0);

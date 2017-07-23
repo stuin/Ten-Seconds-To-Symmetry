@@ -38,8 +38,10 @@ public class Player extends LinearLayout {
 		timer.Start();
 
 		//Check for versus mode
-		if(Settings.Get("Versus")) scoreboard = new Versus(this);
-		else if(scoreboard.getClass() == Versus.class) scoreboard = new Single(this);
+		if(Settings.Get("Versus")) {
+			if(scoreboard.getClass() != Versus.class) scoreboard = new Versus(this);
+		} else if(scoreboard.getClass() == Versus.class) scoreboard = new Single(this);
+
 
 		//Run tutorial
 		if(Settings.Get("Tutorial")) {
@@ -85,7 +87,8 @@ public class Player extends LinearLayout {
 		((Grid) getChildAt(2)).slider.exit();
 		((Timer) getChildAt(1)).End();
 
-		((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).slideDrawer.showSecondary();
+		if(!Settings.Get("Versus"))
+			((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).slideDrawer.showSecondary();
 
 		//Set next round
 		if(Round.size == 5 && Round.colors == 3 && !Round.next && menu) Menu();

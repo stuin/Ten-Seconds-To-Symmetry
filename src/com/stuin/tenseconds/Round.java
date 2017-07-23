@@ -24,7 +24,7 @@ public class Round {
     public static boolean next;
     public static int count;
 
-    static void Generate(Context context) {
+    public static void Generate(Context context) {
 		//Reset variables
         int scale = length / (size + 1);
 

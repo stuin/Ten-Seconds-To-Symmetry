@@ -69,7 +69,7 @@ public class Drawer extends LinearLayout {
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:
                 //Hide drawer
-                slideDrawer.showSecondary();
+                if(slideDrawer.primaryShown()) slideDrawer.showSecondary();
                 break;
             case R.id.Drawer_Quit:
                 //Quit game

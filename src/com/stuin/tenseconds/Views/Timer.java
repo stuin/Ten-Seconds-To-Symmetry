@@ -69,25 +69,10 @@ public class Timer extends FrameLayout {
         mainTimer.start();
     }
 
-    public void StartReset(boolean end) {
-        Clear();
-        CountDownTimer resetTimer = new CountDownTimer(3000, 10) {
-            @Override
-            public void onTick(long l) {
-                time = (int) l;
-                SetTime(time);
-            }
-
-            @Override
-            public void onFinish() {
-                ((Player) getParent()).Start();
-            }
-        }.start();
-    }
-
-    int End() {
+    public int End() {
         //Get remaining time
         mainTimer.cancel();
+        resetTimer.cancel();
 		Show();
         return time;
     }
@@ -97,10 +82,6 @@ public class Timer extends FrameLayout {
 	}
 
 	private void SetTime(int time) {
-        //Add to timer bar
-        ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
-        progressBar.setProgress(1000 - (time / 10));
-
         //Show remaining seconds
         ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
         ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
@@ -113,6 +94,10 @@ public class Timer extends FrameLayout {
         public void onTick(long l) {
             time = (int)l;
             SetTime(time);
+
+            //Add to timer bar
+            ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
+            progressBar.setProgress(1000 - (time / 10));
 			
 			//Hide tutorial text
 			if(!endTutorial && time < 6000) {
@@ -124,6 +109,29 @@ public class Timer extends FrameLayout {
         @Override
         public void onFinish() {
             ((Player) getParent()).Lose();
+        }
+    };
+
+    public void StartReset(boolean end) {
+        Clear();
+        resetTimer.start();
+    }
+
+    CountDownTimer resetTimer = new CountDownTimer(5000, 10) {
+        @Override
+        public void onTick(long l) {
+            time = (int) l;
+            SetTime(time);
+
+            //Add to timer bar
+            ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
+            progressBar.setProgress(1000 - (time / 5));
+        }
+
+        @Override
+        public void onFinish() {
+            Round.Generate(getContext());
+            ((Player) getParent()).Start();
         }
     };
 }
