@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Game;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.graphics.*;
 import com.stuin.tenseconds.*;
+import com.stuin.tenseconds.Round;
 
 /**
  * Created by Stuart on 3/14/2017.

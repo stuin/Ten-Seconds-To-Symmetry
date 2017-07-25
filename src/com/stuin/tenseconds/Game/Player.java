@@ -1,10 +1,15 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Game;
 
 import android.widget.*;
 import android.content.*;
 import android.util.*;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.*;
+import com.stuin.tenseconds.Menu.Drawer;
+import com.stuin.tenseconds.Round;
+import com.stuin.tenseconds.Scoring.Scoreboard;
+import com.stuin.tenseconds.Scoring.Single;
+import com.stuin.tenseconds.Scoring.Versus;
 
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;

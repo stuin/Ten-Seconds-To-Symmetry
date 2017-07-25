@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Menu;
 
 import android.content.Context;
 import android.content.pm.PackageManager;

@@ -1,11 +1,13 @@
-package com.stuin.tenseconds;
+package com.stuin.tenseconds.Scoring;
 
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.stuin.cleanvisuals.Settings;
-import com.stuin.tenseconds.Views.Player;
-import com.stuin.tenseconds.Views.Timer;
+import com.stuin.tenseconds.Game.Player;
+import com.stuin.tenseconds.Game.Timer;
+import com.stuin.tenseconds.R;
+import com.stuin.tenseconds.Round;
 
 public class Versus implements Scoreboard {
     private Player player;

@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Menu;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

@@ -2,7 +2,7 @@ package com.stuin.tenseconds;
 
 import android.content.Context;
 import android.view.View;
-import com.stuin.tenseconds.Views.Cell;
+import com.stuin.tenseconds.Game.Cell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +43,7 @@ public class Round {
         if(marked.mark == marked.color) marked.mark = colors - 1;
     }
 
-    static void reset() {
+    public static void reset() {
 		//Set to first level
         count = 0;
         size = 5;
@@ -52,7 +52,7 @@ public class Round {
         next = false;
     }
 	
-	static void next() {
+	public static void next() {
 		//Increment round settings
 		if(!Round.next) Round.next = true;
 		else {
@@ -69,7 +69,7 @@ public class Round {
 		}
 	}
 
-    static String separate(int score) {
+    public static String separate(int score) {
 		//add commas to number
         String text = "" + score;
         for(int i = 3; i < text.length(); i += 4)

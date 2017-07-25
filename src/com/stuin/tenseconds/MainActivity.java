@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.stuin.cleanvisuals.Settings;
-import com.stuin.tenseconds.Views.Drawer;
-import com.stuin.tenseconds.Views.Player;
+import com.stuin.tenseconds.Menu.Drawer;
+import com.stuin.tenseconds.Game.Player;
+import com.stuin.tenseconds.Scoring.Single;
 
 /**
  * Created by Stuart on 2/14/2017.

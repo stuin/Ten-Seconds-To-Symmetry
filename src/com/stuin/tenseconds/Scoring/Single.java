@@ -1,13 +1,15 @@
-package com.stuin.tenseconds;
+package com.stuin.tenseconds.Scoring;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.stuin.cleanvisuals.Settings;
-import com.stuin.tenseconds.Views.Player;
-import com.stuin.tenseconds.Views.RateDialog;
-import com.stuin.tenseconds.Views.Timer;
+import com.stuin.tenseconds.Game.Player;
+import com.stuin.tenseconds.Menu.RateDialog;
+import com.stuin.tenseconds.Game.Timer;
+import com.stuin.tenseconds.R;
+import com.stuin.tenseconds.Round;
 
 public class Single implements Scoreboard {
 	private Player player;

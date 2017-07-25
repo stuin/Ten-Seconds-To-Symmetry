@@ -1,4 +1,4 @@
-package com.stuin.tenseconds;
+package com.stuin.tenseconds.Scoring;
 
 /**
  * Created by Stuart on 7/12/2017.
