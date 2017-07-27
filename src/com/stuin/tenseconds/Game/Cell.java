@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Game;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.graphics.*;
 import com.stuin.tenseconds.*;
+import com.stuin.tenseconds.Round;
 
 /**
  * Created by Stuart on 3/14/2017.
@@ -16,6 +17,7 @@ public class Cell extends FrameLayout {
     private int x;
     private int y;
     private int scale;
+    private boolean top;
 
 	//Square features
     public int color;
@@ -42,14 +44,14 @@ public class Cell extends FrameLayout {
                                 int pos = ny * Round.size + nx;
 								//Check if win
                                 if(Round.cells.get(pos).mark > -1) {
-                                    player.Win();
+                                    player.win(top);
                                     return;
                                 }
                             }
                         }
 						//If loss or direct hit
-                        player.Lose();
-                    } else player.Win();
+                        player.lose();
+                    } else player.win(top);
                 }
             }
         };
@@ -60,10 +62,11 @@ public class Cell extends FrameLayout {
 		setOnClickListener(clickListener);
     }
 	
-	Cell Copy() {
+	Cell copy() {
 		//Create opposite cell
 		Cell cell = new Cell(getContext(), color, x, y, scale);
 		cell.mark = mark;
+		cell.top = true;
 		return cell;
 	}
 	
@@ -85,13 +88,22 @@ public class Cell extends FrameLayout {
             case 4:
                 setBackgroundColor(Color.BLACK);
 				break;
+            case 5:
+                setBackgroundColor(Color.YELLOW);
+                break;
+            case 6:
+                setBackgroundColor(Color.MAGENTA);
+                break;
+            case 7:
+                setBackgroundColor(Color.CYAN);
+                break;
 		}
 	}
 
     void display() {
 		//Create shade over cell
         TextView space = new TextView(new ContextThemeWrapper(getContext(), R.style.style_background));
-        space.setBackgroundColor(getResources().getColor(R.color.app_menu));
+        space.setBackgroundColor(R.color.app_menu);
         space.setMinimumHeight(scale);
         space.setMinimumWidth(scale);
         space.setTextSize(0);

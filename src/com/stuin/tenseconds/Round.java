@@ -1,7 +1,8 @@
 package com.stuin.tenseconds;
 
 import android.content.Context;
-import com.stuin.tenseconds.Views.Cell;
+import android.view.View;
+import com.stuin.tenseconds.Game.Cell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,6 @@ public class Round {
 	//Technical variables
     public static boolean moving;
     public static List<Cell> cells;
-	public static boolean loss = false;
 	public static int length;
 
 	//Difficulty level
@@ -23,8 +23,13 @@ public class Round {
     public static boolean next;
     public static int count;
 
-    static void Generate(Context context) {
-		//Reset variables
+    //Other game notes
+    public static int games;
+    public static boolean loss = false;
+    public static int tutorial;
+
+    public static void generate(Context context) {
+		//reset variables
         int scale = length / (size + 1);
 
         cells = new ArrayList<>();
@@ -42,25 +47,29 @@ public class Round {
         if(marked.mark == marked.color) marked.mark = colors - 1;
     }
 
-    static void Reset() {
+    public static void reset() {
 		//Set to first level
         count = 0;
         size = 5;
         colors = 3;
         moving = false;
         next = false;
+
+        //Set details
+        games++;
+        tutorial = 0;
     }
 	
-	static void Next() {
+	public static void next() {
 		//Increment round settings
 		if(!Round.next) Round.next = true;
 		else {
 			if(Round.size != 9) {
-				//Next size
+				//next size
 				Round.size++;
 				Round.next = false;
 			} else {
-				//Next color
+				//next color
 				Round.colors++;
 				Round.size = 5;
 				Round.next = false;
@@ -68,12 +77,17 @@ public class Round {
 		}
 	}
 
-    static String Separate(int score) {
-		//Add commas to number
+    public static String separate(int score) {
+		//add commas to number
         String text = "" + score;
         for(int i = 3; i < text.length(); i += 4)
             text = text.substring(0, text.length() -  i)
 			+ ',' + text.substring(text.length() - i);
         return text;
+    }
+
+    public static void visible(View view, boolean bool) {
+        if(bool) view.setVisibility(View.VISIBLE);
+        else view.setVisibility(View.GONE);
     }
 }

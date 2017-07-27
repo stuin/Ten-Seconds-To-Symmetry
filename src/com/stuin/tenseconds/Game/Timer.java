@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Game;
 
 import android.content.Context;
 import android.os.CountDownTimer;
@@ -7,10 +7,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.stuin.cleanvisuals.SliderSync;
+import com.stuin.cleanvisuals.Slide.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
-import com.stuin.tenseconds.*;
 
 /**
  * Created by Stuart on 3/12/2017.
@@ -38,22 +37,19 @@ public class Timer extends FrameLayout {
         });
     }
 
-    void Clear() {
-        //Clear timer bar
+    void clear() {
+        //clear timer bar
         ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
         progressBar.setProgress(0);
 
-        //Clear text
+        //clear text
         String text = getResources().getText(R.string.app_time).toString();
         ((TextView) linearLayout.getChildAt(0)).setText(text);
         ((TextView) linearLayout.getChildAt(2)).setText(text);
-
-        //Display timer
-        //sliderSync.showPrimary();
     }
 
-    public void Write(String text) {
-        //Write message
+    public void write(String text) {
+        //write message
         TextView textView = (TextView) getChildAt(1);
         textView.setText(text);
 
@@ -61,54 +57,81 @@ public class Timer extends FrameLayout {
         sliderSync.showSecondary();
     }
 
-    void Start() {
+    void start() {
         if(sliderSync.unSet) {
-            //Setup animation if not done yet
+            //setup animation if not done yet
             sliderSync.setup(true, -Round.length, Round.length, 500);
         }
 
-        //Start timer at 0
-        Clear();
+        //start timer at 10
+        clear();
 		endTutorial = false;
-        countDownTimer.start();
+        mainTimer.start();
     }
 
-    int End() {
+    public int end() {
         //Get remaining time
-        countDownTimer.cancel();
-		Show();
+        mainTimer.cancel();
+        resetTimer.cancel();
+		show();
         return time;
     }
 	
-	void Show() {
+	void show() {
 		sliderSync.showPrimary();
 	}
+
+	private void setTime(int time) {
+        //show remaining seconds
+        ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
+        ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
+    }
 	
 	private boolean endTutorial = false;
 
-    private CountDownTimer countDownTimer = new CountDownTimer(10000, 10) {
+    private CountDownTimer mainTimer = new CountDownTimer(10000, 10) {
         @Override
         public void onTick(long l) {
             time = (int)l;
+            setTime(time);
 
-            //Add to timer bar
+            //add to timer bar
             ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
             progressBar.setProgress(1000 - (time / 10));
-
-            //Show remaining seconds
-            ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
-            ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
 			
-			//Hide tutorial text
-			if(!endTutorial && time < 6000 && Settings.Get("Tutorial")) {
-				sliderSync.showPrimary();
+			//hide tutorial text
+			if(!endTutorial && time < 6000) {
+			    sliderSync.showPrimary();
 				endTutorial = true;
 			}
         }
 
         @Override
         public void onFinish() {
-            ((Player) getParent()).Lose();
+            ((Player) getParent()).lose();
+        }
+    };
+
+    public void startReset(boolean end) {
+        clear();
+        resetTimer.start();
+    }
+
+    CountDownTimer resetTimer = new CountDownTimer(5000, 10) {
+        @Override
+        public void onTick(long l) {
+            time = (int) l;
+            setTime(time);
+
+            //add to timer bar
+            ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
+            progressBar.setProgress(1000 - (time / 5));
+        }
+
+        @Override
+        public void onFinish() {
+            Round.generate(getContext());
+            ((Player) getParent()).start();
         }
     };
 }
