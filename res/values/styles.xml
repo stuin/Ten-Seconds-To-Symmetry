@@ -19,9 +19,16 @@
     <style name="style_background" parent="style_text">
         <item name="android:paddingRight">5dp</item>
         <item name="android:paddingLeft">5dp</item>
-        <item name="android:gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
         <item name="android:background">@color/app_layout</item>
         <item name="android:clickable">true</item>
+    </style>
+
+    <style name="style_button" parent="style_background">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:onClick">drawer</item>
     </style>
 
     <style name="style_line" parent="style_base">
@@ -33,6 +40,10 @@
     </style>
 
     <declare-styleable name="Grid">
+        <attr name="top" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="Background">
         <attr name="top" format="boolean"/>
     </declare-styleable>
 </resources>

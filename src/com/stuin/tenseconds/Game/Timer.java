@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Game;
 
 import android.content.Context;
 import android.os.CountDownTimer;
@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.stuin.cleanvisuals.SliderSync;
+import com.stuin.cleanvisuals.Slide.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 
@@ -21,12 +21,15 @@ public class Timer extends FrameLayout {
 
     public Timer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
+		//Wait to do formatting
         post(new Runnable() {
             @Override
             public void run() {
+				//Find parts
                 linearLayout = (LinearLayout) getChildAt(0);
                 sliderSync = new SliderSync(linearLayout, getChildAt(1));
 
+				//Resize timer bar
                 ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
                 progressBar.getLayoutParams().width = getWidth() / 4;
                 progressBar.invalidate();
@@ -35,21 +38,18 @@ public class Timer extends FrameLayout {
     }
 
     void clear() {
-        //Clear timer bar
+        //clear timer bar
         ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
         progressBar.setProgress(0);
 
-        //Clear text
+        //clear text
         String text = getResources().getText(R.string.app_time).toString();
         ((TextView) linearLayout.getChildAt(0)).setText(text);
         ((TextView) linearLayout.getChildAt(2)).setText(text);
-
-        //Display timer
-        sliderSync.showPrimary();
     }
 
     public void write(String text) {
-        //Write message
+        //write message
         TextView textView = (TextView) getChildAt(1);
         textView.setText(text);
 
@@ -59,39 +59,79 @@ public class Timer extends FrameLayout {
 
     void start() {
         if(sliderSync.unSet) {
-            //Setup animation if not done yet
+            //setup animation if not done yet
             sliderSync.setup(true, -Round.length, Round.length, 500);
         }
 
-        //Start timer at 0
+        //start timer at 10
         clear();
-        sliderSync.showPrimary();
-        countDownTimer.start();
+		endTutorial = false;
+        mainTimer.start();
     }
 
-    int end() {
+    public int end() {
         //Get remaining time
-        countDownTimer.cancel();
+        mainTimer.cancel();
+        resetTimer.cancel();
+		show();
         return time;
     }
+	
+	void show() {
+		sliderSync.showPrimary();
+	}
 
-    private CountDownTimer countDownTimer = new CountDownTimer(10000, 10) {
+	private void setTime(int time) {
+        //show remaining seconds
+        ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
+        ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
+    }
+	
+	private boolean endTutorial = false;
+
+    private CountDownTimer mainTimer = new CountDownTimer(10000, 10) {
         @Override
         public void onTick(long l) {
             time = (int)l;
+            setTime(time);
 
-            //Add to timer bar
+            //add to timer bar
             ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
             progressBar.setProgress(1000 - (time / 10));
-
-            //Show remaining seconds
-            ((TextView) linearLayout.getChildAt(0)).setText(String.valueOf(time / 1000));
-            ((TextView) linearLayout.getChildAt(2)).setText(String.valueOf(time / 1000));
+			
+			//hide tutorial text
+			if(!endTutorial && time < 6000) {
+			    sliderSync.showPrimary();
+				endTutorial = true;
+			}
         }
 
         @Override
         public void onFinish() {
             ((Player) getParent()).lose();
+        }
+    };
+
+    public void startReset(boolean end) {
+        clear();
+        resetTimer.start();
+    }
+
+    CountDownTimer resetTimer = new CountDownTimer(5000, 10) {
+        @Override
+        public void onTick(long l) {
+            time = (int) l;
+            setTime(time);
+
+            //add to timer bar
+            ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
+            progressBar.setProgress(1000 - (time / 5));
+        }
+
+        @Override
+        public void onFinish() {
+            Round.generate(getContext());
+            ((Player) getParent()).start();
         }
     };
 }

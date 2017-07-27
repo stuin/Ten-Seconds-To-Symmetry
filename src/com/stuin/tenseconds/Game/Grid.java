@@ -1,10 +1,10 @@
-package com.stuin.tenseconds.Views;
+package com.stuin.tenseconds.Game;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
 import com.stuin.tenseconds.Round;
-import com.stuin.cleanvisuals.Slider;
+import com.stuin.cleanvisuals.Slide.Slider;
 
 /**
  * Created by Stuart on 3/12/2017.
@@ -12,13 +12,17 @@ import com.stuin.cleanvisuals.Slider;
 public class Grid extends GridLayout {
 	private boolean top;
 
+	//Parts of grid
 	Slider slider = new Slider(this);
 	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-		top = attributeSet.getAttributeBooleanValue("http://schemas.android.com/apk/res/com.stuin.tenseconds","top",false);
+		//Get custom value
+		top = attributeSet.getAttributeBooleanValue(
+				"http://schemas.android.com/apk/res/com.stuin.tenseconds","top",false);
 
+		//add ending to slide
 		slider.endings = new Slider.Endings() {
 			@Override
 			public void enter() {
@@ -34,6 +38,7 @@ public class Grid extends GridLayout {
     }
 
     void enter() {
+		//Make sure animation set up
     	if(slider.unSet) {
 			int s = Round.length;
 			if(top) s = -s;
@@ -41,37 +46,27 @@ public class Grid extends GridLayout {
 			slider.setup(false, s, 700);
 		}
 
+		//clear old grid
 		removeAllViewsInLayout();
         setColumnCount(Round.size);
         
-		if(top) {
-			for(Cell c : Round.cells) {
-				addView(c);
-				if(c.mark > -1) {
-					marked = c;
-					marked.setColor(marked.mark);
-				}
-				else c.setColor(c.color);
+		//Place new grid
+		for(Cell c : Round.cells) {
+			if(top) c = c.copy();
+			addView(c);
+			if(c.mark > -1 && top) {
+				marked = c;
+				marked.setColor(marked.mark);
 			}
-		} else {
-			for(Cell c : Round.cells) {
-				c = c.copy();
-				addView(c);
-				if(c.mark > -1) {
-					marked = c;
-					marked.setColor(marked.color);
-				} else c.setColor(c.color);
-			}
+			else c.setColor(c.color);
 		}
-
+		
+		//start animation
 		slider.enter();
     }
 
-    void exit() {
-    	slider.exit();
-	}
-
 	void show() {
+		//Shade all but awnser
 		for(int i = 0; i < getChildCount(); i++) {
 			Cell c = (Cell) getChildAt(i);
 			if(c.mark == -1) c.display();
