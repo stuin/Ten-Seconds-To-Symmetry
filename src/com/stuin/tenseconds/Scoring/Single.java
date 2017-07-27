@@ -26,9 +26,6 @@ public class Single implements Scoreboard {
 		//Read data
 	    highScore = sharedPreferences.getInt("HighScore", -1);
 	    labels = player.getResources().getStringArray(R.array.app_labels);
-		
-		//Check tutorial start
-		Settings.set("Tutorial", highScore == -1);
     }
 
     public void win(int time, boolean top) {
@@ -72,7 +69,7 @@ public class Single implements Scoreboard {
 		score = 0;
 
 		//Show rating menu dialog
-		if(!Settings.get("Rated") && !Settings.get("RateDialog")) {
+		if(!Settings.get("Rated") && Settings.get("RateDialog") && Round.games >= 3) {
 			RateDialog rateDialog = new RateDialog();
 			rateDialog.show(((Activity) player.getContext()).getFragmentManager(), "RateDialog");
 		}

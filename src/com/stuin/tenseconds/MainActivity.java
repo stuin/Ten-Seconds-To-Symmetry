@@ -91,6 +91,9 @@ public class MainActivity extends Activity {
             if(!drawer.slideDrawer.showSecondary() && Round.loss) player.menu();
             if(Settings.get("Versus")) player.scoreboard.save();
             //Pause game
-        } else if(!Round.moving && !Settings.get("Versus")) player.clear();
+        } else if(!Round.moving && !Settings.get("Versus")) {
+            player.clear();
+            if(Round.tutorial > 0) Round.tutorial--;
+        }
     }
 }

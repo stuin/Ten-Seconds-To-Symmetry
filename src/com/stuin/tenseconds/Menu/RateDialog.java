@@ -35,7 +35,7 @@ public class RateDialog extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-                Settings.set("RateDialog", true);
+                Settings.set("RateDialog", false);
             }
         });
         return builder.create();

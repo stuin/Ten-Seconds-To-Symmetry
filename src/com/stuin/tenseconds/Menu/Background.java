@@ -10,6 +10,8 @@ import com.stuin.cleanvisuals.Drift.Object;
 import com.stuin.cleanvisuals.Drift.Plane;
 import com.stuin.tenseconds.R;
 
+import java.util.Random;
+
 /**
  * Created by Stuart on 7/23/2017.
  */
@@ -23,7 +25,7 @@ public class Background extends Plane {
         vertical = true;
         objectLength = 120;
         start = -objectLength;
-        speed = new Range(3, 8);
+        speed = new Range(2, 8);
         addTime = 20;
         drawable = new ColorDrawable(R.color.app_layout);
 

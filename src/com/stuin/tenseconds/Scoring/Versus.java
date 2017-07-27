@@ -18,8 +18,11 @@ public class Versus implements Scoreboard {
 
     public Versus(Player player) {
         this.player = player;
+
+        //Immediate changes
         relativeLayout = (RelativeLayout) player.getParent();
         relativeLayout.findViewById(R.id.Bar_Right).setRotation(180);
+        Settings.set("Tutorial", false);
     }
 
     private void setup() {
@@ -29,7 +32,6 @@ public class Versus implements Scoreboard {
         relativeLayout.getChildAt(3).setVisibility(View.GONE);
         relativeLayout.getChildAt(2).setRotation(180);
 
-        Settings.set("Tutorial", false);
         set = true;
     }
 

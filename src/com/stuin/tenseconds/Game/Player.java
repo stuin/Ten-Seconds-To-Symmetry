@@ -16,17 +16,20 @@ public class Player extends LinearLayout {
 	public SharedPreferences sharedPreferences;
 
 	private boolean menu = true;
-	private int tutorial = 0;
 	private String[] tutorialText;
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
 
 		//Get save data
-		String[] KEYS = {
-				"Expanded", "Tutorial", "Rated", "RateDialog", "Versus", "Background"};
 		sharedPreferences = context.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
+		String[] KEYS = {
+				"Expanded", "Rated", "Versus"};
 		Settings.load(sharedPreferences, KEYS);
+		String[] KEYS2 = {
+				"Background", "RateDialog", "Tutorial"};
+		Settings.load(sharedPreferences, KEYS2, true);
+
 		Settings.set("Versus", false);
 	}
 
@@ -53,14 +56,14 @@ public class Player extends LinearLayout {
 		if(Settings.get("Tutorial")) {
 			//load text
 			if(tutorialText == null) tutorialText = getResources().getStringArray(R.array.app_tutor);
-			if(tutorial < tutorialText.length) {
-				timer.write(tutorialText[tutorial]);
-				tutorial++;
-			} else {
+			if(Round.tutorial < tutorialText.length) {
+				timer.write(tutorialText[Round.tutorial]);
+				Round.tutorial++;
+			}
+			if(Round.tutorial == tutorialText.length) {
 				//end tutorial
 				Settings.set("Tutorial", false);
-				tutorial = 0;
-				timer.show();
+				Round.tutorial = 0;
 			}
 		} else {
 			timer.show();
@@ -127,7 +130,6 @@ public class Player extends LinearLayout {
 
 	void lose() {
 		Round.moving = true;
-		if(tutorial > 0) tutorial = 0;
 
 		//show correct answer
 		((Timer) getChildAt(1)).end();

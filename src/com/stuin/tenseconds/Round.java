@@ -15,7 +15,6 @@ public class Round {
 	//Technical variables
     public static boolean moving;
     public static List<Cell> cells;
-	public static boolean loss = false;
 	public static int length;
 
 	//Difficulty level
@@ -23,6 +22,11 @@ public class Round {
     public static int colors;
     public static boolean next;
     public static int count;
+
+    //Other game notes
+    public static int games;
+    public static boolean loss = false;
+    public static int tutorial;
 
     public static void generate(Context context) {
 		//reset variables
@@ -50,6 +54,10 @@ public class Round {
         colors = 3;
         moving = false;
         next = false;
+
+        //Set details
+        games++;
+        tutorial = 0;
     }
 	
 	public static void next() {
