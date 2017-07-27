@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Menu;
+package com.stuin.tenseconds.Support;
 
 import android.app.Activity;
 import android.content.ComponentName;
