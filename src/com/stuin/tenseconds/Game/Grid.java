@@ -3,6 +3,7 @@ package com.stuin.tenseconds.Game;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
+import com.stuin.cleanvisuals.Slide.Endings;
 import com.stuin.tenseconds.Round;
 import com.stuin.cleanvisuals.Slide.Slider;
 
@@ -14,7 +15,6 @@ public class Grid extends GridLayout {
 
 	//Parts of grid
 	Slider slider = new Slider(this);
-	Cell marked;
 	
     public Grid(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -23,7 +23,7 @@ public class Grid extends GridLayout {
 				"http://schemas.android.com/apk/res/com.stuin.tenseconds","top",false);
 
 		//add ending to slide
-		slider.endings = new Slider.Endings() {
+		slider.endings = new Endings() {
 			@Override
 			public void enter() {
 				Round.moving = false;
@@ -52,12 +52,12 @@ public class Grid extends GridLayout {
         
 		//Place new grid
 		for(Cell c : Round.cells) {
+			//Add cell
 			if(top) c = c.copy();
 			addView(c);
-			if(c.mark > -1 && top) {
-				marked = c;
-				marked.setColor(marked.mark);
-			}
+
+			//Set color
+			if(c.mark > -1 && top) c.setColor(c.mark);
 			else c.setColor(c.color);
 		}
 		
@@ -66,7 +66,7 @@ public class Grid extends GridLayout {
     }
 
 	void show() {
-		//Shade all but awnser
+		//Shade all but answer
 		for(int i = 0; i < getChildCount(); i++) {
 			Cell c = (Cell) getChildAt(i);
 			if(c.mark == -1) c.display();
