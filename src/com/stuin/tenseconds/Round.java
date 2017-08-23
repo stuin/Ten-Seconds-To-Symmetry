@@ -18,33 +18,32 @@ public class Round {
 	public static int length;
 
 	//Difficulty level
-    public static int size;
-    public static int colors;
+    public static byte size;
+    public static byte colors;
     public static boolean next;
-    public static int count;
+    public static byte count;
 
     //Other game notes
-    public static int games;
+    public static byte games;
     public static boolean loss = false;
-    public static int tutorial;
+    public static byte tutorial;
 
     public static void generate(Context context) {
 		//reset variables
         int scale = length / (size + 1);
-
         cells = new ArrayList<>();
         Random rand = new Random();
 
 		//Create squares
-        for(int y = 0; y < size; y++) for(int x = 0; x < size; x++) {
-            cells.add(new Cell(context, rand.nextInt(colors), x, y, scale));
+        for(byte y = 0; y < size; y++) for(byte x = 0; x < size; x++) {
+            cells.add(new Cell(context, (byte) rand.nextInt(colors), x, y, scale));
         }
 		
 		//Set changed square
-		int pos = rand.nextInt(cells.size());
+		byte pos = (byte) rand.nextInt(cells.size());
         Cell marked = cells.get(pos);
-        marked.mark = rand.nextInt(colors - 1);
-        if(marked.mark == marked.color) marked.mark = colors - 1;
+        marked.mark = (byte) rand.nextInt(colors - 1);
+        if(marked.mark == marked.color) marked.mark = (byte) (colors - 1);
     }
 
     public static void reset() {
@@ -87,6 +86,7 @@ public class Round {
     }
 
     public static void visible(View view, boolean bool) {
+        //Easy boolean visibility
         if(bool) view.setVisibility(View.VISIBLE);
         else view.setVisibility(View.GONE);
     }

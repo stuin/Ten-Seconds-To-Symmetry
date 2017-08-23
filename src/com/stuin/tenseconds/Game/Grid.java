@@ -67,7 +67,7 @@ public class Grid extends GridLayout {
 
 	void show() {
 		//Shade all but answer
-		for(int i = 0; i < getChildCount(); i++) {
+		for(byte i = 0; i < getChildCount(); i++) {
 			Cell c = (Cell) getChildAt(i);
 			if(c.mark == -1) c.display();
 		}
