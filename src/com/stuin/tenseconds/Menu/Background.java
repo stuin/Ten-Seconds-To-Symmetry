@@ -29,17 +29,21 @@ public class Background extends Plane {
         addTime = 20;
         drawable = new ColorDrawable(R.color.app_layout);
 
-        //Get custom attribute
+        //Set for top background
         top = attributeSet.getAttributeBooleanValue(
                 "http://schemas.android.com/apk/res/com.stuin.tenseconds","top",false);
-
         if(top) speed = new Range(-speed.max, -speed.min);
 
         post(new Runnable() {
             @Override
             public void run() {
+                //Set height of view
                 RelativeLayout layout = (RelativeLayout) getParent();
-                setMinimumHeight((layout.getHeight() - layout.findViewById(R.id.Bar_Layout).getHeight()) / 2);
+                int height = (layout.getHeight() - layout.findViewById(R.id.Bar_Layout).getHeight()) / 2;
+                if(!top && layout.findViewById(R.id.Bar_Layout).getHeight() % 2 != 0) setMinimumHeight(height + 1);
+                else setMinimumHeight(height);
+
+                //Wait to finish setup
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -52,6 +56,7 @@ public class Background extends Plane {
 
     @Override
     public void setup() {
+        //Set dimensions and variables
         super.setup();
         if(top) start = length;
     }
@@ -59,11 +64,13 @@ public class Background extends Plane {
     @Override
     public void update() {
         super.update();
+        //Check on switch
         on = Settings.get("Background");
     }
 
     @Override
     public Object add() {
+        //Create new square
         Object object = super.add();
         object.setMinimumHeight(objectLength);
         object.setMinimumWidth(objectLength);

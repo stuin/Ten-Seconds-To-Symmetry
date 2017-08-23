@@ -91,7 +91,7 @@ public class Single implements Scoreboard {
 		//Set match variables
 		Round.reset();
 		if(!file.equals(" ")) {
-			Round.count = Integer.valueOf(file.split(":")[0]);
+			Round.count = Byte.valueOf(file.split(":")[0]);
 			score = Integer.valueOf(file.split(":")[1]);
 
 			//Set correct round

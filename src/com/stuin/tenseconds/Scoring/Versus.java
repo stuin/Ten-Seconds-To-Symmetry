@@ -88,6 +88,7 @@ public class Versus implements Scoreboard {
         ((TextView) relativeLayout.getChildAt(2)).setText(topText);
         ((TextView) relativeLayout.getChildAt(4)).setText(botText);
 
+        //Reset variables
         Round.reset();
         Round.loss = true;
         topScore = 0;

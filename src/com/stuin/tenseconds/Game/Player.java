@@ -29,8 +29,6 @@ public class Player extends LinearLayout {
 		String[] KEYS2 = {
 				"Background", "RateDialog", "Tutorial"};
 		Settings.load(sharedPreferences, KEYS2, true);
-
-		Settings.set("Versus", false);
 	}
 
 	public void start() {

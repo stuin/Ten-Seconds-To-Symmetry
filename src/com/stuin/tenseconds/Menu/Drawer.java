@@ -55,6 +55,7 @@ public class Drawer extends LinearLayout {
         //Link settings switches
         Settings.linkId(R.id.Drawer_Tutorial, "Tutorial");
         Settings.linkId(R.id.Drawer_Versus, "Versus");
+        Settings.set("Versus", false);
 
         //Set background button
         ToggleButton button = (ToggleButton) findViewById(R.id.Drawer_Background);

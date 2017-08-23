@@ -14,16 +14,16 @@ import com.stuin.tenseconds.Round;
  */
 public class Cell extends FrameLayout {
 	//Square placement
-    private int x;
-    private int y;
+    private byte x;
+    private byte y;
     private int scale;
     private boolean top;
 
-	//Square features
-    public int color;
-    public int mark = -1;
+	//Square colors
+    public byte color;
+    public byte mark = -1;
 
-    public Cell(Context context, int color, int nx, int ny, int scale) {
+    public Cell(Context context, byte color, byte nx, byte ny, int scale) {
 		//Create cell
         super(context);
         this.color = color;
@@ -70,7 +70,7 @@ public class Cell extends FrameLayout {
 		return cell;
 	}
 	
-	void setColor(int color) {
+	void setColor(byte color) {
 		//Display color of square
 		switch(color) {
             case 0:
