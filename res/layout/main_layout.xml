@@ -27,7 +27,7 @@
     <TextView
             android:id="@+id/Top_Text"
             style="@style/style_text"
-            android:text="@string/app_name"
+            android:text="@string/app_blank"
             android:layout_alignParentTop="true"/>
 
     <Button
@@ -36,7 +36,7 @@
             android:background="@drawable/button"
             android:layout_alignParentBottom="true"
             android:onClick="startGame"
-            android:text="@string/app_start"/>
+            android:text="@string/app_blank"/>
 
     <TextView
             android:id="@+id/Bot_Text"

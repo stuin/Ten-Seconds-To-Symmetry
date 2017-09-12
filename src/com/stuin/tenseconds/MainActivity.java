@@ -57,17 +57,36 @@ public class MainActivity extends Activity {
 
         //Set various dimensions
         Round.length = findViewById(R.id.Main_Layout).getHeight() / 2;
-        findViewById(R.id.Top_Text).setTranslationY(Round.length / 2.5f);
-        findViewById(R.id.Bot_Button).setTranslationY(Round.length / -2.5f);
 
+        //Set title text
+        TextView textView = (TextView) findViewById(R.id.Top_Text);
+        textView.setTranslationY(Round.length / 2.5f);
+        player.titleAnimation = new TextAnimation(textView);
+
+        //Set button text
+        textView = (TextView) findViewById(R.id.Bot_Button);
+        textView.setTranslationY(Round.length / -2.5f);
+        player.buttonAnimation = new TextAnimation(textView);
+
+        //Drawer setup
         drawer = (Drawer) findViewById(R.id.Drawer_Layout);
         drawer.setup(this);
+
+        textView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                player.titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 50);
+                player.buttonAnimation.shift(getResources().getText(R.string.app_start).toString(), 75);
+            }
+        }, 300);
     }
 
 
     public void startGame(View view) {
         //Make sure dimensions set
         if(unSet) setup();
+        player.titleAnimation.stop();
+        player.buttonAnimation.stop();
 
         //Begin next round
         if(!Round.moving && !player.playing()) {

@@ -14,6 +14,8 @@ import com.stuin.tenseconds.Scoring.Versus;
 public class Player extends LinearLayout {
 	public Scoreboard scoreboard;
 	public SharedPreferences sharedPreferences;
+	public TextAnimation titleAnimation;
+	public TextAnimation buttonAnimation;
 
 	private boolean menu = true;
 	private String[] tutorialText;
@@ -68,26 +70,15 @@ public class Player extends LinearLayout {
 		}
 
 		//Run text animation
-		postDelayed(title, 100);
+		TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(2);
+		if(textView.length() > 15)
+			titleAnimation.shift("", 75);
 	}
-	
-	//Animation to fit text behind grid
-	private Runnable title = new Runnable() {
-		public void run() {
-			TextView textView = (TextView) ((RelativeLayout) getParent()).getChildAt(2);
-			if(textView.getText().length() > 15) {
-				//Shrink text by one letter
-				String text = textView.getText().toString();
-				text = text.substring(0, text.length() - 1);
-				textView.setText(text);
-
-				postDelayed(title, 75);
-			}
-		}
-	};
 
 	public void clear() {
 		Round.moving = true;
+		titleAnimation.stop();
+		buttonAnimation.stop();
 
 		//Play leaving animations
 		((Grid) getChildAt(0)).slider.exit();
@@ -104,10 +95,8 @@ public class Player extends LinearLayout {
 
 	public void menu() {
 		//Set text to main menu
-		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Top_Text))
-			.setText(getResources().getText(R.string.app_name));
-		((TextView) ((RelativeLayout) getParent()).findViewById(R.id.Bot_Button))
-			.setText(getResources().getText(R.string.app_start));
+		titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 75);
+		buttonAnimation.shift(getResources().getText(R.string.app_start).toString(), 75);
 
 		//end timer
 		Timer timer = ((Timer) getChildAt(1));
