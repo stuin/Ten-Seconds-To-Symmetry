@@ -31,6 +31,7 @@ public class Timer extends FrameLayout {
 
 				//Resize timer bar
                 ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
+				progressBar.setMax(1000);
                 progressBar.getLayoutParams().width = getWidth() / 4;
                 progressBar.invalidate();
             }
