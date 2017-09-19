@@ -88,7 +88,7 @@
                         android:layout_height="match_parent"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:max="1000"
+                        android:max="0"
                         android:progressDrawable="@drawable/progressbar"/>
 
                 <TextView
