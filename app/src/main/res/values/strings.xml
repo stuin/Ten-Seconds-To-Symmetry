@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ten Seconds To Symmetry</string>
+    <string name="app_start"> Start Game </string>
+    <string name="app_time"> 0 </string>
+    <string name="app_blank">____ ________ ___ _________</string>
+    <string name="app_url">https://play.google.com/store/apps/details?id=com.stuin.tenseconds</string>
+	
+    <string name="menu_in">WIP</string>
+    <string name="menu_out">Sign Out</string>
+    <string name="menu_rate">Rate App</string>
+	<string name="menu_blind">Colorblind</string>
+    <string name="menu_back">Background</string>
+	<string name="menu_tutor">Tutorial</string>
+    <string name="menu_versus">Versus</string>
+    <string name="menu_quit">Quit Game</string>
+    <string name="menu_credits">App Made by \n Stuart Irwin</string>
+
+    <string-array name="app_labels">
+        <item>Game Lost:" "</item>
+        <item>Complete:" "</item>
+
+        <item>New High Score</item>
+        <item>High Score:" "</item>
+
+        <item>Next Round</item>
+        <item>Restart</item>
+    </string-array>
+
+    <string-array name="app_versus">
+        <item>You Win:" "</item>
+        <item>You Lose:" "</item>
+        <item>Tie:" "</item>
+    </string-array>
+
+    <string-array name="app_dialog">
+        <item>Would you like to rate this app?</item>
+        <item>Sure</item>
+        <item>Not now</item>
+    </string-array>
+
+    <string-array name="app_tutor">
+        <item>Just find the changed square,</item>
+        <item>Each level is unique,</item>
+        <item>They grow as you progress,</item>
+        <item>So go fast for higher score,</item>
+        <item>And keep an eye on the timer.</item>
+    </string-array>
+</resources>
