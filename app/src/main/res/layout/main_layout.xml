@@ -27,7 +27,7 @@
     <TextView
             android:id="@+id/Top_Text"
             style="@style/style_text"
-			android:gravity="center"
+			android:gravity="left"
             android:text="@string/app_blank"
             android:layout_alignParentTop="true"/>
 
@@ -90,7 +90,7 @@
                         android:layout_height="match_parent"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
-                        android:max="0"
+                        android:max="1000"
                         android:progressDrawable="@drawable/progressbar"/>
 
                 <TextView
