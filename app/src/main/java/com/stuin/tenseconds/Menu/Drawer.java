@@ -73,7 +73,7 @@ public class Drawer extends LinearLayout {
                 Round.visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
                 Round.visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
                 break;
-            case R.id.Drawer_Layout:case R.id.Main_Layout:
+            case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:
                 //hide drawer
                 if(slideDrawer.primaryShown()) slideDrawer.showSecondary();
                 break;
