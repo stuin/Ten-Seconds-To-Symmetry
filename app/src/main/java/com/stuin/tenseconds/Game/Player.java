@@ -4,6 +4,7 @@ import android.widget.*;
 import android.content.*;
 import android.util.*;
 import com.stuin.cleanvisuals.Settings;
+import com.stuin.cleanvisuals.TextAnimation;
 import com.stuin.tenseconds.*;
 import com.stuin.tenseconds.Menu.Drawer;
 import com.stuin.tenseconds.Round;
@@ -27,7 +28,7 @@ public class Player extends LinearLayout {
 		sharedPreferences = context.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
 		String[] KEYS = {
 				"Expanded", "Rated", "Versus"};
-		Settings.load(sharedPreferences, KEYS);
+		Settings.load(sharedPreferences, KEYS, false);
 		String[] KEYS2 = {
 				"Background", "RateDialog", "Tutorial"};
 		Settings.load(sharedPreferences, KEYS2, true);

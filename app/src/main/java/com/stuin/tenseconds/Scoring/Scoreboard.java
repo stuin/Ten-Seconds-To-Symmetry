@@ -7,5 +7,5 @@ public interface Scoreboard {
     void win(int time, boolean top);
     void done(boolean win);
     void save();
-    void load();
+    boolean load();
 }

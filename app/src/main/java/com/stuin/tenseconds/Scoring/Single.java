@@ -84,7 +84,7 @@ public class Single implements Scoreboard {
 		}
 	}
 
-	public void load() {
+	public boolean load() {
 		//Read save data
 		String file = sharedPreferences.getString("save", " ");
 
@@ -99,6 +99,8 @@ public class Single implements Scoreboard {
 
 			sharedPreferences.edit().putString("save", " ").apply();
 			win(0, false);
+			return true;
 		}
+		return false;
 	}
 }

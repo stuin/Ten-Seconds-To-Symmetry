@@ -96,8 +96,8 @@ public class Versus implements Scoreboard {
     }
 
     @Override
-    public void load() {
-
+    public boolean load() {
+        return false;
     }
 
     @Override

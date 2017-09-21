@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import com.stuin.cleanvisuals.Settings;
+import com.stuin.cleanvisuals.TextAnimation;
 import com.stuin.tenseconds.Menu.Drawer;
 import com.stuin.tenseconds.Game.Player;
 import com.stuin.tenseconds.Scoring.Single;
@@ -16,8 +17,11 @@ import com.stuin.tenseconds.Game.*;
 public class MainActivity extends Activity {
     public Player player;
 
-    private boolean unSet = true;
     private Drawer drawer;
+
+    //Startup variables
+    private boolean loaded;
+    private boolean background;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class MainActivity extends Activity {
     protected void onResume() {
         //Refresh and load game
         super.onResume();
-        player.scoreboard.load();
+        loaded = player.scoreboard.load();
     }
 
     @Override
@@ -54,8 +58,6 @@ public class MainActivity extends Activity {
     }
 
     private void setup() {
-        unSet = false;
-
         //Set various dimensions
         Round.length = findViewById(R.id.Main_Layout).getHeight() / 2;
 
@@ -63,8 +65,10 @@ public class MainActivity extends Activity {
         TextView textView = (TextView) findViewById(R.id.Top_Text);
         textView.setTranslationY(Round.length / 2.5f);
         player.titleAnimation = new TextAnimation(textView);
-        textView.setMinWidth(textView.getWidth());
-        textView.setText("");
+        if(!loaded) {
+            textView.setMinWidth(textView.getWidth());
+            textView.setText("");
+        }
 
         //Set button text
         textView = (TextView) findViewById(R.id.Bot_Button);
@@ -76,32 +80,43 @@ public class MainActivity extends Activity {
         drawer.setup(this);
 
         //Check background start
-        if(Settings.get("Background")) {
-            Settings.set("Background", false);
+        background = Settings.get("Background");
+        if(background) Settings.set("Background", false);
+
+        if(!loaded) {
             player.titleAnimation.finish = new Runnable() {
                 @Override
                 public void run() {
-					((Timer) findViewById(R.id.Bar_Layout)).show();
-                    ((TextView) findViewById(R.id.Top_Text)).setMinWidth(0);
+                    titleFinish();
                     player.titleAnimation.finish = null;
-					
-					player.postDelayed(new Runnable() {
-						@Override
-						public void run() {
-						Settings.set("Background", true);
-						}
-					}, 200);
                 }
             };
         }
 
-		//Start title animation
+        //Start title animation
         textView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                player.titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 50);
+                if(loaded) titleFinish();
+                else player.titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 50);
             }
         }, 300);
+    }
+
+    private void titleFinish() {
+        //Set display properly
+        ((Timer) findViewById(R.id.Bar_Layout)).show();
+        ((TextView) findViewById(R.id.Top_Text)).setMinWidth(0);
+
+        //Wait to start background stylishly
+        if(background) {
+            player.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Settings.set("Background", true);
+                }
+            }, 200);
+        }
     }
 
 
