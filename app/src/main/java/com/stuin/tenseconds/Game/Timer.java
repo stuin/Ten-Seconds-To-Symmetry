@@ -31,7 +31,6 @@ public class Timer extends FrameLayout {
 
 				//Resize timer bar
                 ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
-				progressBar.setMax(1000);
                 progressBar.getLayoutParams().width = getWidth() / 4;
                 progressBar.invalidate();
             }
@@ -58,7 +57,7 @@ public class Timer extends FrameLayout {
         sliderSync.showSecondary();
     }
 
-    void start() {
+    public void start() {
         if(sliderSync.unSet) {
             //setup animation if not done yet
             sliderSync.setup(true, -Round.length, Round.length, 500);
@@ -78,7 +77,12 @@ public class Timer extends FrameLayout {
         return time;
     }
 	
-	void show() {
+	public void show() {
+		if(sliderSync.unSet) {
+			//setup animation if not done yet
+			sliderSync.setup(true, -Round.length, Round.length, 500);
+		}
+		
 		sliderSync.showPrimary();
 	}
 

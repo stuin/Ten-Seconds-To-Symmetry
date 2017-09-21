@@ -8,6 +8,7 @@ import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Menu.Drawer;
 import com.stuin.tenseconds.Game.Player;
 import com.stuin.tenseconds.Scoring.Single;
+import com.stuin.tenseconds.Game.*;
 
 /**
  * Created by Stuart on 2/14/2017.
@@ -80,13 +81,21 @@ public class MainActivity extends Activity {
             player.titleAnimation.finish = new Runnable() {
                 @Override
                 public void run() {
-                    Settings.set("Background", true);
+					((Timer) findViewById(R.id.Bar_Layout)).show();
                     ((TextView) findViewById(R.id.Top_Text)).setMinWidth(0);
                     player.titleAnimation.finish = null;
+					
+					player.postDelayed(new Runnable() {
+						@Override
+						public void run() {
+						Settings.set("Background", true);
+						}
+					}, 200);
                 }
             };
         }
 
+		//Start title animation
         textView.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -97,8 +106,7 @@ public class MainActivity extends Activity {
 
 
     public void startGame(View view) {
-        //Make sure dimensions set
-        if(unSet) setup();
+        //Stops running animations
         player.titleAnimation.stop();
         player.buttonAnimation.stop();
 
@@ -111,9 +119,6 @@ public class MainActivity extends Activity {
     }
 
     public void drawer(View view) {
-        //Make sure dimensions set
-        if(unSet) setup();
-
         drawer.button(view);
     }
 
