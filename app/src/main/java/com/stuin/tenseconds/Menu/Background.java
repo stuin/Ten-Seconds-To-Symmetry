@@ -10,29 +10,27 @@ import com.stuin.cleanvisuals.Drift.Object;
 import com.stuin.cleanvisuals.Drift.Plane;
 import com.stuin.tenseconds.R;
 
-import java.util.Random;
-
 /**
  * Created by Stuart on 7/23/2017.
  */
 public class Background extends Plane {
-    public boolean top;
+    public boolean bot;
 
     public Background(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
 
         //Set animation variables
-        vertical = true;
+        side = true;
         objectLength = 120;
         start = -objectLength;
         speed = new Range(2, 8);
         addTime = 20;
         drawable = new ColorDrawable(R.color.app_layout);
 
-        //Set for top background
-        top = attributeSet.getAttributeBooleanValue(
+        //Set for bot background
+        bot = !attributeSet.getAttributeBooleanValue(
                 "http://schemas.android.com/apk/res-auto","top",false);
-        if(top) speed = new Range(-speed.max, -speed.min);
+        if(bot) speed = new Range(-speed.max, -speed.min);
 
         post(new Runnable() {
             @Override
@@ -40,7 +38,7 @@ public class Background extends Plane {
                 //Set height of view
                 RelativeLayout layout = (RelativeLayout) getParent();
                 int height = (layout.getHeight() - layout.findViewById(R.id.Bar_Layout).getHeight()) / 2;
-                if(!top && layout.findViewById(R.id.Bar_Layout).getHeight() % 2 != 0) setMinimumHeight(height + 1);
+                if(!bot && layout.findViewById(R.id.Bar_Layout).getHeight() % 2 != 0) setMinimumHeight(height + 1);
                 else setMinimumHeight(height);
 
                 //Wait to finish setup
@@ -58,7 +56,7 @@ public class Background extends Plane {
     public void setup() {
         //Set dimensions and variables
         super.setup();
-        if(top) start = length;
+        if(bot) start = length;
     }
 
     @Override
