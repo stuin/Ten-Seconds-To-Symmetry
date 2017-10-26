@@ -59,6 +59,7 @@ public class Single implements Scoreboard {
 		if(score > highScore) {
 			timer.write(labels[2]);
 
+			//Set high score
 			sharedPreferences.edit().putInt("HighScore", score).apply();
 			highScore = score;
 		} else timer.write(labels[3] + Round.separate(highScore));
@@ -69,7 +70,7 @@ public class Single implements Scoreboard {
 		score = 0;
 
 		//Show rating menu dialog
-		if(!Settings.get("Rated") && Settings.get("RateDialog") && Round.games >= 3) {
+		if(!Settings.get("Rated") && Settings.get("RateDialog") && Round.games >= 5) {
 			RateDialog rateDialog = new RateDialog();
 			rateDialog.show(((Activity) player.getContext()).getFragmentManager(), "RateDialog");
 		}
@@ -79,14 +80,16 @@ public class Single implements Scoreboard {
 		//Create save data
 		if(!Round.loss && score > 0) {
 			String file = Round.count + ":" + score;
-
 			sharedPreferences.edit().putString("save", file).apply();
 		}
+
+		sharedPreferences.edit().putInt("Games", Round.games).apply();
 	}
 
 	public boolean load() {
 		//Read save data
 		String file = sharedPreferences.getString("save", " ");
+		Round.games = sharedPreferences.getInt("Games", 0);
 
 		//Set match variables
 		Round.reset();

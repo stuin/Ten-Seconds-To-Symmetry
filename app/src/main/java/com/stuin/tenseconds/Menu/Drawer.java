@@ -43,9 +43,9 @@ public class Drawer extends LinearLayout {
             if(BuildConfig.DEBUG) {
                 string += "a";
 
-                Settings.set("Expanded", true);
+                //Settings.set("Expanded", true);
                 Settings.set("Rated", false);
-                //Settings.Set("RateDialog", false);
+                //Settings.set("RateDialog", true);
             }
         } catch(PackageManager.NameNotFoundException e) {
             string = "Version not found";
