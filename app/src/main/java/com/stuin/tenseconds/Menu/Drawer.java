@@ -1,13 +1,12 @@
 package com.stuin.tenseconds.Menu;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.ToggleButton;
+import android.widget.*;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.cleanvisuals.Slide.SliderSync;
 import com.stuin.tenseconds.BuildConfig;
@@ -18,8 +17,9 @@ import com.stuin.tenseconds.Round;
 /**
  * Created by Stuart on 7/14/2017.
  */
-public class Drawer extends LinearLayout {
+public class Drawer extends RelativeLayout {
     public SliderSync slideDrawer;
+	public SliderSync secondPage;
 
     private MainActivity activity;
 
@@ -34,11 +34,16 @@ public class Drawer extends LinearLayout {
         FrameLayout icon = (FrameLayout) activity.findViewById(R.id.Drawer_Button);
         slideDrawer = new SliderSync(this, icon);
         slideDrawer.setup(true, Round.length, 200, 250);
+		
+		//Set second page animation
+		secondPage = new SliderSync(this.findViewById(R.id.Drawer_First), this.findViewById(R.id.Drawer_Second));
+		secondPage.setup(true, -Round.length, Round.length, 250);
 
         //show app version
         String string;
         try {
             string = 'v' + activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
+
             //Unlock debug mode
             if(BuildConfig.DEBUG) {
                 string += "a";
@@ -52,29 +57,43 @@ public class Drawer extends LinearLayout {
         }
         ((TextView) findViewById(R.id.Drawer_Version)).setText(string);
 
+        ((TextView) findViewById(R.id.Drawer_Games)).setText("Games: " + Round.games);
+
         //Link settings switches
         Settings.linkId(R.id.Drawer_Tutorial, "Tutorial");
         Settings.linkId(R.id.Drawer_Versus, "Versus");
         Settings.set("Versus", false);
 
         //Set background button
-        ToggleButton button = (ToggleButton) findViewById(R.id.Drawer_Background);
+        ToggleButton button = findViewById(R.id.Drawer_Background);
         button.setChecked(Settings.get("Background"));
     }
+	
+	public void showPage(int number) {
+		LinearLayout layout = this.findViewById(R.id.Drawer_Second);
+		for(int i = 2; i < layout.getChildCount(); i++) {
+			View v = layout.getChildAt(i);
+			Round.visible(v, i == number + 1);
+		}
+		slideDrawer.showPrimary();
+		secondPage.showSecondary();
+	}
 
     public void button(View view) {
         switch(view.getId()) {
             case R.id.Drawer_Button:
                 //show drawer
+				secondPage.showPrimary();
                 slideDrawer.showPrimary();
 
-                //hide certain buttons
+                //set visibility of certain buttons
                 Round.visible(findViewById(R.id.Drawer_Modes), Round.count == 0);
                 Round.visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
                 Round.visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
                 break;
-            case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:
+            case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:case R.id.Second_Decline:
                 //hide drawer
+				secondPage.showPrimary();
                 if(slideDrawer.primaryShown()) slideDrawer.showSecondary();
                 break;
             case R.id.Drawer_Quit:
@@ -83,8 +102,7 @@ public class Drawer extends LinearLayout {
                 break;
             case R.id.Drawer_Rate:
                 //Rate app
-                RateDialog rateDialog = new RateDialog();
-                rateDialog.show(activity.getFragmentManager(), "RateDialog");
+                showPage(2);
                 break;
             case R.id.Drawer_Background:
                 //Toggle Background
@@ -95,6 +113,28 @@ public class Drawer extends LinearLayout {
                 //load Gamemode
                 Settings.setId(view.getId(), true);
                 activity.startGame(null);
+                break;
+			case R.id.Second_Back:
+				//Return to first page
+				secondPage.showPrimary();
+				break;
+			case R.id.Drawer_Credits:
+				//Go to credits page
+				showPage(1);
+				break;
+			case R.id.Second_Website:
+				//Open personal website
+                Uri url = Uri.parse(getResources().getString(R.string.second_credits_url));
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
+                activity.startActivity(launchBrowser);
+				break;
+            case R.id.Second_Accept:
+                Settings.set("Rated", true);
+
+                //Open app page
+                url = Uri.parse(getResources().getString(R.string.app_url));
+                launchBrowser = new Intent(Intent.ACTION_VIEW, url);
+                activity.startActivity(launchBrowser);
                 break;
         }
     }
