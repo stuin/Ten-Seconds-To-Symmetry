@@ -5,22 +5,26 @@
     <string name="app_time"> 0 </string>
     <string name="app_url">https://play.google.com/store/apps/details?id=com.stuin.tenseconds</string>
 	
-    <string name="menu_play_in">WIP</string>
+    <string name="menu_play_in">Sign In</string>
     <string name="menu_play_out">Sign Out</string>
     <string name="menu_rate">Rate App</string>
 	<string name="menu_blind">Colorblind</string>
+	<string name="menu_credits">Credits</string>
     <string name="menu_back">Background</string>
+    <string name="menu_music">Music</string>
 	<string name="menu_tutor">Tutorial</string>
     <string name="menu_versus">Versus</string>
     <string name="menu_quit">Quit Game</string>
-	<string name="menu_credits">Credits</string>
 
 	<string name="second_back">Back</string>
-    <string name="second_credits">App Made by \n Stuart Irwin</string>
+    <string name="second_credits">App Made by\nStuart Irwin</string>
 	<string name="second_credits_website">Website</string>
 	<string name="second_credits_url">http://stuin.github.io</string>
-	<string name="second_credits_music">With Music by \n </string>
-    <string name="second_rate">Would you\nplease rate\nthis app?\nGive it lots\nof stars!</string>
+	<string name="second_credits_music">With Music by\nCoated Polecat</string>
+	<string name="second_credits_musicsite">Soundcloud</string>
+	<string name="second_credits_soundcloud">https://m.soundcloud.com/coatedpolecat</string>
+	
+    <string name="second_rate">Would you\nlike to rate\nthis app?\nGive it lots\nof stars!</string>
     <string name="second_rate_accept">Yes</string>
     <string name="second_rate_decline">Not Now</string>
 

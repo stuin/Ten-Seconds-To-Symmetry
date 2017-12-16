@@ -5,7 +5,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:background="@color/app_menu"
-		android:orientation="horizontal"
 		android:gravity="center"
 		android:padding="10dp"
 		android:visibility="gone"
@@ -28,6 +27,11 @@
 				style="@style/style_button"
 				android:textOn="@string/menu_back"
 				android:textOff="@string/menu_back"/>
+		<ToggleButton
+				android:id="@+id/Drawer_Music"
+				style="@style/style_button"
+				android:textOn="@string/menu_music"
+				android:textOff="@string/menu_music"/>
 		<Button
 				android:id="@+id/Drawer_Credits"
 				style="@style/style_button"
@@ -53,12 +57,6 @@
 				android:id="@+id/Drawer_Quit"
 				style="@style/style_button"
 				android:text="@string/menu_quit"/>
-		<TextView
-				style="@style/style_line"/>
-		<TextView
-				android:id="@+id/Drawer_Games"
-				style="@style/style_text"
-				android:text=""/>
 		<TextView
 				style="@style/style_line"/>
 	</LinearLayout>
@@ -97,6 +95,15 @@
 					android:id="@+id/Second_Website"
 					style="@style/style_button"
 					android:text="@string/second_credits_website"/>
+			<TextView
+					style="@style/style_line"/>
+			<TextView
+					style="@style/style_text"
+					android:text="@string/second_credits_music"/>
+			<Button
+					android:id="@+id/Second_Soundcloud"
+					style="@style/style_button"
+					android:text="@string/second_credits_musicsite"/>
 			<TextView
 					style="@style/style_line"/>
 		</LinearLayout>

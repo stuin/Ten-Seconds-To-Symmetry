@@ -19,9 +19,10 @@ import com.stuin.tenseconds.Round;
  */
 public class Drawer extends RelativeLayout {
     public SliderSync slideDrawer;
-	public SliderSync secondPage;
 
+	private SliderSync secondPage;
     private MainActivity activity;
+    private Music music;
 
     public Drawer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -31,7 +32,7 @@ public class Drawer extends RelativeLayout {
         this.activity = activity;
 
         //Set drawer animation
-        FrameLayout icon = (FrameLayout) activity.findViewById(R.id.Drawer_Button);
+        FrameLayout icon = activity.findViewById(R.id.Drawer_Button);
         slideDrawer = new SliderSync(this, icon);
         slideDrawer.setup(true, Round.length, 200, 250);
 		
@@ -39,44 +40,29 @@ public class Drawer extends RelativeLayout {
 		secondPage = new SliderSync(this.findViewById(R.id.Drawer_First), this.findViewById(R.id.Drawer_Second));
 		secondPage.setup(true, -Round.length, Round.length, 250);
 
-        //show app version
-        String string;
-        try {
-            string = 'v' + activity.getPackageManager().getPackageInfo(activity.getPackageName(), 0).versionName;
-
-            //Unlock debug mode
-            if(BuildConfig.DEBUG) {
-                string += "a";
-
-                //Settings.set("Expanded", true);
-                Settings.set("Rated", false);
-                //Settings.set("RateDialog", true);
-            }
-        } catch(PackageManager.NameNotFoundException e) {
-            string = "Version not found";
-        }
-        ((TextView) findViewById(R.id.Drawer_Version)).setText(string);
-
-        ((TextView) findViewById(R.id.Drawer_Games)).setText("Games: " + Round.games);
-
-        //Link settings switches
-        Settings.linkId(R.id.Drawer_Tutorial, "Tutorial");
-        Settings.linkId(R.id.Drawer_Versus, "Versus");
-        Settings.set("Versus", false);
-
-        //Set background button
-        ToggleButton button = findViewById(R.id.Drawer_Background);
-        button.setChecked(Settings.get("Background"));
+		music = new Music(getContext());
     }
 	
 	public void showPage(int number) {
+		//Iterate through pages
 		LinearLayout layout = this.findViewById(R.id.Drawer_Second);
 		for(int i = 2; i < layout.getChildCount(); i++) {
+			
+			//Hide all but chosen one
 			View v = layout.getChildAt(i);
 			Round.visible(v, i == number + 1);
 		}
+		
+		//Show second page of drawer
 		slideDrawer.showPrimary();
 		secondPage.showSecondary();
+	}
+	
+	private void openSite(int stringID) {
+		//Open website
+		Uri url = Uri.parse(getResources().getString(stringID));
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
+        activity.startActivity(launchBrowser);
 	}
 
     public void button(View view) {
@@ -92,49 +78,60 @@ public class Drawer extends RelativeLayout {
                 Round.visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:case R.id.Second_Decline:
+			
                 //hide drawer
 				secondPage.showPrimary();
                 if(slideDrawer.primaryShown()) slideDrawer.showSecondary();
                 break;
             case R.id.Drawer_Quit:
+			
                 //Quit game
                 activity.player.scoreboard.done(false);
                 break;
-            case R.id.Drawer_Rate:
-                //Rate app
-                showPage(2);
-                break;
-            case R.id.Drawer_Background:
-                //Toggle Background
+            case R.id.Drawer_Background:case R.id.Drawer_Music:
+			
+                //Toggle button setting
                 ToggleButton button = (ToggleButton) view;
-                Settings.set("Background", button.isChecked());
+                Settings.setId(view.getId(), button.isChecked());
+                if(view.getId() == R.id.Drawer_Music)
+                    music.set();
                 break;
             case R.id.Drawer_Tutorial:case R.id.Drawer_Versus:
+			
                 //load Gamemode
                 Settings.setId(view.getId(), true);
                 activity.startGame(null);
                 break;
-			case R.id.Second_Back:
-				//Return to first page
-				secondPage.showPrimary();
-				break;
 			case R.id.Drawer_Credits:
+			
 				//Go to credits page
 				showPage(1);
 				break;
+            case R.id.Drawer_Rate:
+			
+                //Go to ratings page
+                showPage(2);
+                break;
+			case R.id.Second_Back:
+			
+				//Return to first page
+				secondPage.showPrimary();
+				break;
 			case R.id.Second_Website:
+			
 				//Open personal website
-                Uri url = Uri.parse(getResources().getString(R.string.second_credits_url));
-                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
-                activity.startActivity(launchBrowser);
+                openSite(R.string.second_credits_url);
+				break;
+			case R.id.Second_Soundcloud:
+			
+				//Open soundcloud link
+                openSite(R.string.second_credits_soundcloud);
 				break;
             case R.id.Second_Accept:
                 Settings.set("Rated", true);
 
-                //Open app page
-                url = Uri.parse(getResources().getString(R.string.app_url));
-                launchBrowser = new Intent(Intent.ACTION_VIEW, url);
-                activity.startActivity(launchBrowser);
+                //Open app play store website
+                openSite(R.string.app_url);
                 break;
         }
     }

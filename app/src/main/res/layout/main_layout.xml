@@ -10,6 +10,7 @@
         android:background="@color/app_background">
 
     <com.stuin.tenseconds.Menu.Background
+            android:id="@+id/Top_Background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -18,6 +19,7 @@
     </com.stuin.tenseconds.Menu.Background>
 
     <com.stuin.tenseconds.Menu.Background
+            android:id="@+id/Bot_Background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">

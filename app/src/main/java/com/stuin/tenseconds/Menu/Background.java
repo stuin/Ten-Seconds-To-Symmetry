@@ -4,9 +4,10 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+import com.stuin.cleanvisuals.Drift.Drifter;
+import com.stuin.cleanvisuals.Drift.Engine;
 import com.stuin.cleanvisuals.Range;
 import com.stuin.cleanvisuals.Settings;
-import com.stuin.cleanvisuals.Drift.Object;
 import com.stuin.cleanvisuals.Drift.Plane;
 import com.stuin.tenseconds.R;
 
@@ -40,36 +41,27 @@ public class Background extends Plane {
                 int height = (layout.getHeight() - layout.findViewById(R.id.Bar_Layout).getHeight()) / 2;
                 if(!bot && layout.findViewById(R.id.Bar_Layout).getHeight() % 2 != 0) setMinimumHeight(height + 1);
                 else setMinimumHeight(height);
-
-                //Wait to finish setup
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        setup();
-                    }
-                }, 200);
             }
         });
     }
 
     @Override
-    public void setup() {
+    public void setup(Engine engine) {
         //Set dimensions and variables
-        super.setup();
+        super.setup(engine);
         if(bot) start = length;
     }
 
     @Override
     public void update() {
-        super.update();
         //Check on switch
         on = Settings.get("Background");
     }
 
     @Override
-    public Object add() {
+    public Drifter add() {
         //Create new square
-        Object object = super.add();
+        Drifter object = super.add();
         object.setMinimumHeight(objectLength);
         object.setMinimumWidth(objectLength);
         return object;

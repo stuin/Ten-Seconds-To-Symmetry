@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import com.stuin.cleanvisuals.Drift.Engine;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.cleanvisuals.TextAnimation;
+import com.stuin.tenseconds.Menu.Background;
 import com.stuin.tenseconds.Menu.Drawer;
 import com.stuin.tenseconds.Game.Player;
+import com.stuin.tenseconds.Menu.LoadAll;
 import com.stuin.tenseconds.Scoring.Single;
 import com.stuin.tenseconds.Game.*;
 
@@ -29,11 +32,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main_layout);
 
         //start scoreboard system
-        player = (Player) findViewById(R.id.Main_Player);
+        player = findViewById(R.id.Main_Player);
+        player.sharedPreferences = new LoadAll(this).sharedPreferences;
         player.scoreboard = new Single(player);
 
         //Run setup when ready
-        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.Main_Layout);
+        RelativeLayout relativeLayout = findViewById(R.id.Main_Layout);
         relativeLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -62,7 +66,7 @@ public class MainActivity extends Activity {
         Round.length = findViewById(R.id.Main_Layout).getHeight() / 2;
 
         //Set title text
-        TextView textView = (TextView) findViewById(R.id.Top_Text);
+        TextView textView = findViewById(R.id.Top_Text);
         textView.setTranslationY(Round.length / 2.5f);
         player.titleAnimation = new TextAnimation(textView);
         if(!loaded) {
@@ -71,12 +75,12 @@ public class MainActivity extends Activity {
         }
 
         //Set button text
-        textView = (TextView) findViewById(R.id.Bot_Button);
+        textView = findViewById(R.id.Bot_Button);
         textView.setTranslationY(Round.length / -2.5f);
         player.buttonAnimation = new TextAnimation(textView);
 
         //Drawer setup
-        drawer = (Drawer) findViewById(R.id.Drawer_Layout);
+        drawer = findViewById(R.id.Drawer_Layout);
         drawer.setup(this);
 
         //Check background start
@@ -97,6 +101,7 @@ public class MainActivity extends Activity {
         textView.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //Start title animation
                 if(loaded) titleFinish();
                 else player.titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 50);
             }
@@ -108,6 +113,12 @@ public class MainActivity extends Activity {
         ((Timer) findViewById(R.id.Bar_Layout)).show();
         ((TextView) findViewById(R.id.Top_Text)).setMinWidth(0);
 
+        //Start background engine
+        Engine engine = new Engine();
+        ((Background) findViewById(R.id.Top_Background)).setup(engine);
+        ((Background) findViewById(R.id.Bot_Background)).setup(engine);
+        engine.start(drawer);
+
         //Wait to start background stylishly
         if(background) {
             player.postDelayed(new Runnable() {
@@ -115,7 +126,7 @@ public class MainActivity extends Activity {
                 public void run() {
                     Settings.set("Background", true);
                 }
-            }, 200);
+            }, 250);
         }
     }
 

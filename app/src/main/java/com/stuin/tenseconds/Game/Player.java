@@ -23,15 +23,6 @@ public class Player extends LinearLayout {
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
-
-		//Get save data
-		sharedPreferences = context.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
-		String[] KEYS = {
-				"Expanded", "Rated", "Versus"};
-		Settings.load(sharedPreferences, KEYS, false);
-		String[] KEYS2 = {
-				"Background", "RateDialog", "Tutorial"};
-		Settings.load(sharedPreferences, KEYS2, true);
 	}
 
 	public void start() {
