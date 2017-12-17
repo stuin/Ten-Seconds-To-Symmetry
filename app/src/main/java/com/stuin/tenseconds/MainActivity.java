@@ -11,6 +11,7 @@ import com.stuin.tenseconds.Menu.Background;
 import com.stuin.tenseconds.Menu.Drawer;
 import com.stuin.tenseconds.Game.Player;
 import com.stuin.tenseconds.Menu.LoadAll;
+import com.stuin.tenseconds.Menu.Music;
 import com.stuin.tenseconds.Scoring.Single;
 import com.stuin.tenseconds.Game.*;
 
@@ -19,12 +20,14 @@ import com.stuin.tenseconds.Game.*;
  */
 public class MainActivity extends Activity {
     public Player player;
+    public Music music;
 
     private Drawer drawer;
 
     //Startup variables
     private boolean loaded;
     private boolean background;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,9 @@ public class MainActivity extends Activity {
                 setup();
             }
         });
+
+        //Start music
+        music = new Music(this);
     }
 
     @Override
@@ -51,6 +57,7 @@ public class MainActivity extends Activity {
         //Refresh and load game
         super.onResume();
         loaded = player.scoreboard.load();
+        music.set();
     }
 
     @Override
@@ -59,6 +66,7 @@ public class MainActivity extends Activity {
         super.onPause();
         player.clear();
         player.scoreboard.save();
+        music.pause();
     }
 
     private void setup() {
@@ -105,7 +113,7 @@ public class MainActivity extends Activity {
                 if(loaded) titleFinish();
                 else player.titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 50);
             }
-        }, 300);
+        }, 500);
     }
 
     private void titleFinish() {
@@ -119,6 +127,9 @@ public class MainActivity extends Activity {
         ((Background) findViewById(R.id.Bot_Background)).setup(engine);
         engine.start(drawer);
 
+        //Fix timer width
+        ((Timer) findViewById(R.id.Bar_Layout)).clear();
+
         //Wait to start background stylishly
         if(background) {
             player.postDelayed(new Runnable() {
@@ -126,7 +137,7 @@ public class MainActivity extends Activity {
                 public void run() {
                     Settings.set("Background", true);
                 }
-            }, 250);
+            }, 800);
         }
     }
 

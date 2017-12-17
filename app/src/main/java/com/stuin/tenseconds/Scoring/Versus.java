@@ -58,7 +58,7 @@ public class Versus implements Scoreboard {
         else Round.next();
 
         //start short timer
-        ((Timer) player.getChildAt(1)).startReset(false);
+        ((Timer) player.getChildAt(1)).startReset();
     }
 
     @Override

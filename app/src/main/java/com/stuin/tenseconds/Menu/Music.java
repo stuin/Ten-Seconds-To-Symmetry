@@ -7,23 +7,31 @@ import com.stuin.tenseconds.R;
 
 public class Music {
     private MediaPlayer player;
+    private int time = 0;
 
     public Music(Context context) {
         player = MediaPlayer.create(context, R.raw.tenseconds);
         player.setLooping(true);
-        set();
         player.start();
+        player.setVolume(0, 0);
     }
 
     public void set() {
         if(Settings.get("Music"))
-            player.setVolume( 1, 1);
+            play();
         else
-            player.setVolume( 0, 0);
-        player.seekTo(0);
+            pause();
     }
 
-    public void end() {
-        player.stop();
+    public void play() {
+        player.setVolume(1, 1);
+        player.seekTo(time);
+    }
+
+    public void pause() {
+        player.setVolume(0, 0);
+        time = player.getCurrentPosition() - 5;
+        if(time < 0)
+            time = 0;
     }
 }

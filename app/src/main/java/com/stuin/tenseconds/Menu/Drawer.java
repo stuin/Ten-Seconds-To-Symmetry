@@ -22,7 +22,6 @@ public class Drawer extends RelativeLayout {
 
 	private SliderSync secondPage;
     private MainActivity activity;
-    private Music music;
 
     public Drawer(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -39,8 +38,6 @@ public class Drawer extends RelativeLayout {
 		//Set second page animation
 		secondPage = new SliderSync(this.findViewById(R.id.Drawer_First), this.findViewById(R.id.Drawer_Second));
 		secondPage.setup(true, -Round.length, Round.length, 250);
-
-		music = new Music(getContext());
     }
 	
 	public void showPage(int number) {
@@ -94,7 +91,7 @@ public class Drawer extends RelativeLayout {
                 ToggleButton button = (ToggleButton) view;
                 Settings.setId(view.getId(), button.isChecked());
                 if(view.getId() == R.id.Drawer_Music)
-                    music.set();
+                    activity.music.set();
                 break;
             case R.id.Drawer_Tutorial:case R.id.Drawer_Versus:
 			
