@@ -24,7 +24,7 @@ public class Round {
     public static byte count;
 
     //Other game notes
-    public static byte games;
+    public static int games;
     public static boolean loss = false;
     public static byte tutorial;
 

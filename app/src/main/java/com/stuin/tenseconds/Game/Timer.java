@@ -32,12 +32,11 @@ public class Timer extends FrameLayout {
 				//Resize timer bar
                 ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
                 progressBar.getLayoutParams().width = getWidth() / 4;
-                progressBar.invalidate();
             }
         });
     }
 
-    void clear() {
+    public void clear() {
         //clear timer bar
         ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
         progressBar.setProgress(0);
@@ -97,7 +96,7 @@ public class Timer extends FrameLayout {
     private CountDownTimer mainTimer = new CountDownTimer(10000, 10) {
         @Override
         public void onTick(long l) {
-            time = (int)l;
+            time = (int) l;
             setTime(time);
 
             //add to timer bar
@@ -117,12 +116,12 @@ public class Timer extends FrameLayout {
         }
     };
 
-    public void startReset(boolean end) {
+    public void startReset() {
         clear();
         resetTimer.start();
     }
 
-    CountDownTimer resetTimer = new CountDownTimer(5000, 10) {
+    private CountDownTimer resetTimer = new CountDownTimer(5000, 10) {
         @Override
         public void onTick(long l) {
             time = (int) l;

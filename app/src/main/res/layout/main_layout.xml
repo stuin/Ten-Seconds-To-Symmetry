@@ -10,6 +10,7 @@
         android:background="@color/app_background">
 
     <com.stuin.tenseconds.Menu.Background
+            android:id="@+id/Top_Background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -18,6 +19,7 @@
     </com.stuin.tenseconds.Menu.Background>
 
     <com.stuin.tenseconds.Menu.Background
+            android:id="@+id/Bot_Background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
@@ -135,65 +137,11 @@
                 android:alpha=".25"/>
     </FrameLayout>
 
-
-    <com.stuin.tenseconds.Menu.Drawer
-            android:id="@+id/Drawer_Layout"
+    <include
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/app_menu"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:visibility="gone"
-            android:onClick="drawer">
-
-        <TextView
-                style="@style/style_line"/>
-        <Button
-                android:id="@+id/Drawer_Rate"
-                style="@style/style_button"
-                android:text="@string/menu_rate"/>
-        <ToggleButton
-                android:id="@+id/Drawer_Background"
-                style="@style/style_button"
-                android:textOn="@string/menu_back"
-                android:textOff="@string/menu_back"/>
-        <TextView
-                style="@style/style_line"/>
-        <LinearLayout
-                android:id="@+id/Drawer_Modes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-            <Button
-                    android:id="@+id/Drawer_Tutorial"
-                    style="@style/style_button"
-                    android:text="@string/menu_tutor"/>
-            <Button
-                    android:id="@+id/Drawer_Versus"
-                    style="@style/style_button"
-                    android:text="@string/menu_versus"/>
-        </LinearLayout>
-        <Button
-                android:id="@+id/Drawer_Quit"
-                style="@style/style_button"
-                android:text="@string/menu_quit"/>
-
-		<TextView
-			    style="@style/style_line"/>
-        <TextView
-                style="@style/style_text"
-                android:text="@string/menu_credits"/>
-        <TextView
-                style="@style/style_text"
-                android:text=""
-                android:id="@+id/Drawer_Version"/>
-        <TextView
-                style="@style/style_line"/>
-
-    </com.stuin.tenseconds.Menu.Drawer>
+            layout="@layout/drawer_layout"/>
 </RelativeLayout>
 

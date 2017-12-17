@@ -1,13 +1,12 @@
 package com.stuin.tenseconds.Scoring;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Game.Player;
-import com.stuin.tenseconds.Menu.RateDialog;
 import com.stuin.tenseconds.Game.Timer;
+import com.stuin.tenseconds.Menu.Drawer;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 
@@ -59,6 +58,7 @@ public class Single implements Scoreboard {
 		if(score > highScore) {
 			timer.write(labels[2]);
 
+			//Set high score
 			sharedPreferences.edit().putInt("HighScore", score).apply();
 			highScore = score;
 		} else timer.write(labels[3] + Round.separate(highScore));
@@ -69,9 +69,9 @@ public class Single implements Scoreboard {
 		score = 0;
 
 		//Show rating menu dialog
-		if(!Settings.get("Rated") && Settings.get("RateDialog") && Round.games >= 3) {
-			RateDialog rateDialog = new RateDialog();
-			rateDialog.show(((Activity) player.getContext()).getFragmentManager(), "RateDialog");
+		if(!Settings.get("Rated") && Settings.get("RateDialog") && Round.games >= 4) {
+			((Drawer)((RelativeLayout) player.getParent()).findViewById(R.id.Drawer_Layout)).showPage(2);
+			Settings.set("RateDialog", false);
 		}
     }
 
@@ -79,14 +79,16 @@ public class Single implements Scoreboard {
 		//Create save data
 		if(!Round.loss && score > 0) {
 			String file = Round.count + ":" + score;
-
 			sharedPreferences.edit().putString("save", file).apply();
 		}
+
+		sharedPreferences.edit().putInt("Games", Round.games).apply();
 	}
 
 	public boolean load() {
 		//Read save data
 		String file = sharedPreferences.getString("save", " ");
+		Round.games = sharedPreferences.getInt("Games", 0);
 
 		//Set match variables
 		Round.reset();
