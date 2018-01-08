@@ -18,8 +18,7 @@ import com.stuin.tenseconds.Round;
  * Created by Stuart on 7/14/2017.
  */
 public class Drawer extends RelativeLayout {
-    public SliderSync slideDrawer;
-
+    private SliderSync slideDrawer;
 	private SliderSync secondPage;
     private MainActivity activity;
 
@@ -39,6 +38,12 @@ public class Drawer extends RelativeLayout {
 		secondPage = new SliderSync(this.findViewById(R.id.Drawer_First), this.findViewById(R.id.Drawer_Second));
 		secondPage.setup(true, -Round.length, Round.length, 250);
     }
+	
+	public boolean hide(boolean full) {
+		if(full)
+			return slideDrawer.hide();
+		return slideDrawer.showSecondary();
+	}
 	
 	public void showPage(int number) {
 		//Iterate through pages
@@ -78,7 +83,8 @@ public class Drawer extends RelativeLayout {
 			
                 //hide drawer
 				secondPage.showPrimary();
-                if(slideDrawer.primaryShown()) slideDrawer.showSecondary();
+                if(slideDrawer.primaryShown()) 
+					slideDrawer.showSecondary();
                 break;
             case R.id.Drawer_Quit:
 			
