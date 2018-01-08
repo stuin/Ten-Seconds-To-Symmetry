@@ -57,8 +57,8 @@ public class Grid extends GridLayout {
 			addView(c);
 
 			//Set color
-			if(c.mark > -1 && top) c.setColor(c.mark);
-			else c.setColor(c.color);
+			if(c.mark > -1 && top) 
+				c.setColor(c.mark);
 		}
 		
 		//start animation
@@ -69,7 +69,8 @@ public class Grid extends GridLayout {
 		//Shade all but answer
 		for(byte i = 0; i < getChildCount(); i++) {
 			Cell c = (Cell) getChildAt(i);
-			if(c.mark == -1) c.display();
+			if(c.mark == -1) 
+				c.display();
 		}
 	}
 }
