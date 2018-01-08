@@ -19,6 +19,7 @@ import com.stuin.tenseconds.Game.*;
  * Created by Stuart on 2/14/2017.
  */
 public class MainActivity extends Activity {
+    //Main program features
     public Player player;
     public Music music;
 
@@ -110,8 +111,10 @@ public class MainActivity extends Activity {
             @Override
             public void run() {
                 //Start title animation
-                if(loaded) titleFinish();
-                else player.titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 50);
+                if(loaded) 
+                    titleFinish();
+                else 
+                    player.titleAnimation.shift(getResources().getText(R.string.app_name).toString(), 50);
             }
         }, 500);
     }
@@ -151,7 +154,7 @@ public class MainActivity extends Activity {
         if(!Round.moving && !player.playing()) {
             Round.generate(this);
             player.start();
-            drawer.slideDrawer.hide();
+            drawer.hide(true);
         }
     }
 
@@ -163,12 +166,15 @@ public class MainActivity extends Activity {
     public void onBackPressed() {
         if(!player.playing()) {
             //hide drawer or go to home screen
-            if(!drawer.slideDrawer.showSecondary() && Round.loss) player.menu();
-            if(Settings.get("Versus")) player.scoreboard.save();
+            if(!drawer.hide(false) && Round.loss) 
+                player.menu();
+            if(Settings.get("Versus")) 
+                player.scoreboard.save();
             //Pause game
         } else if(!Round.moving && !Settings.get("Versus")) {
             player.clear();
-            if(Round.tutorial > 0) Round.tutorial--;
+            if(Round.tutorial > 0) 
+                Round.tutorial--;
         }
     }
 }
