@@ -43,7 +43,8 @@ public class Round {
 		byte pos = (byte) rand.nextInt(cells.size());
         Cell marked = cells.get(pos);
         marked.mark = (byte) rand.nextInt(colors - 1);
-        if(marked.mark == marked.color) marked.mark = (byte) (colors - 1);
+        if(marked.mark == marked.color) 
+			marked.mark = (byte) (colors - 1);
     }
 
     public static void reset() {
@@ -66,7 +67,7 @@ public class Round {
 			if(Round.size != 9) {
 				//next size
 				Round.size++;
-				Round.next = false;
+				//Round.next = false;
 			} else {
 				//next color
 				Round.colors++;
@@ -80,8 +81,7 @@ public class Round {
 		//add commas to number
         String text = "" + score;
         for(int i = 3; i < text.length(); i += 4)
-            text = text.substring(0, text.length() -  i)
-			+ ',' + text.substring(text.length() - i);
+            text = text.substring(0, text.length() -  i) + ',' + text.substring(text.length() - i);
         return text;
     }
 
