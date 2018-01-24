@@ -134,7 +134,7 @@ public class Timer extends FrameLayout {
 
         @Override
         public void onFinish() {
-            Round.generate(getContext());
+            Round.generate();
             ((Player) getParent()).start();
         }
     };

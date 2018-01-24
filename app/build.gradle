@@ -1,11 +1,20 @@
 apply plugin: 'com.android.application'
 
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //compile 'com.google.android.gms:play-services-games:11.0.4'
+    compile 'com.android.support:appcompat-v7:26+'
+    compile 'com.android.support:recyclerview-v7:26+'
+    compile 'org.codetome.hexameter:hexameter.core:2017.1.0'
+    testCompile 'junit:junit:4.12'
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.3"
     defaultConfig {
         applicationId "com.stuin.tenseconds"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 26
         versionCode 21
         versionName "3.2.0"
@@ -19,10 +28,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    //compile 'com.google.android.gms:play-services-games:11.0.4'
-    testCompile 'junit:junit:4.12'
+    packagingOptions {
+        exclude  'META-INF/rxjava.properties'
+    }
 }

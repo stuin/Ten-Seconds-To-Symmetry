@@ -52,6 +52,10 @@
 					android:id="@+id/Drawer_Versus"
 					style="@style/style_button"
 					android:text="@string/menu_versus"/>
+			<Button
+					android:id="@+id/Drawer_Hexmode"
+					style="@style/style_button"
+					android:text="@string/menu_hexmode"/>
 		</LinearLayout>
 		<Button
 				android:id="@+id/Drawer_Quit"

@@ -99,7 +99,7 @@ public class Drawer extends RelativeLayout {
                 if(view.getId() == R.id.Drawer_Music)
                     activity.music.set();
                 break;
-            case R.id.Drawer_Tutorial:case R.id.Drawer_Versus:
+            case R.id.Drawer_Tutorial:case R.id.Drawer_Versus: case R.id.Drawer_Hexmode:
 			
                 //load Gamemode
                 Settings.setId(view.getId(), true);

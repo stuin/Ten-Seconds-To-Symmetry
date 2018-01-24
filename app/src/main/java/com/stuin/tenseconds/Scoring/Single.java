@@ -29,19 +29,17 @@ public class Single implements Scoreboard {
 
     public void win(int time, boolean top) {
 		//Calculate score
-	    score += time * (Round.size / 2) * Round.colors;
+	    score += time * (Round.size * .2) * (Round.colors - 2) / 100;
 
 		//Show win screen
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		String text = '+' + Round.separate(score) + '+';
 		((TextView) relativeLayout.getChildAt(2)).setText(text);
-
 		((TextView) relativeLayout.getChildAt(3)).setText(labels[4]);
 
-		//Prepare next round
-		if(Round.size == 9 && Round.next && 
-			((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) done(true);
-		else Round.next();
+		//Set next round
+		Round.next();
+		Round.generate();
     }
 
     public void done(boolean win) {
@@ -65,6 +63,7 @@ public class Single implements Scoreboard {
 		
 		//Prepare for restart
 		Round.reset();
+		Round.generate();
 		Round.loss = true;
 		score = 0;
 

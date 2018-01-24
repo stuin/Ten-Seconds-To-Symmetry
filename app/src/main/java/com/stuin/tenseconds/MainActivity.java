@@ -58,6 +58,7 @@ public class MainActivity extends Activity {
         //Refresh and load game
         super.onResume();
         loaded = player.scoreboard.load();
+		Round.generate();
         music.set();
     }
 
@@ -73,6 +74,7 @@ public class MainActivity extends Activity {
     private void setup() {
         //Set various dimensions
         Round.length = findViewById(R.id.Main_Layout).getHeight() / 2;
+        Round.generate();
 
         //Set title text
         TextView textView = findViewById(R.id.Top_Text);
@@ -152,7 +154,6 @@ public class MainActivity extends Activity {
 
         //Begin next round
         if(!Round.moving && !player.playing()) {
-            Round.generate(this);
             player.start();
             drawer.hide(true);
         }

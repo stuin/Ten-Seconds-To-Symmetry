@@ -14,8 +14,9 @@ import java.util.Random;
 public class Round {
 	//Technical variables
     public static boolean moving;
-    public static List<Cell> cells;
+    public static ArrayList<Cell> cells;
 	public static int length;
+	public static int scale;
 
 	//Difficulty level
     public static byte size;
@@ -28,15 +29,15 @@ public class Round {
     public static boolean loss = false;
     public static byte tutorial;
 
-    public static void generate(Context context) {
+    public static void generate() {
 		//reset variables
-        int scale = length / (size + 1);
+        scale = length / (size + 1);
         cells = new ArrayList<>();
         Random rand = new Random();
 
 		//Create squares
         for(byte y = 0; y < size; y++) for(byte x = 0; x < size; x++) {
-            cells.add(new Cell(context, (byte) rand.nextInt(colors), x, y, scale));
+            cells.add(new Cell((byte) rand.nextInt(colors), x, y));
         }
 		
 		//Set changed square

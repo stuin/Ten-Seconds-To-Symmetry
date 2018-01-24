@@ -18,7 +18,7 @@ public class LoadAll {
         //Get save data
         sharedPreferences = activity.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
         String[] KEYS = {
-                "Expanded", "Rated", "Versus"};
+                "Expert", "Hexmode", "Rated", "Versus", "ExpertUnlocked", "HexmodeUnlocked"};
         Settings.load(sharedPreferences, KEYS, false);
         String[] KEYS2 = {
                 "Background", "RateDialog", "Tutorial", "Music"};
@@ -33,7 +33,6 @@ public class LoadAll {
             if(BuildConfig.DEBUG) {
                 string += "a";
 
-                //Settings.set("Expanded", true);
                 Settings.set("Rated", false);
                 Settings.set("RateDialog", true);
             }
@@ -45,7 +44,9 @@ public class LoadAll {
         //Link settings switches
         Settings.linkId(R.id.Drawer_Tutorial, "Tutorial");
         Settings.linkId(R.id.Drawer_Versus, "Versus");
+        Settings.linkId(R.id.Drawer_Hexmode, "Hexmode");
         Settings.set("Versus", false);
+        Settings.set("Hexmode", false);
 
         //Set background button
         ToggleButton button = activity.findViewById(R.id.Drawer_Background);

@@ -78,7 +78,7 @@ public class Player extends LinearLayout {
 		((Timer) getChildAt(1)).end();
 
 		if(!Settings.get("Versus"))
-			((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).slideDrawer.showSecondary();
+			((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).hide(false);
 
 		//Set next round
 		if(Round.size == 5 && Round.colors == 3 && !Round.next && menu) menu();
@@ -105,6 +105,10 @@ public class Player extends LinearLayout {
 		//clear and set score
 		clear();
 		scoreboard.win(((Timer) getChildAt(1)).end() / 10, top);
+
+		//Prepare next round
+		if(Round.size == 9 && Round.next && ((Round.colors == 5 && !Settings.get("Expert")) || Round.colors == 8))
+			scoreboard.done(true);
 	}
 
 	void lose() {
@@ -112,8 +116,12 @@ public class Player extends LinearLayout {
 
 		//show correct answer
 		((Timer) getChildAt(1)).end();
-		((Grid) getChildAt(0)).show();
-		((Grid) getChildAt(2)).show();
+		for(Cell c : Round.cells) {
+		    if(c.mark == -1)
+		        c.display();
+        }
+
+        Settings.set("Hexmode", false);
 		
 		//Wait and clear
 		postDelayed(new Runnable() {
