@@ -21,21 +21,21 @@
 		<Button
 				android:id="@+id/Drawer_Rate"
 				style="@style/style_button"
-				android:text="@string/menu_rate"/>
+				android:text="@string/drawer_rate"/>
 		<ToggleButton
 				android:id="@+id/Drawer_Background"
 				style="@style/style_button"
-				android:textOn="@string/menu_back"
-				android:textOff="@string/menu_back"/>
+				android:textOn="@string/drawer_back"
+				android:textOff="@string/drawer_back"/>
 		<ToggleButton
 				android:id="@+id/Drawer_Music"
 				style="@style/style_button"
-				android:textOn="@string/menu_music"
-				android:textOff="@string/menu_music"/>
+				android:textOn="@string/drawer_music"
+				android:textOff="@string/drawer_music"/>
 		<Button
 				android:id="@+id/Drawer_Credits"
 				style="@style/style_button"
-				android:text="@string/menu_credits"/>
+				android:text="@string/drawer_credits"/>
 		<TextView
 				style="@style/style_line"/>
 		<LinearLayout
@@ -47,20 +47,20 @@
 			<Button
 					android:id="@+id/Drawer_Tutorial"
 					style="@style/style_button"
-					android:text="@string/menu_tutor"/>
+					android:text="@string/drawer_tutor"/>
 			<Button
 					android:id="@+id/Drawer_Versus"
 					style="@style/style_button"
-					android:text="@string/menu_versus"/>
+					android:text="@string/drawer_versus"/>
 			<Button
 					android:id="@+id/Drawer_Hexmode"
 					style="@style/style_button"
-					android:text="@string/menu_hexmode"/>
+					android:text="@string/drawer_hexmode"/>
 		</LinearLayout>
 		<Button
 				android:id="@+id/Drawer_Quit"
 				style="@style/style_button"
-				android:text="@string/menu_quit"/>
+				android:text="@string/drawer_quit"/>
 		<TextView
 				style="@style/style_line"/>
 	</LinearLayout>
@@ -131,6 +131,25 @@
 					android:id="@+id/Second_Decline"
 					style="@style/style_button"
 					android:text="@string/second_rate_decline"/>
+			<TextView
+					style="@style/style_line"/>
+		</LinearLayout>
+		<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:orientation="vertical">
+			<TextView
+					style="@style/style_line"/>
+			<TextView
+					style="@style/style_text"
+					android:text="@string/second_versus"/>
+			<TextView
+					style="@style/style_line"/>
+			<Button
+					android:id="@+id/Second_Versus"
+					style="@style/style_button"
+					android:text="@string/app_start"/>
 			<TextView
 					style="@style/style_line"/>
 		</LinearLayout>

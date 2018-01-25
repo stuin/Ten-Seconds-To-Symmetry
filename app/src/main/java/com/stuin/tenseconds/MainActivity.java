@@ -60,6 +60,7 @@ public class MainActivity extends Activity {
         loaded = player.scoreboard.load();
 		Round.generate();
         music.set();
+        Round.moving = false;
     }
 
     @Override

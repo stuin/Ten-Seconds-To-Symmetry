@@ -1,11 +1,9 @@
 package com.stuin.tenseconds;
 
-import android.content.Context;
 import android.view.View;
 import com.stuin.tenseconds.Game.Cell;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -13,7 +11,7 @@ import java.util.Random;
  */
 public class Round {
 	//Technical variables
-    public static boolean moving;
+    public static boolean moving = false;
     public static ArrayList<Cell> cells;
 	public static int length;
 	public static int scale;
@@ -43,9 +41,7 @@ public class Round {
 		//Set changed square
 		byte pos = (byte) rand.nextInt(cells.size());
         Cell marked = cells.get(pos);
-        marked.mark = (byte) rand.nextInt(colors - 1);
-        if(marked.mark == marked.color) 
-			marked.mark = (byte) (colors - 1);
+        marked.setMark((byte) rand.nextInt(colors - 1));
     }
 
     public static void reset() {
@@ -53,7 +49,6 @@ public class Round {
         count = 0;
         size = 5;
         colors = 3;
-        moving = false;
         next = false;
 
         //Set details

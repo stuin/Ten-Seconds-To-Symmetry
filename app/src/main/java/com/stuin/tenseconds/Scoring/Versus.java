@@ -56,6 +56,7 @@ public class Versus implements Scoreboard {
         if(Round.size == 9 && Round.next &&
                 ((Round.colors == 5 && !Settings.get("Expanded")) || Round.colors == 8)) done(true);
         else Round.next();
+        Round.generate();
 
         //start short timer
         ((Timer) player.getChildAt(1)).startReset();
@@ -91,6 +92,7 @@ public class Versus implements Scoreboard {
         //Reset variables
         Round.reset();
         Round.loss = true;
+        Round.generate();
         topScore = 0;
         botScore = 0;
     }
@@ -113,5 +115,6 @@ public class Versus implements Scoreboard {
         player.menu();
         set = false;
         Round.reset();
+        Round.generate();
     }
 }

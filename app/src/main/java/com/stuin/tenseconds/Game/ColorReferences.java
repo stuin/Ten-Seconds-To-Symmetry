@@ -3,7 +3,6 @@ package com.stuin.tenseconds.Game;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import com.stuin.tenseconds.HexagonDrawable;
 
 public class ColorReferences {
     static private int[] base = {

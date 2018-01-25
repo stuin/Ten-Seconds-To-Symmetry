@@ -121,7 +121,7 @@ public class Timer extends FrameLayout {
         resetTimer.start();
     }
 
-    private CountDownTimer resetTimer = new CountDownTimer(5000, 10) {
+    private CountDownTimer resetTimer = new CountDownTimer(3000, 10) {
         @Override
         public void onTick(long l) {
             time = (int) l;
@@ -129,7 +129,7 @@ public class Timer extends FrameLayout {
 
             //add to timer bar
             ProgressBar progressBar = (ProgressBar) linearLayout.getChildAt(1);
-            progressBar.setProgress(1000 - (time / 5));
+            progressBar.setProgress(time / 3);
         }
 
         @Override

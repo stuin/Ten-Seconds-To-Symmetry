@@ -1,4 +1,4 @@
-package com.stuin.tenseconds;
+package com.stuin.tenseconds.Game;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;

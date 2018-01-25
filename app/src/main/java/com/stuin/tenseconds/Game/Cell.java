@@ -8,14 +8,13 @@ import com.stuin.tenseconds.Round;
  * Created by Stuart on 3/14/2017.
  */
 public class Cell {
-	//Square placement
+	//Square place and colors
     private byte x;
     private byte y;
+    private byte color;
+    private byte mark = -1;
 
-	//Square colors
-    public byte color;
-    public byte mark = -1;
-
+    //Related views
     private FrameLayout topView;
     private FrameLayout botView;
 
@@ -26,6 +25,14 @@ public class Cell {
         this.y = ny;
     }
 
+    //Set new color for mark
+    public void setMark(byte mark) {
+        if(mark == color)
+            mark = (byte) (Round.colors - 1);
+        this.mark = mark;
+    }
+
+    //Create square view to represent cell
     public void makeView(View view, boolean top) {
         if(top)
             topView = (FrameLayout) view;
@@ -43,7 +50,7 @@ public class Cell {
             view.setBackground(ColorReferences.getColor(mark));
     }
 
-
+    //When square clicked
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -72,8 +79,11 @@ public class Cell {
         }
     };
 
+    //Shade both views
     void display() {
-        topView.setBackground(ColorReferences.getShadedColor(color));
-        botView.setBackground(ColorReferences.getShadedColor(color));
+        if(mark == -1) {
+            topView.setBackground(ColorReferences.getShadedColor(color));
+            botView.setBackground(ColorReferences.getShadedColor(color));
+        }
     }
 }

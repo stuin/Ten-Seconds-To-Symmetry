@@ -4,18 +4,18 @@
     <string name="app_start"> Start Game </string>
     <string name="app_time"> 0 </string>
     <string name="app_url">https://play.google.com/store/apps/details?id=com.stuin.tenseconds</string>
-	
-    <string name="menu_play_in">Sign In</string>
-    <string name="menu_play_out">Sign Out</string>
-    <string name="menu_rate">Rate App</string>
-	<string name="menu_blind">Colorblind</string>
-	<string name="menu_credits">Credits</string>
-    <string name="menu_back">Background</string>
-    <string name="menu_music">Music</string>
-	<string name="menu_tutor">Tutorial</string>
-    <string name="menu_versus">Versus</string>
-    <string name="menu_hexmode">Hex Mode</string>
-    <string name="menu_quit">Quit Game</string>
+
+    <string name="drawer_play_in">Sign In</string>
+    <string name="drawer_play_out">Sign Out</string>
+    <string name="drawer_rate">Rate App</string>
+	<string name="drawer_blind">Colorblind</string>
+	<string name="drawer_credits">Credits</string>
+    <string name="drawer_back">Background</string>
+    <string name="drawer_music">Music</string>
+	<string name="drawer_tutor">Tutorial</string>
+    <string name="drawer_versus">Versus</string>
+    <string name="drawer_hexmode">Hex Mode</string>
+    <string name="drawer_quit">Quit Game</string>
 
 	<string name="second_back">Back</string>
     <string name="second_credits">App Made by\nStuart Irwin</string>
@@ -28,6 +28,8 @@
     <string name="second_rate">Would you\nlike to rate\nthis app?\nGive it lots\nof stars!</string>
     <string name="second_rate_accept">Yes</string>
     <string name="second_rate_decline">Not Now</string>
+
+    <string name="second_versus">Challenge a friend,\nTop vs Bottom.\nRun until neither\ncan continue.</string>
 
     <string-array name="app_labels">
         <item>Game Lost:" "</item>

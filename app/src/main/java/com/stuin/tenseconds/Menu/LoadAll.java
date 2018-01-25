@@ -34,7 +34,6 @@ public class LoadAll {
                 string += "a";
 
                 Settings.set("Rated", false);
-                Settings.set("RateDialog", true);
             }
         } catch(PackageManager.NameNotFoundException e) {
             string = "no version";
@@ -43,10 +42,8 @@ public class LoadAll {
 
         //Link settings switches
         Settings.linkId(R.id.Drawer_Tutorial, "Tutorial");
-        Settings.linkId(R.id.Drawer_Versus, "Versus");
+        Settings.linkId(R.id.Second_Versus, "Versus");
         Settings.linkId(R.id.Drawer_Hexmode, "Hexmode");
-        Settings.set("Versus", false);
-        Settings.set("Hexmode", false);
 
         //Set background button
         ToggleButton button = activity.findViewById(R.id.Drawer_Background);

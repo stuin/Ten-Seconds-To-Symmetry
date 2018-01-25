@@ -19,7 +19,9 @@ public class Player extends LinearLayout {
 	public TextAnimation buttonAnimation;
 
 	private boolean menu = true;
+	private boolean versus = false;
 	private String[] tutorialText;
+	private Timer timer;
 
 	public Player(Context context, AttributeSet attr) {
 		super(context, attr);
@@ -35,13 +37,17 @@ public class Player extends LinearLayout {
 		((Grid) getChildAt(2)).enter();
 
 		//start timer
-		Timer timer = (Timer) getChildAt(1);
+		timer = (Timer) getChildAt(1);
 		timer.start();
 
 		//Check for versus mode
-		if(Settings.get("Versus")) {
-			if(scoreboard.getClass() != Versus.class) scoreboard = new Versus(this);
-		} else if(scoreboard.getClass() == Versus.class) scoreboard = new Single(this);
+		if(Settings.get("Versus") != versus) {
+			versus = !versus;
+
+			//Set scoreboard variant
+			if(versus) scoreboard = new Versus(this);
+			else scoreboard = new Single(this);
+		}
 
 
 		//Run tutorial
@@ -68,21 +74,23 @@ public class Player extends LinearLayout {
 	}
 
 	public void clear() {
-		Round.moving = true;
-		titleAnimation.stop();
-		buttonAnimation.stop();
+		if(playing()) {
+			Round.moving = true;
+			titleAnimation.stop();
+			buttonAnimation.stop();
 
-		//Play leaving animations
-		((Grid) getChildAt(0)).slider.exit();
-		((Grid) getChildAt(2)).slider.exit();
-		((Timer) getChildAt(1)).end();
+			//Play leaving animations
+			((Grid) getChildAt(0)).slider.exit();
+			((Grid) getChildAt(2)).slider.exit();
+			timer.end();
 
-		if(!Settings.get("Versus"))
-			((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).hide(false);
+			if (!versus)
+				((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).hide(false);
 
-		//Set next round
-		if(Round.size == 5 && Round.colors == 3 && !Round.next && menu) menu();
-		menu = true;
+			//Set next round
+			if (Round.size == 5 && Round.colors == 3 && !Round.next && menu) menu();
+			menu = true;
+		}
 	}
 
 	public void menu() {
@@ -91,20 +99,18 @@ public class Player extends LinearLayout {
 		buttonAnimation.shift(getResources().getText(R.string.app_start).toString(), 75);
 
 		//end timer
-		Timer timer = ((Timer) getChildAt(1));
 		timer.clear();
 		timer.show();
 	}
 
 	void win(boolean top) {
 		//Set end variables
-		Round.moving = true;
 		Round.count++;
 		menu = false;
 		
 		//clear and set score
 		clear();
-		scoreboard.win(((Timer) getChildAt(1)).end() / 10, top);
+		scoreboard.win(timer.end() / 10, top);
 
 		//Prepare next round
 		if(Round.size == 9 && Round.next && ((Round.colors == 5 && !Settings.get("Expert")) || Round.colors == 8))
@@ -112,16 +118,10 @@ public class Player extends LinearLayout {
 	}
 
 	void lose() {
-		Round.moving = true;
-
 		//show correct answer
-		((Timer) getChildAt(1)).end();
-		for(Cell c : Round.cells) {
-		    if(c.mark == -1)
+		timer.end();
+		for(Cell c : Round.cells)
 		        c.display();
-        }
-
-        Settings.set("Hexmode", false);
 		
 		//Wait and clear
 		postDelayed(new Runnable() {

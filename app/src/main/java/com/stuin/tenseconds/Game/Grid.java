@@ -62,7 +62,16 @@ public class Grid extends RecyclerView {
 
 			slider.setup(false, s, 700);
 		}
+
+		//Set new grid
+		confirmManager();
+        gridAdaptor.notifyDataSetChanged();
 		
+		//start animation
+		slider.enter();
+    }
+
+    private void confirmManager() {
 		//Check hex mode and layout manager
 		if(Settings.get("Hexmode") != hex) {
 			ColorReferences.hex = hex = !hex;
@@ -71,13 +80,7 @@ public class Grid extends RecyclerView {
 			else
 				setLayoutManager(gridManager);
 		}
-
-		//Set new grid
-        gridAdaptor.notifyDataSetChanged();
-		
-		//start animation
-		slider.enter();
-    }
+	}
 
 	//Adaptor to create squares
     private class GridAdaptor extends RecyclerView.Adapter {

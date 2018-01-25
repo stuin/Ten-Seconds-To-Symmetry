@@ -89,6 +89,7 @@ public class Drawer extends RelativeLayout {
             case R.id.Drawer_Quit:
 			
                 //Quit game
+                slideDrawer.showSecondary();
                 activity.player.scoreboard.done(false);
                 break;
             case R.id.Drawer_Background:case R.id.Drawer_Music:
@@ -99,7 +100,7 @@ public class Drawer extends RelativeLayout {
                 if(view.getId() == R.id.Drawer_Music)
                     activity.music.set();
                 break;
-            case R.id.Drawer_Tutorial:case R.id.Drawer_Versus: case R.id.Drawer_Hexmode:
+            case R.id.Drawer_Tutorial:case R.id.Second_Versus: case R.id.Drawer_Hexmode:
 			
                 //load Gamemode
                 Settings.setId(view.getId(), true);
@@ -114,6 +115,11 @@ public class Drawer extends RelativeLayout {
 			
                 //Go to ratings page
                 showPage(2);
+                break;
+            case R.id.Drawer_Versus:
+
+                //Go to versus page
+                showPage(3);
                 break;
 			case R.id.Second_Back:
 			

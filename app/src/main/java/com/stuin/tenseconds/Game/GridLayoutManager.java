@@ -19,6 +19,7 @@ public class GridLayoutManager extends RecyclerView.LayoutManager {
         //Clear grid
         removeAndRecycleAllViews(recycler);
 
+        //Place view in grid
         int i = 0;
         for(int y = 0; y < Round.size; y++) {
             for(int x = 0; x < Round.size; x++) {

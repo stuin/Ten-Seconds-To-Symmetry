@@ -62,6 +62,7 @@ public class Single implements Scoreboard {
 		} else timer.write(labels[3] + Round.separate(highScore));
 		
 		//Prepare for restart
+		Settings.set("Hexmode", false);
 		Round.reset();
 		Round.generate();
 		Round.loss = true;
