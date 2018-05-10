@@ -32,10 +32,11 @@ public class MainActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        //Basic android setup
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
-        //start scoreboard system
+        //Start scoreboard system
         player = findViewById(R.id.Main_Player);
         player.sharedPreferences = new LoadAll(this).sharedPreferences;
         player.scoreboard = new Single(player);
@@ -54,22 +55,22 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        //Refresh and load game
-        super.onResume();
-        loaded = player.scoreboard.load();
-		Round.generate();
-        music.set();
-        Round.moving = false;
-    }
-
-    @Override
     protected void onPause() {
         //save and pause game
         super.onPause();
         player.clear();
         player.scoreboard.save();
         music.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        //Refresh and load game
+        super.onResume();
+        loaded = player.scoreboard.load();
+        Round.generate();
+        music.set();
+        Round.moving = false;
     }
 
     private void setup() {

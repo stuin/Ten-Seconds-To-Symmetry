@@ -25,32 +25,33 @@ public class Cell {
         this.y = ny;
     }
 
-    //Set new color for mark
     public void setMark(byte mark) {
+        //Set unique color for mark
         if(mark == color)
             mark = (byte) (Round.colors - 1);
         this.mark = mark;
     }
 
-    //Create square view to represent cell
     public void makeView(View view, boolean top) {
+        //Get future variable link
         if(top)
             topView = (FrameLayout) view;
         else
             botView = (FrameLayout) view;
 
+        //Set constant properties
         view.setMinimumWidth(Round.scale);
         view.setMinimumHeight(Round.scale);
         view.setOnClickListener(clickListener);
-        view.setBackground(ColorReferences.getColor(color));
         view.setPadding(0,0,0,0);
         ((FrameLayout) view).removeAllViewsInLayout();
 
+        //Set proper color
+        view.setBackground(ColorReferences.getColor(color));
         if(mark > -1 && top)
             view.setBackground(ColorReferences.getColor(mark));
     }
 
-    //When square clicked
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -65,6 +66,7 @@ public class Cell {
                     for(int nx = x - 1; nx <= x + 1; nx++) for(int ny = y - 1; ny <= y + 1; ny++) {
                         if(nx > -1 && nx < Round.size && ny > -1 && ny < Round.size) {
                             int pos = ny * Round.size + nx;
+
                             //Check if win
                             if(Round.cells.get(pos).mark > -1) {
                                 player.win(top);
@@ -72,15 +74,17 @@ public class Cell {
                             }
                         }
                     }
-                    //If loss or direct hit
+
+                    //If none correct
                     player.lose();
-                } else player.win(top);
+                } else
+                    player.win(top);
             }
         }
     };
 
-    //Shade both views
     void display() {
+        //Shade if not marked
         if(mark == -1) {
             topView.setBackground(ColorReferences.getShadedColor(color));
             botView.setBackground(ColorReferences.getShadedColor(color));

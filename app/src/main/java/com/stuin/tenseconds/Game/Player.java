@@ -84,11 +84,12 @@ public class Player extends LinearLayout {
 			((Grid) getChildAt(2)).slider.exit();
 			timer.end();
 
-			if (!versus)
+			if(!versus)
 				((Drawer) ((RelativeLayout) getParent()).findViewById(R.id.Drawer_Layout)).hide(false);
 
 			//Set next round
-			if (Round.size == 5 && Round.colors == 3 && !Round.next && menu) menu();
+			if(Round.count == 0 && menu)
+				menu();
 			menu = true;
 		}
 	}

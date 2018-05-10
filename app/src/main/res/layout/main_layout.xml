@@ -9,30 +9,28 @@
         android:onClick="drawer"
         android:background="@color/app_background">
 
+        <!-- Background sliding effects -->
     <com.stuin.tenseconds.Menu.Background
             android:id="@+id/Top_Background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             stuin:top="true">
-
     </com.stuin.tenseconds.Menu.Background>
-
     <com.stuin.tenseconds.Menu.Background
             android:id="@+id/Bot_Background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
-
     </com.stuin.tenseconds.Menu.Background>
 
+        <!-- Main game text -->
     <TextView
             android:id="@+id/Top_Text"
             style="@style/style_text"
 			android:gravity="left"
             android:text="@string/app_name"
             android:layout_alignParentTop="true"/>
-
     <Button
             android:id="@+id/Bot_Button"
             style="@style/style_background"
@@ -41,12 +39,14 @@
             android:onClick="startGame"
             android:text="@string/app_start"/>
 
+        <!-- Alternate versus text -->
     <TextView
             android:id="@+id/Bot_Text"
             style="@style/style_text"
             android:layout_alignParentBottom="true"
             android:visibility="gone"/>
 
+        <!-- Game contents -->
     <com.stuin.tenseconds.Game.Player
             style="@style/style_base"
             android:orientation="vertical"
@@ -57,15 +57,16 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
+            <!-- Top cell grid -->
         <com.stuin.tenseconds.Game.Grid
                 android:id="@+id/Top_Grid"
                 style="@style/style_base"
                 android:layout_marginBottom="10dp"
                 stuin:top="true"
                 android:visibility="gone">
-
         </com.stuin.tenseconds.Game.Grid>
 
+            <!-- Center game timer -->
         <com.stuin.tenseconds.Game.Timer
                 style="@style/style_background"
                 android:padding="0dp"
@@ -74,19 +75,18 @@
                 android:id="@+id/Bar_Layout"
 				android:onClick="drawer">
 
+                <!-- Normal timer system -->
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
 					android:visibility="invisible">
-
                 <TextView
                         android:id="@+id/Bar_Left"
                         style="@style/style_text"
                         android:text="@string/app_time"
                         android:gravity="end"/>
-
                 <ProgressBar
                         android:id="@+id/Bar_Progress"
                         android:layout_width="wrap_content"
@@ -95,7 +95,6 @@
                         android:paddingRight="10dp"
                         android:max="1000"
                         android:progressDrawable="@drawable/progressbar"/>
-
                 <TextView
                         android:id="@+id/Bar_Right"
                         style="@style/style_text"
@@ -103,24 +102,24 @@
                         android:gravity="start"/>
             </LinearLayout>
 
+                <!-- Alternate sliding text -->
             <TextView
                     android:id="@+id/Bar_Text"
                     style="@style/style_text"
                     android:layout_gravity="center"
                     android:visibility="gone"/>
-
         </com.stuin.tenseconds.Game.Timer>
 
+            <!-- Bottom cell grid -->
         <com.stuin.tenseconds.Game.Grid
                 android:id="@+id/Bot_Grid"
                 style="@style/style_base"
                 android:layout_marginTop="10dp"
                 android:visibility="gone">
-
         </com.stuin.tenseconds.Game.Grid>
-
     </com.stuin.tenseconds.Game.Player>
 
+        <!-- Drawer corner button -->
     <FrameLayout
             android:id="@+id/Drawer_Button"
             android:layout_width="wrap_content"
@@ -137,6 +136,7 @@
                 android:alpha=".25"/>
     </FrameLayout>
 
+        <!-- Drawer menu -->
     <include
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
