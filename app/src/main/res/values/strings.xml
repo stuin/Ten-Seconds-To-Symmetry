@@ -5,32 +5,52 @@
     <string name="app_time"> 0 </string>
     <string name="app_url">https://play.google.com/store/apps/details?id=com.stuin.tenseconds</string>
 
-    <string name="drawer_play_in">Sign In</string>
-    <string name="drawer_play_out">Sign Out</string>
+        <!-- Drawer initial menu -->
     <string name="drawer_rate">Rate App</string>
-	<string name="drawer_blind">Colorblind</string>
 	<string name="drawer_credits">Credits</string>
     <string name="drawer_back">Background</string>
     <string name="drawer_music">Music</string>
+
+        <!-- Drawer gameplay menu -->
 	<string name="drawer_tutor">Tutorial</string>
     <string name="drawer_versus">Versus</string>
     <string name="drawer_hexmode">Hex Mode</string>
     <string name="drawer_quit">Quit Game</string>
 
-	<string name="second_back">Back</string>
+        <!-- Drawer WIP options -->
+    <string name="drawer_play_in">Sign In</string>
+    <string name="drawer_play_out">Sign Out</string>
+    <string name="drawer_blind">Colorblind</string>
+
+        <!-- Second Drawer pages -->
+    <string name="second_back">Back</string>
+    <string name="second_versus">Challenge a friend,\nTop vs Bottom.\nRun until neither\ncan continue.</string>
+
+        <!-- Second credits page -->
     <string name="second_credits">App Made by\nStuart Irwin</string>
+    <string name="second_credits_changelog">Changelog</string>
 	<string name="second_credits_website">Website</string>
 	<string name="second_credits_url">http://stuin.github.io</string>
 	<string name="second_credits_music">With Music by\nCoated Polecat</string>
 	<string name="second_credits_musicsite">Soundcloud</string>
 	<string name="second_credits_soundcloud">https://m.soundcloud.com/coatedpolecat</string>
-	
+
+        <!-- Second Rating dialog -->
     <string name="second_rate">Would you\nlike to rate\nthis app?\nGive it lots\nof stars!</string>
     <string name="second_rate_accept">Yes</string>
     <string name="second_rate_decline">Not Now</string>
 
-    <string name="second_versus">Challenge a friend,\nTop vs Bottom.\nRun until neither\ncan continue.</string>
+        <!-- Changelog -->
+    <string name="changelog_title">Important changes:</string>
+    <string name="changelog_button">OK</string>
+    <string name="changelog_text">
+        -Scoring revised to use more clear formulas\n
+        -Level arrangement returned to older accelerated version\n
+        -High scores reset to negate old system\n
+        -Changelog message added upon update\n
+    </string>
 
+        <!-- Game button messages -->
     <string-array name="app_labels">
         <item>Game Lost:" "</item>
         <item>Complete:" "</item>
@@ -42,12 +62,14 @@
         <item>Restart</item>
     </string-array>
 
+        <!-- Alternate versus messages -->
     <string-array name="app_versus">
         <item>You Win:" "</item>
         <item>You Lose:" "</item>
         <item>Tie:" "</item>
     </string-array>
 
+        <!-- Game tutorial messages -->
     <string-array name="app_tutor">
         <item>Just find the changed square,</item>
         <item>Each level is unique,</item>

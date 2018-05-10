@@ -9,6 +9,8 @@
 		android:padding="10dp"
 		android:visibility="gone"
 		android:onClick="drawer">
+
+		<!-- Initial Drawer menu -->
 	<LinearLayout
 			android:id="@+id/Drawer_First"
 			android:layout_width="wrap_content"
@@ -65,6 +67,7 @@
 				style="@style/style_line"/>
 	</LinearLayout>
 
+		<!-- Credits page -->
 	<LinearLayout
 			android:id="@+id/Drawer_Second"
 			android:layout_width="wrap_content"
@@ -87,9 +90,13 @@
 			<TextView
 					style="@style/style_line"/>
 			<TextView
+					android:id="@+id/Drawer_Version"
 					style="@style/style_text"
-					android:text=""
-					android:id="@+id/Drawer_Version"/>
+					android:text=""/>
+			<TextView
+					android:id="@+id/Drawer_Changelog"
+					style="@style/style_button"
+					android:text="@string/second_credits_changelog"/>
 			<TextView
 					style="@style/style_line"/>
 			<TextView
@@ -111,6 +118,8 @@
 			<TextView
 					style="@style/style_line"/>
 		</LinearLayout>
+
+			<!-- Rating dialog -->
 		<LinearLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -134,6 +143,8 @@
 			<TextView
 					style="@style/style_line"/>
 		</LinearLayout>
+
+			<!-- Versus start page -->
 		<LinearLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"

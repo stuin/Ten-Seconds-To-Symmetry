@@ -69,6 +69,7 @@ public class Drawer extends RelativeLayout {
 
     public void button(View view) {
         switch(view.getId()) {
+            //Visibility of drawer
             case R.id.Drawer_Button:
                 //show drawer
 				secondPage.showPrimary();
@@ -80,18 +81,14 @@ public class Drawer extends RelativeLayout {
                 Round.visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:case R.id.Second_Decline:
-			
+
                 //hide drawer
 				secondPage.showPrimary();
                 if(slideDrawer.primaryShown()) 
 					slideDrawer.showSecondary();
                 break;
-            case R.id.Drawer_Quit:
-			
-                //Quit game
-                slideDrawer.showSecondary();
-                activity.player.scoreboard.done(false);
-                break;
+
+            //Special buttons
             case R.id.Drawer_Background:case R.id.Drawer_Music:
 			
                 //Toggle button setting
@@ -105,6 +102,19 @@ public class Drawer extends RelativeLayout {
                 //load Gamemode
                 Settings.setId(view.getId(), true);
                 activity.startGame(null);
+                break;
+            case R.id.Drawer_Quit:
+
+                //Quit game
+                slideDrawer.showSecondary();
+                activity.player.scoreboard.done(false);
+                break;
+
+            //Other menus
+            case R.id.Drawer_Changelog:
+
+                //Open changelog
+                Changelog.viewFragment(activity);
                 break;
 			case R.id.Drawer_Credits:
 			
@@ -126,6 +136,8 @@ public class Drawer extends RelativeLayout {
 				//Return to first page
 				secondPage.showPrimary();
 				break;
+
+            //External links
 			case R.id.Second_Website:
 			
 				//Open personal website
