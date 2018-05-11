@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-import com.stuin.cleanvisuals.Drift.Engine;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.BuildConfig;
 import com.stuin.tenseconds.R;
@@ -15,13 +14,15 @@ public class LoadAll {
     public SharedPreferences sharedPreferences;
 
     public LoadAll(Activity activity) {
-        //Get save data
+        //Get save file
         sharedPreferences = activity.getSharedPreferences("TenSeconds", Context.MODE_PRIVATE);
 
+        //Load game save values (default false)
         String[] KEYS = {
-                "Expert", "Hexmode", "Rated", "Versus", "ExpertUnlocked", "HexmodeUnlocked"};
+                "Expert", "Hexmode", "Rated", "Versus", "ExpertUnlocked", "HexUnlocked"};
         Settings.load(sharedPreferences, KEYS, false);
 
+        //Load system save values (default true)
         String[] KEYS2 = {
                 "Background", "RateDialog", "Tutorial", "Music"};
         Settings.load(sharedPreferences, KEYS2, true);
@@ -46,13 +47,17 @@ public class LoadAll {
         }
 
         //Link settings switches
-        Settings.linkId(R.id.Drawer_Tutorial, "Tutorial");
+        Settings.linkId(R.id.Drawer_Game_Tutorial, "Tutorial");
         Settings.linkId(R.id.Second_Versus, "Versus");
-        Settings.linkId(R.id.Drawer_Hexmode, "Hexmode");
+        Settings.linkId(R.id.Drawer_Game_Hexmode, "Hexmode");
 
         //Set background button
         ToggleButton button = activity.findViewById(R.id.Drawer_Background);
         button.setChecked(Settings.linkId(button.getId(), "Background"));
+
+        //Set background button
+        button = activity.findViewById(R.id.Drawer_Game_Expert);
+        button.setChecked(Settings.linkId(button.getId(), "Expert"));
 
         //Set music button
         button = activity.findViewById(R.id.Drawer_Music);
@@ -69,6 +74,8 @@ public class LoadAll {
                 string += "a";
 
                 Settings.set("Rated", false);
+                //Settings.set("ExpertUnlocked", true);
+                //Settings.set("HexUnlocked", true);
             }
         } catch(PackageManager.NameNotFoundException e) {
             string = "no version";

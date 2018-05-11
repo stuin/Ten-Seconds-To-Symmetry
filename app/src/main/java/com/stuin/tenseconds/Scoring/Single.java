@@ -11,11 +11,15 @@ import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 
 public class Single implements Scoreboard {
+	//Technical values
 	private Player player;
 	private SharedPreferences sharedPreferences;
 	private String[] labels;
+
+	//Game scoring
 	private int highScore;
 	private int score;
+	private int totalTime;
 
 	public Single(Player player) {
 		//Set variables
@@ -30,12 +34,18 @@ public class Single implements Scoreboard {
     public void win(int time, boolean top) {
 		//Calculate score
 	    score += time * (Round.size * .2) * (Round.colors - 2) / 100;
+		totalTime += time;
 
 		//Show win screen
 		RelativeLayout relativeLayout = (RelativeLayout) player.getParent();
 		String text = '+' + Round.separate(score) + '+';
 		((TextView) relativeLayout.getChildAt(2)).setText(text);
 		((TextView) relativeLayout.getChildAt(3)).setText(labels[4]);
+
+		//Update current stats
+		//text = player.getResources().getString(R.string.drawer_stats);
+		text = String.format(text, Round.count, totalTime);
+		((TextView) ((RelativeLayout) player.getParent()).findViewById(R.id.Drawer_Game_Stats)).setText(text);
 
 		//Set next round
 		Round.next();

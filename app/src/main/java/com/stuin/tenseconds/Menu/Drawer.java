@@ -2,14 +2,12 @@ package com.stuin.tenseconds.Menu;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.*;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.cleanvisuals.Slide.SliderSync;
-import com.stuin.tenseconds.BuildConfig;
 import com.stuin.tenseconds.MainActivity;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
@@ -52,7 +50,7 @@ public class Drawer extends RelativeLayout {
 			
 			//Hide all but chosen one
 			View v = layout.getChildAt(i);
-			Round.visible(v, i == number + 1);
+			visible(v, i == number + 1);
 		}
 		
 		//Show second page of drawer
@@ -67,6 +65,12 @@ public class Drawer extends RelativeLayout {
         activity.startActivity(launchBrowser);
 	}
 
+    private void visible(View view, boolean bool) {
+        //Easy boolean visibility
+        if(bool) view.setVisibility(View.VISIBLE);
+        else view.setVisibility(View.GONE);
+    }
+
     public void button(View view) {
         switch(view.getId()) {
             //Visibility of drawer
@@ -76,9 +80,13 @@ public class Drawer extends RelativeLayout {
                 slideDrawer.showPrimary();
 
                 //set visibility of certain buttons
-                Round.visible(findViewById(R.id.Drawer_Modes), Round.count == 0);
-                Round.visible(findViewById(R.id.Drawer_Quit), Round.count != 0);
-                Round.visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
+                visible(findViewById(R.id.Drawer_Game_Modes), Round.count == 0);
+                visible(findViewById(R.id.Drawer_Game_In), Round.count != 0);
+                visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
+
+                //Unlock type options
+                visible(findViewById(R.id.Drawer_Game_Hexmode), Settings.get("HexUnlocked"));
+                visible(findViewById(R.id.Drawer_Game_Expert), Settings.get("ExpertUnlocked"));
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:case R.id.Second_Decline:
 
@@ -89,7 +97,7 @@ public class Drawer extends RelativeLayout {
                 break;
 
             //Special buttons
-            case R.id.Drawer_Background:case R.id.Drawer_Music:
+            case R.id.Drawer_Background:case R.id.Drawer_Music: case R.id.Drawer_Game_Expert:
 			
                 //Toggle button setting
                 ToggleButton button = (ToggleButton) view;
@@ -97,13 +105,13 @@ public class Drawer extends RelativeLayout {
                 if(view.getId() == R.id.Drawer_Music)
                     activity.music.set();
                 break;
-            case R.id.Drawer_Tutorial:case R.id.Second_Versus: case R.id.Drawer_Hexmode:
+            case R.id.Drawer_Game_Tutorial:case R.id.Second_Versus: case R.id.Drawer_Game_Hexmode:
 			
                 //load Gamemode
                 Settings.setId(view.getId(), true);
                 activity.startGame(null);
                 break;
-            case R.id.Drawer_Quit:
+            case R.id.Drawer_Game_Quit:
 
                 //Quit game
                 slideDrawer.showSecondary();
@@ -126,7 +134,7 @@ public class Drawer extends RelativeLayout {
                 //Go to ratings page
                 showPage(2);
                 break;
-            case R.id.Drawer_Versus:
+            case R.id.Drawer_Game_Versus:
 
                 //Go to versus page
                 showPage(3);

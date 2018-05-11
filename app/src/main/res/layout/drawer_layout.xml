@@ -40,29 +40,48 @@
 				android:text="@string/drawer_credits"/>
 		<TextView
 				style="@style/style_line"/>
+
+			<!-- Drawer gamemode menu -->
 		<LinearLayout
-				android:id="@+id/Drawer_Modes"
+				android:id="@+id/Drawer_Game_Modes"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
 				android:orientation="vertical">
 			<Button
-					android:id="@+id/Drawer_Tutorial"
+					android:id="@+id/Drawer_Game_Tutorial"
 					style="@style/style_button"
 					android:text="@string/drawer_tutor"/>
 			<Button
-					android:id="@+id/Drawer_Versus"
+					android:id="@+id/Drawer_Game_Versus"
 					style="@style/style_button"
 					android:text="@string/drawer_versus"/>
 			<Button
-					android:id="@+id/Drawer_Hexmode"
+					android:id="@+id/Drawer_Game_Hexmode"
 					style="@style/style_button"
 					android:text="@string/drawer_hexmode"/>
+			<ToggleButton
+					android:id="@+id/Drawer_Game_Expert"
+					style="@style/style_button"
+					android:text="@string/drawer_expert"/>
 		</LinearLayout>
-		<Button
-				android:id="@+id/Drawer_Quit"
-				style="@style/style_button"
-				android:text="@string/drawer_quit"/>
+
+			<!-- In game menu -->
+		<LinearLayout
+				android:id="@+id/Drawer_Game_In"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:orientation="vertical">
+			<TextView
+					android:id="@+id/Drawer_Game_Stats"
+					style="@style/style_text"
+					android:text=""/>
+			<Button
+					android:id="@+id/Drawer_Game_Quit"
+					style="@style/style_button"
+					android:text="@string/drawer_quit"/>
+		</LinearLayout>
 		<TextView
 				style="@style/style_line"/>
 	</LinearLayout>
@@ -93,7 +112,7 @@
 					android:id="@+id/Drawer_Version"
 					style="@style/style_text"
 					android:text=""/>
-			<TextView
+			<Button
 					android:id="@+id/Drawer_Changelog"
 					style="@style/style_button"
 					android:text="@string/second_credits_changelog"/>

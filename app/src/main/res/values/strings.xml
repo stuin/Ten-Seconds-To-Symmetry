@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+        <!-- App initial details -->
     <string name="app_name">Ten Seconds To Symmetry</string>
     <string name="app_start"> Start Game </string>
     <string name="app_time"> 0 </string>
@@ -15,6 +16,8 @@
 	<string name="drawer_tutor">Tutorial</string>
     <string name="drawer_versus">Versus</string>
     <string name="drawer_hexmode">Hex Mode</string>
+    <string name="drawer_expert">Expert</string>
+    <string name="drawer_stats">Level %1$d\nPlayed %2$ds</string>
     <string name="drawer_quit">Quit Game</string>
 
         <!-- Drawer WIP options -->
@@ -48,6 +51,7 @@
         -Level arrangement returned to older accelerated version\n
         -High scores reset to negate old system\n
         -Changelog message added upon update\n
+        -Added current stats to menu\n
     </string>
 
         <!-- Game button messages -->
@@ -71,8 +75,8 @@
 
         <!-- Game tutorial messages -->
     <string-array name="app_tutor">
-        <item>Just find the changed square,</item>
-        <item>Each level is unique,</item>
+        <item>Just tap the changed square,</item>
+        <item>Every level is unique,</item>
         <item>They grow as you progress,</item>
         <item>So go fast for higher score,</item>
         <item>And keep an eye on the timer.</item>
