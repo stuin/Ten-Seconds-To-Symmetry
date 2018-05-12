@@ -17,7 +17,7 @@
     <string name="drawer_versus">Versus</string>
     <string name="drawer_hexmode">Hex Mode</string>
     <string name="drawer_expert">Expert</string>
-    <string name="drawer_stats">Level %1$d\nPlayed %2$ds</string>
+    <string name="drawer_stats">Level %1$d\nPlayed %2$ds\nTop %3$d</string>
     <string name="drawer_quit">Quit Game</string>
 
         <!-- Drawer WIP options -->
@@ -49,9 +49,10 @@
     <string name="changelog_text">
         -Scoring revised to use more clear formulas\n
         -Level arrangement returned to older accelerated version\n
-        -High scores reset to negate old system\n
+        -High scores changed to approximate new system\n
         -Changelog message added upon update\n
-        -Added current stats to menu\n
+        -Added various current stats to menu\n
+        -Multiple background fixes\n
     </string>
 
         <!-- Game button messages -->

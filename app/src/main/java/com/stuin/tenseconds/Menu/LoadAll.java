@@ -43,7 +43,7 @@ public class LoadAll {
 
             //Clear old score system
             if(savedVersion.equals("none"))
-                sharedPreferences.edit().putInt("HighScore", -1).apply();
+                sharedPreferences.edit().putInt("HighScore", sharedPreferences.getInt("HighScore", -1) / 1000).apply();
         }
 
         //Link settings switches
@@ -74,8 +74,8 @@ public class LoadAll {
                 string += "a";
 
                 Settings.set("Rated", false);
-                //Settings.set("ExpertUnlocked", true);
-                //Settings.set("HexUnlocked", true);
+                Settings.set("ExpertUnlocked", true);
+                Settings.set("HexUnlocked", true);
             }
         } catch(PackageManager.NameNotFoundException e) {
             string = "no version";

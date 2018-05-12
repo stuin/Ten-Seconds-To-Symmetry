@@ -1,6 +1,7 @@
 package com.stuin.tenseconds;
 
 import android.view.View;
+import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Game.Cell;
 
 import java.util.ArrayList;
@@ -50,6 +51,10 @@ public class Round {
         size = 5;
         colors = 3;
         next = false;
+
+        //Expert mode
+        if(Settings.get("Expert"))
+            colors = 5;
 
         //Set details
         games++;

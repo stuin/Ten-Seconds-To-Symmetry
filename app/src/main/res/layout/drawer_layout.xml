@@ -20,10 +20,6 @@
 			android:orientation="vertical">
 		<TextView
 				style="@style/style_line"/>
-		<Button
-				android:id="@+id/Drawer_Rate"
-				style="@style/style_button"
-				android:text="@string/drawer_rate"/>
 		<ToggleButton
 				android:id="@+id/Drawer_Background"
 				style="@style/style_button"
@@ -41,7 +37,7 @@
 		<TextView
 				style="@style/style_line"/>
 
-			<!-- Drawer gamemode menu -->
+			<!-- Drawer game mode menu -->
 		<LinearLayout
 				android:id="@+id/Drawer_Game_Modes"
 				android:layout_width="match_parent"
@@ -63,10 +59,11 @@
 			<ToggleButton
 					android:id="@+id/Drawer_Game_Expert"
 					style="@style/style_button"
-					android:text="@string/drawer_expert"/>
+					android:textOn="@string/drawer_expert"
+					android:textOff="@string/drawer_expert"/>
 		</LinearLayout>
 
-			<!-- In game menu -->
+			<!-- Drawer In game menu -->
 		<LinearLayout
 				android:id="@+id/Drawer_Game_In"
 				android:layout_width="match_parent"
@@ -125,6 +122,10 @@
 					android:id="@+id/Second_Website"
 					style="@style/style_button"
 					android:text="@string/second_credits_website"/>
+            <Button
+                    android:id="@+id/Drawer_Rate"
+                    style="@style/style_button"
+                    android:text="@string/drawer_rate"/>
 			<TextView
 					style="@style/style_line"/>
 			<TextView

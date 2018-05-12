@@ -102,8 +102,14 @@ public class Drawer extends RelativeLayout {
                 //Toggle button setting
                 ToggleButton button = (ToggleButton) view;
                 Settings.setId(view.getId(), button.isChecked());
+
+                //Button specific fixes
                 if(view.getId() == R.id.Drawer_Music)
                     activity.music.set();
+                if(view.getId() == R.id.Drawer_Game_Expert) {
+                    Round.reset();
+                    Round.generate();
+                }
                 break;
             case R.id.Drawer_Game_Tutorial:case R.id.Second_Versus: case R.id.Drawer_Game_Hexmode:
 			

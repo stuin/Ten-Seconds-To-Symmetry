@@ -43,8 +43,8 @@ public class Single implements Scoreboard {
 		((TextView) relativeLayout.getChildAt(3)).setText(labels[4]);
 
 		//Update current stats
-		//text = player.getResources().getString(R.string.drawer_stats);
-		text = String.format(text, Round.count, totalTime);
+		text = player.getResources().getString(R.string.drawer_stats);
+		text = String.format(text, Round.count, totalTime / 100, highScore);
 		((TextView) ((RelativeLayout) player.getParent()).findViewById(R.id.Drawer_Game_Stats)).setText(text);
 
 		//Set next round
@@ -88,7 +88,7 @@ public class Single implements Scoreboard {
     public void save() {
 		//Create save data
 		if(!Round.loss && score > 0) {
-			String file = Round.count + ":" + score;
+			String file = Round.count + ":" + score + ":" + totalTime;
 			sharedPreferences.edit().putString("save", file).apply();
 		}
 
@@ -96,19 +96,22 @@ public class Single implements Scoreboard {
 	}
 
 	public boolean load() {
-		//Read save data
+		//Check for save
 		String file = sharedPreferences.getString("save", " ");
 		Round.games = sharedPreferences.getInt("Games", 0);
 
-		//Set match variables
+		//Process save data
 		Round.reset();
 		if(!file.equals(" ")) {
+			//Get values
 			Round.count = Byte.valueOf(file.split(":")[0]);
 			score = Integer.valueOf(file.split(":")[1]);
+			totalTime = Integer.valueOf(file.split(":")[2]);
 
 			//Set correct round
 			for(int i = 0; i < Round.count; i++) Round.next();
 
+			//Clear save file
 			sharedPreferences.edit().putString("save", " ").apply();
 			win(0, false);
 			return true;
