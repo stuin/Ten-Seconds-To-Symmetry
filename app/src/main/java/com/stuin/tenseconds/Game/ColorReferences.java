@@ -3,8 +3,9 @@ package com.stuin.tenseconds.Game;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import com.stuin.tenseconds.Game.Layout.HexagonDrawable;
 
-public class ColorReferences {
+class ColorReferences {
     static private int[] base = {
         Color.RED,
         Color.GREEN,
@@ -16,7 +17,7 @@ public class ColorReferences {
         Color.CYAN,
     };
 
-    static public boolean hex = false;
+    static boolean hex = false;
 
     static Drawable getColor(int i) {
         if(hex)
