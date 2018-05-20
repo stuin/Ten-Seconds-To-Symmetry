@@ -30,6 +30,7 @@ class ColorReferences {
         int g = Color.green(base[i]) / 2;
         int b = Color.blue(base[i]) / 2;
         int c = Color.rgb(r, g, b);
+
         if(hex)
             return new HexagonDrawable(c);
         return new ColorDrawable(c);
