@@ -1,6 +1,5 @@
 package com.stuin.tenseconds;
 
-import android.view.View;
 import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Game.Cell;
 
