@@ -1,6 +1,7 @@
 package test;
 
 import com.stuin.cleanvisuals.Settings;
+import com.stuin.tenseconds.Game.Cell;
 import org.junit.Before;
 import org.junit.Test;
 import junit.framework.Assert;
@@ -25,11 +26,36 @@ public class RoundTest {
     }
 
     @Test
+    public void testGenerate() {
+        //Generate grid
+        Round.reset();
+        Round.generate();
+
+        boolean marked = false;
+        for(Cell c : Round.cells) {
+            //Check only one cell marked
+            if(c.toString().contains("Marked")) {
+                Assert.assertFalse(marked);
+                marked = true;
+
+                //Check color changed fully
+                String[] colors = c.toString().split("=")[1].split("/");
+                Assert.assertTrue(!colors[0].equals(colors[1]));
+            }
+        }
+
+        //Other grid checks
+        Assert.assertTrue(marked);
+        Assert.assertEquals(25, Round.cells.size());
+    }
+
+    @Test
     public void testRegularLevels() {
         //Test normal level progression
         Settings.set("Expert", false);
         Round.reset();
 
+        //Run all levels
         for(int i = 0; i < 18; i++) {
             Assert.assertEquals(levelList[i], describeLevel());
             Round.next();
@@ -42,6 +68,7 @@ public class RoundTest {
         Settings.set("Expert", true);
         Round.reset();
 
+        //Run all levels
         for(int i = 12; i < 30; i++) {
             Assert.assertEquals(levelList[i], describeLevel());
             Round.next();
