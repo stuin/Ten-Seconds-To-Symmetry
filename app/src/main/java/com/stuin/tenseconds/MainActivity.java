@@ -132,7 +132,7 @@ public class MainActivity extends Activity {
         Engine engine = new Engine();
         ((Background) findViewById(R.id.Top_Background)).setup(engine);
         ((Background) findViewById(R.id.Bot_Background)).setup(engine);
-        engine.start(drawer);
+        engine.start(drawer, 5);
 
         //Fix timer width
         ((Timer) findViewById(R.id.Bar_Layout)).clear();

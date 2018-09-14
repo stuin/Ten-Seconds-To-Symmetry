@@ -26,7 +26,7 @@ public class Background extends Plane {
         start = -objectLength;
         speed = new Range(2, 8);
         addTime = 20;
-        drawable = new ColorDrawable(R.color.app_layout);
+        drawable = new ColorDrawable(getResources().getColor(R.color.app_layout));
 
         //Set for bot background
         bot = !attributeSet.getAttributeBooleanValue(
