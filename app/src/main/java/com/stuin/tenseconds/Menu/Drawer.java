@@ -26,6 +26,7 @@ public class Drawer extends RelativeLayout {
 
     public void setup(MainActivity activity) {
         this.activity = activity;
+        setVisibility(GONE);
 
         //Set drawer animation
         FrameLayout icon = activity.findViewById(R.id.Drawer_Button);

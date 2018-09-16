@@ -7,10 +7,10 @@
 		android:background="@color/app_menu"
 		android:gravity="center"
 		android:padding="10dp"
-		android:visibility="gone"
+		android:visibility="visible"
 		android:onClick="drawer">
 
-		<!-- Initial Drawer menu -->
+	<!-- Initial Drawer menu -->
 	<LinearLayout
 			android:id="@+id/Drawer_First"
 			android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
 		<TextView
 				style="@style/style_line"/>
 
-			<!-- Drawer game mode menu -->
+		<!-- Drawer game mode menu -->
 		<LinearLayout
 				android:id="@+id/Drawer_Game_Modes"
 				android:layout_width="match_parent"
@@ -63,7 +63,7 @@
 					android:textOff="@string/drawer_expert"/>
 		</LinearLayout>
 
-			<!-- Drawer In game menu -->
+		<!-- Drawer In game menu -->
 		<LinearLayout
 				android:id="@+id/Drawer_Game_In"
 				android:layout_width="match_parent"
@@ -83,7 +83,7 @@
 				style="@style/style_line"/>
 	</LinearLayout>
 
-		<!-- Credits page -->
+	<!-- Credits page -->
 	<LinearLayout
 			android:id="@+id/Drawer_Second"
 			android:layout_width="wrap_content"
@@ -122,10 +122,10 @@
 					android:id="@+id/Second_Website"
 					style="@style/style_button"
 					android:text="@string/second_credits_website"/>
-            <Button
-                    android:id="@+id/Drawer_Rate"
-                    style="@style/style_button"
-                    android:text="@string/drawer_rate"/>
+			<Button
+					android:id="@+id/Drawer_Rate"
+					style="@style/style_button"
+					android:text="@string/drawer_rate"/>
 			<TextView
 					style="@style/style_line"/>
 			<TextView
@@ -139,7 +139,7 @@
 					style="@style/style_line"/>
 		</LinearLayout>
 
-			<!-- Rating dialog -->
+		<!-- Rating dialog -->
 		<LinearLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
 					style="@style/style_line"/>
 		</LinearLayout>
 
-			<!-- Versus start page -->
+		<!-- Versus start page -->
 		<LinearLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
