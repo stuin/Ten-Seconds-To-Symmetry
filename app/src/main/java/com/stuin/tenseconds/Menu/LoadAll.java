@@ -44,7 +44,8 @@ public class LoadAll {
             //Clear old score system
             if(savedVersion.equals("none"))
                 sharedPreferences.edit().putInt("HighScore", sharedPreferences.getInt("HighScore", -1) / 1000).apply();
-        }
+        } else
+            sharedPreferences.edit().putString("Version", version).apply();
 
         //Link settings switches
         Settings.linkId(R.id.Drawer_Game_Tutorial, "Tutorial");
