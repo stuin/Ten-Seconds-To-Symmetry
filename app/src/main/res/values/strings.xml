@@ -47,11 +47,11 @@
     <string name="changelog_title">Important changes:</string>
     <string name="changelog_button">OK</string>
     <string name="changelog_text">
-        -Background effect revised for major performance\n
-        -Prevented possible crash when pressing buttons too fast\n
-        -Adjusted default settings for new user\n
-        -Fixed showing changelog to new user on second run\n
-        -Improved testing algorithms for game mechanics\n
+        -Major improvement to Background effect performance\n
+        -Fixed possible crash when pressing buttons too fast\n
+        -Changed some default/starting user settings\n
+        -More progress toward new expansions\n
+        -Fixed showing changelog to new user\n
     </string>
 
         <!-- Game button messages -->

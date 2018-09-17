@@ -52,6 +52,16 @@ public class Cell {
             view.setBackground(ColorReferences.getColor(mark));
     }
 
+    public String toString() {
+        //Write cell coordinates
+        String s = "(" + x + "," + y + ") ";
+
+        //Get cell colors
+        if(mark == -1)
+            return s + "Normal =" + color;
+        return s + "Marked =" + color + "/" + mark;
+    }
+
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
