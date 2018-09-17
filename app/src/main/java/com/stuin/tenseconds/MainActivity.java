@@ -129,7 +129,7 @@ public class MainActivity extends Activity {
         ((TextView) findViewById(R.id.Top_Text)).setMinWidth(0);
 
         //Start background engine
-        Engine engine = new Engine();
+        Engine engine = new Engine(10);
         ((Background) findViewById(R.id.Top_Background)).setup(engine);
         ((Background) findViewById(R.id.Bot_Background)).setup(engine);
         engine.start(drawer);

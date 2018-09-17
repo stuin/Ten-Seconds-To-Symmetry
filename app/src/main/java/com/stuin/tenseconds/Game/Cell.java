@@ -52,6 +52,16 @@ public class Cell {
             view.setBackground(ColorReferences.getColor(mark));
     }
 
+    public String toString() {
+        //Write cell coordinates
+        String s = "(" + x + "," + y + ") ";
+
+        //Get cell colors
+        if(mark == -1)
+            return s + "Normal =" + color;
+        return s + "Marked =" + color + "/" + mark;
+    }
+
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -61,24 +71,27 @@ public class Cell {
                 Player player = (Player) view.getParent().getParent();
 
                 //Check if correct
-                if(mark == -1) {
-                    //Find adjacent cells
-                    for(int nx = x - 1; nx <= x + 1; nx++) for(int ny = y - 1; ny <= y + 1; ny++) {
-                        if(nx > -1 && nx < Round.size && ny > -1 && ny < Round.size) {
-                            int pos = ny * Round.size + nx;
+                if(player.playing()) {
+                    if(mark == -1) {
+                        //Find adjacent cells
+                        for(int nx = x - 1; nx <= x + 1; nx++)
+                            for(int ny = y - 1; ny <= y + 1; ny++) {
+                                if(nx > -1 && nx < Round.size && ny > -1 && ny < Round.size) {
+                                    int pos = ny * Round.size + nx;
 
-                            //Check if win
-                            if(Round.cells.get(pos).mark > -1) {
-                                player.win(top);
-                                return;
+                                    //Check if win
+                                    if(Round.cells.get(pos).mark > -1) {
+                                        player.win(top);
+                                        return;
+                                    }
+                                }
                             }
-                        }
-                    }
 
-                    //If none correct
-                    player.lose();
-                } else
-                    player.win(top);
+                        //If none correct
+                        player.lose();
+                    } else
+                        player.win(top);
+                }
             }
         }
     };
