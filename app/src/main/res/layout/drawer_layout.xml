@@ -7,7 +7,7 @@
 		android:background="@color/app_menu"
 		android:gravity="center"
 		android:padding="10dp"
-		android:visibility="gone"
+		android:visibility="visible"
 		android:onClick="drawer">
 
 		<!-- Initial Drawer menu -->
