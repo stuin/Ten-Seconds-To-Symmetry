@@ -46,7 +46,7 @@ public class Grid extends RecyclerView {
 
 			@Override
 			public void exit() {
-                //gridAdaptor.notifyDataSetChanged();
+                gridAdaptor.notifyDataSetChanged();
 				Round.moving = false;
 			}
 		};
