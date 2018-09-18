@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Game;
+package com.stuin.tenseconds.Game.Layout;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

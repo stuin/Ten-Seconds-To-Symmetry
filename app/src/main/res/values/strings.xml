@@ -47,12 +47,11 @@
     <string name="changelog_title">Important changes:</string>
     <string name="changelog_button">OK</string>
     <string name="changelog_text">
-        -Scoring revised to use more clear formulas\n
-        -Level arrangement returned to older accelerated version\n
-        -High scores changed to approximate new system\n
-        -Changelog message added upon update\n
-        -Added various current stats to menu\n
-        -Multiple background fixes\n
+        -Major improvement to Background effect performance\n
+        -Fixed possible crash when pressing buttons too fast\n
+        -Changed some default/starting user settings\n
+        -More progress toward new expansions\n
+        -Fixed showing changelog to new user\n
     </string>
 
         <!-- Game button messages -->

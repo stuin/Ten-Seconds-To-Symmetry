@@ -119,20 +119,22 @@ public class Player extends LinearLayout {
 	}
 
 	void lose() {
-		//show correct answer
-		timer.end();
-		for(Cell c : Round.cells)
-		        c.display();
-		
-		//Wait and clear
-		postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				menu = false;
-				clear();
-				scoreboard.done(false);
-			}
-		},1000);
+		if(playing()) {
+			//show correct answer
+			timer.end();
+			for (Cell c : Round.cells)
+				c.display();
+
+			//Wait and clear
+			postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					menu = false;
+					clear();
+					scoreboard.done(false);
+				}
+			}, 1000);
+		}
 	}
 
 	public boolean playing() {

@@ -45,7 +45,7 @@ public class Single implements Scoreboard {
 		//Update current stats
 		text = player.getResources().getString(R.string.drawer_stats);
 		text = String.format(text, Round.count, totalTime / 100, highScore);
-		((TextView) ((RelativeLayout) player.getParent()).findViewById(R.id.Drawer_Game_Stats)).setText(text);
+		((TextView) relativeLayout.findViewById(R.id.Drawer_Game_Stats)).setText(text);
 
 		//Set next round
 		Round.next();

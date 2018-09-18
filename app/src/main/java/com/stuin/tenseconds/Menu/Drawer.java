@@ -26,6 +26,7 @@ public class Drawer extends RelativeLayout {
 
     public void setup(MainActivity activity) {
         this.activity = activity;
+        setVisibility(GONE);
 
         //Set drawer animation
         FrameLayout icon = activity.findViewById(R.id.Drawer_Button);
@@ -35,6 +36,7 @@ public class Drawer extends RelativeLayout {
 		//Set second page animation
 		secondPage = new SliderSync(this.findViewById(R.id.Drawer_First), this.findViewById(R.id.Drawer_Second));
 		secondPage.setup(true, -Round.length, Round.length, 250);
+        secondPage.showPrimary();
     }
 	
 	public boolean hide(boolean full) {

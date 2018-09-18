@@ -19,12 +19,12 @@ public class LoadAll {
 
         //Load game save values (default false)
         String[] KEYS = {
-                "Expert", "Hexmode", "Rated", "Versus", "ExpertUnlocked", "HexUnlocked"};
+                "Expert", "Hexmode", "Rated", "Versus", "ExpertUnlocked", "HexUnlocked", "Music"};
         Settings.load(sharedPreferences, KEYS, false);
 
         //Load system save values (default true)
         String[] KEYS2 = {
-                "Background", "RateDialog", "Tutorial", "Music"};
+                "Background", "RateDialog", "Tutorial"};
         Settings.load(sharedPreferences, KEYS2, true);
 
         //Show app version
@@ -44,7 +44,8 @@ public class LoadAll {
             //Clear old score system
             if(savedVersion.equals("none"))
                 sharedPreferences.edit().putInt("HighScore", sharedPreferences.getInt("HighScore", -1) / 1000).apply();
-        }
+        } else
+            sharedPreferences.edit().putString("Version", version).apply();
 
         //Link settings switches
         Settings.linkId(R.id.Drawer_Game_Tutorial, "Tutorial");

@@ -1,4 +1,4 @@
-package com.stuin.tenseconds.Game;
+package com.stuin.tenseconds.Game.Layout;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.util.FloatMath;
 
 /**
  * Created by AnderWeb (Gustavo Claramunt) on 7/10/14.
@@ -14,7 +13,7 @@ import android.util.FloatMath;
  */
 public class HexagonDrawable extends Drawable {
 
-    public static final int SIDES = 6;
+    private static final int SIDES = 6;
     private Path hexagon = new Path();
     private Path temporal = new Path();
     private Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -51,7 +50,7 @@ public class HexagonDrawable extends Drawable {
         invalidateSelf();
     }
 
-    public void computeHex(Rect bounds) {
+    private void computeHex(Rect bounds) {
 
         final int width = bounds.width();
         final int height = bounds.height();
