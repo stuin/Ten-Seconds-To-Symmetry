@@ -19,7 +19,7 @@ public class LoadAll {
 
         //Load game save values (default false)
         String[] KEYS = {
-                "Expert", "Hexmode", "Rated", "Versus", "ExpertUnlocked", "HexUnlocked", "Music"};
+                "Expert", "Hexmode", "Rated", "Versus", "Music"};
         Settings.load(sharedPreferences, KEYS, false);
 
         //Load system save values (default true)
@@ -75,8 +75,6 @@ public class LoadAll {
                 string += "a";
 
                 Settings.set("Rated", false);
-                Settings.set("ExpertUnlocked", true);
-                Settings.set("HexUnlocked", true);
             }
         } catch(PackageManager.NameNotFoundException e) {
             string = "no version";

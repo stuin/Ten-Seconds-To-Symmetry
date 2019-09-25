@@ -99,7 +99,7 @@ public class Drawer extends RelativeLayout {
                 break;
 
             //Special buttons
-            case R.id.Drawer_Background:case R.id.Drawer_Music: case R.id.Drawer_Game_Expert:
+            case R.id.Drawer_Background:case R.id.Drawer_Music:case R.id.Drawer_Game_Expert:case R.id.Drawer_Game_Hexmode:
 			
                 //Toggle button setting
                 ToggleButton button = (ToggleButton) view;
@@ -113,7 +113,7 @@ public class Drawer extends RelativeLayout {
                     Round.generate();
                 }
                 break;
-            case R.id.Drawer_Game_Tutorial:case R.id.Second_Versus: case R.id.Drawer_Game_Hexmode:
+            case R.id.Drawer_Game_Tutorial:case R.id.Second_Versus:
 			
                 //load Gamemode
                 Settings.setId(view.getId(), true);
