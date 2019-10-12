@@ -28,7 +28,7 @@
     <string name="second_credits">App Made by\nStuart Irwin</string>
     <string name="second_credits_changelog">Changelog</string>
 	<string name="second_credits_website">Website</string>
-	<string name="second_credits_url">http://stuin.github.io</string>
+	<string name="second_credits_url">http://stuintech.com</string>
 	<string name="second_credits_music">With Music by\nCoated Polecat</string>
 	<string name="second_credits_musicsite">Soundcloud</string>
 	<string name="second_credits_soundcloud">https://m.soundcloud.com/coatedpolecat</string>
@@ -42,11 +42,8 @@
     <string name="changelog_title">Important changes:</string>
     <string name="changelog_button">OK</string>
     <string name="changelog_text">
-        -Major improvement to Background effect performance\n
-        -Fixed possible crash when pressing buttons too fast\n
-        -Changed some default/starting user settings\n
-        -More progress toward new expansions\n
-        -Fixed showing changelog to new user\n
+        -Expert mode with more colors and higher scores
+        -Hexagonal mode with hexagons instead of squares
     </string>
 
         <!-- Game button messages -->
