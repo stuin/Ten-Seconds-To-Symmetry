@@ -85,10 +85,6 @@ public class Drawer extends RelativeLayout {
                 visible(findViewById(R.id.Drawer_Game_Modes), Round.count == 0);
                 visible(findViewById(R.id.Drawer_Game_In), Round.count != 0);
                 visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
-
-                //Unlock type options
-                visible(findViewById(R.id.Drawer_Game_Hexmode), Settings.get("HexUnlocked"));
-                visible(findViewById(R.id.Drawer_Game_Expert), Settings.get("ExpertUnlocked"));
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:case R.id.Second_Decline:
 

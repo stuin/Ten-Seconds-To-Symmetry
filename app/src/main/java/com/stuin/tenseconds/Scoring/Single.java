@@ -75,7 +75,10 @@ public class Single implements Scoreboard {
 			//Set high score
 			String scoreCode = Settings.get("Expert") ? "ExpertHighScore" : "HighScore";
 			sharedPreferences.edit().putInt(scoreCode, score).apply();
-			highScore = score;
+			if(Settings.get("Expert"))
+				expertHighScore = score;
+			else
+				normalHighScore = score;
 		} else timer.write(labels[3] + Round.separate(highScore));
 		
 		//Prepare for restart
