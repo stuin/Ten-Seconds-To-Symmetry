@@ -3,11 +3,11 @@ package com.stuin.tenseconds.Game;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import com.stuin.cleanvisuals.Settings;
-import com.stuin.cleanvisuals.Slide.Endings;
+import com.stuintech.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Slide.Endings;
+import com.stuintech.cleanvisuals.Slide.Slider;
 import com.stuin.tenseconds.Game.Layout.*;
 import com.stuin.tenseconds.Round;
-import com.stuin.cleanvisuals.Slide.Slider;
 
 /**
  * Created by Stuart on 3/12/2017.

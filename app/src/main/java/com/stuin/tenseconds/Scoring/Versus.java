@@ -3,7 +3,7 @@ package com.stuin.tenseconds.Scoring;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.stuin.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Settings;
 import com.stuin.tenseconds.Game.Player;
 import com.stuin.tenseconds.Game.Timer;
 import com.stuin.tenseconds.R;

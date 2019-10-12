@@ -2,7 +2,7 @@ package com.stuin.tenseconds.Menu;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import com.stuin.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Settings;
 import com.stuin.tenseconds.R;
 
 public class Music {

@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-import com.stuin.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Settings;
 import com.stuin.tenseconds.BuildConfig;
 import com.stuin.tenseconds.R;
 

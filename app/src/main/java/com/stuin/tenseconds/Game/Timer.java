@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.stuin.cleanvisuals.Slide.SliderSync;
+import com.stuintech.cleanvisuals.Slide.SliderSync;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
 

@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-import com.stuin.cleanvisuals.Drift.Drifter;
-import com.stuin.cleanvisuals.Drift.Engine;
-import com.stuin.cleanvisuals.Range;
-import com.stuin.cleanvisuals.Settings;
-import com.stuin.cleanvisuals.Drift.Plane;
+import com.stuintech.cleanvisuals.Drift.Drifter;
+import com.stuintech.cleanvisuals.Drift.Engine;
+import com.stuintech.cleanvisuals.Range;
+import com.stuintech.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Drift.Plane;
 import com.stuin.tenseconds.R;
 
 /**
