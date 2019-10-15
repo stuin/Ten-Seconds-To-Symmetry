@@ -44,6 +44,7 @@
     <string name="changelog_text">
         -Expert mode with more colors and higher scores
         -Hexagonal mode with hexagons instead of squares
+        -Fixed automatic backup system
     </string>
 
         <!-- Game button messages -->

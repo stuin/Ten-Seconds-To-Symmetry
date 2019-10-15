@@ -50,15 +50,18 @@ public class LoadAll {
         //Link settings switches
         Settings.linkId(R.id.Drawer_Game_Tutorial, "Tutorial");
         Settings.linkId(R.id.Second_Versus, "Versus");
-        Settings.linkId(R.id.Drawer_Game_Hexmode, "Hexmode");
 
         //Set background button
         ToggleButton button = activity.findViewById(R.id.Drawer_Background);
         button.setChecked(Settings.linkId(button.getId(), "Background"));
 
-        //Set background button
+        //Set expert button
         button = activity.findViewById(R.id.Drawer_Game_Expert);
         button.setChecked(Settings.linkId(button.getId(), "Expert"));
+
+        //Set Hex button
+        button = activity.findViewById(R.id.Drawer_Game_Hexmode);
+        button.setChecked(Settings.linkId(button.getId(), "Hexmode"));
 
         //Set music button
         button = activity.findViewById(R.id.Drawer_Music);
