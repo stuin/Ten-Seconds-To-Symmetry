@@ -1,0 +1,1082 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tra",
+				"transition\tproperty"
+			],
+			[
+				"tr",
+				"transition\tproperty"
+			],
+			[
+				"pa",
+				"padding\tproperty"
+			],
+			[
+				"ba",
+				"background-color\tproperty"
+			],
+			[
+				"ma",
+				"margin-top\tproperty"
+			],
+			[
+				"mar",
+				"margin\tproperty"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"la",
+				"lastSteer"
+			],
+			[
+				"su",
+				"sum"
+			],
+			[
+				"run",
+				"running"
+			],
+			[
+				"com",
+				"command"
+			],
+			[
+				"Re",
+				"RepairCommand"
+			],
+			[
+				"con",
+				"contains"
+			],
+			[
+				"steer",
+				"SteerCommand"
+			],
+			[
+				"las",
+				"lastAngle"
+			],
+			[
+				"mo",
+				"movingDistance"
+			],
+			[
+				"ge",
+				"getMoveCommand"
+			],
+			[
+				"sta",
+				"startDistance"
+			],
+			[
+				"ne",
+				"needed"
+			],
+			[
+				"fa",
+				"facingDir"
+			],
+			[
+				"wo",
+				"worldWidth"
+			],
+			[
+				"imp",
+				"import"
+			],
+			[
+				"vl",
+				"value"
+			],
+			[
+				"get",
+				"getNextCommand"
+			],
+			[
+				"stat",
+				"status"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"cha",
+				"challenge"
+			],
+			[
+				"in",
+				"instanceOf"
+			],
+			[
+				"te",
+				"text"
+			],
+			[
+				"de",
+				"decending"
+			],
+			[
+				"ins",
+				"instanceof"
+			],
+			[
+				"Emp",
+				"EmptyCell"
+			],
+			[
+				"loc",
+				"location"
+			],
+			[
+				"Sp",
+				"SpreadsheetLocation"
+			],
+			[
+				"Str",
+				"StringCheck"
+			],
+			[
+				"St",
+				"StringCheck"
+			],
+			[
+				"re",
+				"referenced"
+			],
+			[
+				"ch",
+				"charAt"
+			],
+			[
+				"is",
+				"isLocation"
+			],
+			[
+				"to",
+				"toLowerCase"
+			],
+			[
+				"sa",
+				"save_image"
+			],
+			[
+				"stack",
+				"hv_stack"
+			],
+			[
+				"hv",
+				"hv_bar"
+			],
+			[
+				"fo",
+				"foul_plot"
+			],
+			[
+				"sum",
+				"sum_successes"
+			],
+			[
+				"pl",
+				"placeScale"
+			],
+			[
+				"place",
+				"placeSwitch"
+			],
+			[
+				"cli",
+				"climb_plot"
+			],
+			[
+				"au",
+				"auto_plot"
+			],
+			[
+				"spl",
+				"split_alliances"
+			],
+			[
+				"pi",
+				"pickupFloor"
+			],
+			[
+				"task",
+				"tasks"
+			],
+			[
+				"pick",
+				"pickup_max"
+			],
+			[
+				"pickup",
+				"pickupPlatform"
+			],
+			[
+				"sty",
+				"style"
+			],
+			[
+				"ev",
+				"event"
+			],
+			[
+				"Sh",
+				"Schedule"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"i",
+				"id\tAttr"
+			],
+			[
+				"gr",
+				"graph_match"
+			],
+			[
+				"blu",
+				"blue3"
+			],
+			[
+				"bl",
+				"blue2"
+			],
+			[
+				"ex",
+				"expose"
+			],
+			[
+				"pla",
+				"place_plot"
+			],
+			[
+				"sor",
+				"sorted_teams"
+			],
+			[
+				"co",
+				"col"
+			],
+			[
+				"get_",
+				"get_current_event"
+			],
+			[
+				"e",
+				"event"
+			],
+			[
+				"st",
+				"hv_stack"
+			],
+			[
+				"Exc",
+				"exchange_plot"
+			],
+			[
+				"exc",
+				"exchange_plot"
+			],
+			[
+				"tas",
+				"task_rename"
+			],
+			[
+				"all",
+				"all_data_cols"
+			],
+			[
+				"cl",
+				"col"
+			],
+			[
+				"tea",
+				"team_count"
+			],
+			[
+				"ta",
+				"hv_table"
+			],
+			[
+				"p",
+				"pd"
+			],
+			[
+				"al",
+				"all_data_cols"
+			],
+			[
+				"ts",
+				"tasks"
+			],
+			[
+				"fil",
+				"filter_teams"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"team",
+				"team_num"
+			],
+			[
+				"lo",
+				"long_name"
+			],
+			[
+				"count",
+				"count_df"
+			],
+			[
+				"ec",
+				"placeExchange"
+			],
+			[
+				"tota",
+				"totals_team"
+			],
+			[
+				"fla",
+				"flatten_success"
+			],
+			[
+				"fl",
+				"flatten_capability"
+			],
+			[
+				"alin",
+				"text-align"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"pr",
+				"press"
+			],
+			[
+				"fu",
+				"full_windsor"
+			],
+			[
+				"ha",
+				"half_windsor"
+			],
+			[
+				"ali",
+				"align-self"
+			],
+			[
+				"l",
+				"li\tTag"
+			],
+			[
+				"match",
+				"matchData"
+			],
+			[
+				"set",
+				"setMatch"
+			],
+			[
+				"even",
+				"event_id"
+			],
+			[
+				"s",
+				"s_config"
+			],
+			[
+				"No",
+				"None"
+			],
+			[
+				"sav",
+				"save_view"
+			],
+			[
+				"gtp",
+				"blue_get_plot"
+			],
+			[
+				"bo",
+				"hv_box"
+			],
+			[
+				"hv_",
+				"hv_table"
+			],
+			[
+				"we",
+				"web_data"
+			],
+			[
+				"av",
+				"average_tasks"
+			],
+			[
+				"a",
+				"avg"
+			],
+			[
+				"h",
+				"hv_box"
+			],
+			[
+				"succe",
+				"flatten_success"
+			],
+			[
+				"S",
+				"Succeses"
+			],
+			[
+				"fi",
+				"fixed_data"
+			],
+			[
+				"na",
+				"name"
+			],
+			[
+				"teams",
+				"teams_tasks_data"
+			],
+			[
+				"phase",
+				"phase_id"
+			],
+			[
+				"r",
+				"row"
+			],
+			[
+				"tem",
+				"team_data"
+			],
+			[
+				"ip",
+				"ipv4s"
+			],
+			[
+				"k",
+				"key"
+			],
+			[
+				"Ge",
+				"GetComponent"
+			],
+			[
+				"mtch",
+				"matchteams"
+			],
+			[
+				"mat",
+				"match"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/E/Programming/Android/CleanVisuals/src/com/stuin/cleanvisuals/Drift/Engine.java",
+			"settings":
+			{
+				"buffer_size": 904,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Java Run.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Java Run.sublime-build",
+					"Input"
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Java.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Java.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/Java.sublime-build",
+					"Run Input"
+				]
+			],
+			[
+				"Packages/Java/JavaC.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Kotlin/Kotlin.sublime-build",
+					""
+				],
+				[
+					"Packages/Kotlin/Kotlin.sublime-build",
+					"Compile"
+				],
+				[
+					"Packages/Kotlin/Kotlin.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/Kotlin/Kotlin.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 384.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"instal\t",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"th",
+				"UI: Select Theme"
+			],
+			[
+				"st",
+				"git: quick stage"
+			],
+			[
+				"pull",
+				"git: pull"
+			],
+			[
+				"sta",
+				"git: quick stage"
+			],
+			[
+				"che",
+				"git: checkout"
+			],
+			[
+				"chec",
+				"git: checkout"
+			],
+			[
+				"stag",
+				"git: quick stage"
+			],
+			[
+				"git sta",
+				"git: quick stage"
+			],
+			[
+				"the",
+				"UI: Select Theme"
+			],
+			[
+				"ter",
+				"Terminal: Open"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"prefer",
+				"Preferences: GitSavvy Settings"
+			],
+			[
+				"push",
+				"git: push"
+			],
+			[
+				"pu",
+				"Preferences: Package Control Settings – User"
+			],
+			[
+				"rmo",
+				"Package Control: Remove Package"
+			],
+			[
+				"stat",
+				"GitStatus: Changed files"
+			],
+			[
+				"qui",
+				"git: quick stage"
+			],
+			[
+				"",
+				"View: Toggle Menu"
+			],
+			[
+				"pus",
+				"git: push to branch name"
+			],
+			[
+				"comm",
+				"git: quick commit"
+			],
+			[
+				"new",
+				"git: checkout new branch"
+			],
+			[
+				"toggle ",
+				"View: Toggle Menu"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"disco",
+				"Package Control: Discover Packages"
+			],
+			[
+				"tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"git qui",
+				"git: quick stage"
+			],
+			[
+				"co",
+				"git: commit"
+			],
+			[
+				"git hel",
+				"GitSavvy: help"
+			],
+			[
+				"git user",
+				"github: set remote for integration"
+			],
+			[
+				"ch",
+				"git: checkout"
+			],
+			[
+				"git p",
+				"git: pull"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"gi",
+				"Package Control: Install Package"
+			],
+			[
+				"colo",
+				"UI: Select Color Scheme"
+			],
+			[
+				"Pa",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Paca",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 143.0,
+		"history":
+		[
+			"import graphing",
+			"ls",
+			"Package",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/Programming/Android/TenSecondsToSymmetry/app/src/main/java/com/stuin/tenseconds",
+		"/E/Programming/Android/CleanVisuals/src/com/stuin/cleanvisuals",
+		"/E/Programming/Android/CleanVisuals/src/com/stuin/cleanvisuals/Drift"
+	],
+	"file_history":
+	[
+		"/E/Programming/stuin.github.io/scripts/styles.css",
+		"/E/Programming/stuin.github.io/projects.html",
+		"/E/Programming/stuin.github.io/privacy.html",
+		"/E/Programming/stuin.github.io/scouting.html",
+		"/E/Programming/stuin.github.io/tenseconds.html",
+		"/E/Programming/stuin.github.io/scripts/scout.css",
+		"/media/OUTER-DISK/Programming/Java/SpaceBattles/src/MiddleShip.java",
+		"/E/Programming/C#/Infinite-Entelechy/InfiniteEntelechy/Components/BaseMovement.cs",
+		"/E/Programming/Java/SpaceBattles/src/BuildShip.java",
+		"/E/Programming/Java/SpaceBattles/src/engines/ShipEngine.java",
+		"/E/Programming/Java/SpaceBattles/src/engines/MiddleEngine.java",
+		"/E/Programming/Java/SpaceBattles/src/EngineList.java",
+		"/E/Programming/Java/SpaceBattles/src/MiddleEngine.java",
+		"/E/Programming/Java/SpaceBattles/runfile.cmd",
+		"/E/Programming/Java/SpaceBattles/src/ShipEngine.java",
+		"/E/Programming/Java/SpaceBattles/src/Position.java",
+		"/E/Programming/Java/SpaceBattles/stuin/BuildShip.java",
+		"/E/Programming/Java/SpaceBattles/stuin/EngineList.java",
+		"/E/Programming/Java/SpaceBattles/src/engines/EngineList.java",
+		"/E/Programming/C#/Infinite-Entelechy/InfiniteEntelechy/Components/SpaceMovement.cs",
+		"/E/Programming/Java/SpaceBattles/src/MiddleShip.java",
+		"/E/Programming/Java/SpaceBattles/ExampleShip.java",
+		"/E/Programming/Java/SpaceBattles/runfile.bash",
+		"/E/Programming/Java/Terminal-Java-Games/GameLoader/src/gameloader/minesweeper/Minesweeper.kt",
+		"/E/Programming/Java/AP Computer Science/TextExcel/Spreadsheet.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/RangeLocation.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/FormulaCell.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/PercentCell.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/StringCheck.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/TextCell.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/RealCell.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/Cell.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/TextExcel.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/EmptyCell.java",
+		"/E/Programming/Java/AP Computer Science/TextExcel/ValueCell.java",
+		"/media/OUTER-DISK/Programming/Esoteric-Mussings/Befunge/Beer.bf",
+		"/media/OUTER-DISK/Programming/Esoteric-Mussings/Befunge/Random.bf",
+		"/media/OUTER-DISK/Programming/Java/Console/Kotlin/Quine.kt",
+		"/home/stuin/SPL/own/fibonacci.spl",
+		"/home/stuin/SPL/own/lost.spl",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/season/s2018/observertasks.csv",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/view/excel.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/viewerapi.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/scoutingapi.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/model/match.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/scouting/tablet.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/season/s2018/gametasks.csv",
+		"/media/OUTER-DISK/Programming/stuin.github.io/scripts/ties.css",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/sites/graphing.html",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/sites/view.html",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/scripts/showteam.js",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/view/dataframes.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/model/event.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/model/schedule.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/view/graphing.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/model/graphing.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/data/matchData.html",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/setup_db.sql",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/sqlalchemytest.py",
+		"/media/OUTER-DISK/Programming/stuin.github.io/Ties/Atlantic.txt",
+		"/media/OUTER-DISK/Programming/stuin.github.io/index.html",
+		"/media/OUTER-DISK/Tools/sw",
+		"/media/OUTER-DISK/Programming/stuin.github.io/Ties/Half Winsor.txt",
+		"/home/stuin/Downloads/installFiles/dwm/config.h",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/sites/admin.html",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/config.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/sites/setup.html",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/model/dal.py",
+		"/home/stuin/.config/sublime-text-3/Packages/Terminal/Terminal.sublime-settings",
+		"/home/stuin/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/data/Report_wasno2017Apr20_070703.xlsx",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/model/setup.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/scouting/tasks.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/auth.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/model/firstapi.py",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/web/scripts/setup.js",
+		"/media/OUTER-DISK/Programming/Robotics/irsScouting2017/server/season/observertasks.csv",
+		"/media/OUTER-DISK/Programming/C#/Nuclear Reasearch/Assets/Scripts/ReactorButton.cs",
+		"/media/OUTER-DISK/Programming/C#/Nuclear Reasearch/Assets/Scripts/Enemy.cs",
+		"/media/OUTER-DISK/Programming/Java/Console/AP Computer Science/IdentifierGenerator.java",
+		"/media/OUTER-DISK/Programming/Java/Console/AP Computer Science/Blackjack/Card.java",
+		"/home/stuin/.config/sublime-text-3/Packages/User/Java.sublime-build",
+		"/home/stuin/bin/run-pause",
+		"/home/stuin/bin/bar-loader.sh",
+		"/media/OUTER-DISK/Tools/Sublime Text Build 3143 x64/Data/Packages/User/JavaC.sublime-build",
+		"/home/stuin/.config/xlunch/entries.dsv"
+	],
+	"find":
+	{
+		"height": 29.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/E/Programming/Android/CleanVisuals/src/com/stuin/cleanvisuals/Drift/Engine.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 904,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.4,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.GitSavvy":
+	{
+		"height": 115.0
+	},
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 140.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "TenSeconds.sublime-project",
+	"replace":
+	{
+		"height": 54.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ca",
+				"AP Computer Science/Blackjack/Card.java"
+			],
+			[
+				"",
+				"web/sites/matchenter.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 384.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"$1$2"
+			],
+			[
+				"bu",
+				"build_dicts"
+			],
+			[
+				"build_dicts",
+				"build_dicts"
+			]
+		],
+		"width": 400.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 261.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
