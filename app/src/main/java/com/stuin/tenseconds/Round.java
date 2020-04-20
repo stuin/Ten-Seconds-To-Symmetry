@@ -1,6 +1,6 @@
 package com.stuin.tenseconds;
 
-import com.stuin.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Settings;
 import com.stuin.tenseconds.Game.Cell;
 
 import java.util.ArrayList;

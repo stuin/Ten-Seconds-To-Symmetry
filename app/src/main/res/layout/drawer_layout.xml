@@ -52,10 +52,11 @@
 					android:id="@+id/Drawer_Game_Versus"
 					style="@style/style_button"
 					android:text="@string/drawer_versus"/>
-			<Button
+			<ToggleButton
 					android:id="@+id/Drawer_Game_Hexmode"
 					style="@style/style_button"
-					android:text="@string/drawer_hexmode"/>
+					android:textOn="@string/drawer_hexmode"
+					android:textOff="@string/drawer_hexmode"/>
 			<ToggleButton
 					android:id="@+id/Drawer_Game_Expert"
 					style="@style/style_button"

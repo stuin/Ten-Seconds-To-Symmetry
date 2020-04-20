@@ -2,10 +2,12 @@
 .gradle
 /local.properties
 /.idea/
-/.idea/
 .DS_Store
 /build/
 /captures
 .externalNativeBuild
 /bin/
 /gen/
+gradle*
+/release/
+*ids.xml

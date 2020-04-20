@@ -3,7 +3,7 @@ package com.stuin.tenseconds.Scoring;
 import android.content.SharedPreferences;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.stuin.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Settings;
 import com.stuin.tenseconds.Game.Player;
 import com.stuin.tenseconds.Game.Timer;
 import com.stuin.tenseconds.Menu.Drawer;
@@ -17,7 +17,8 @@ public class Single implements Scoreboard {
 	private String[] labels;
 
 	//Game scoring
-	private int highScore;
+	private int normalHighScore;
+	private int expertHighScore;
 	private int score;
 	private int totalTime;
 
@@ -27,7 +28,8 @@ public class Single implements Scoreboard {
 	    sharedPreferences = player.sharedPreferences;
 
 		//Read data
-	    highScore = sharedPreferences.getInt("HighScore", -1);
+	    normalHighScore = sharedPreferences.getInt("HighScore", -1);
+		expertHighScore = sharedPreferences.getInt("ExpertHighScore", -1);
 	    labels = player.getResources().getStringArray(R.array.app_labels);
     }
 
@@ -42,6 +44,9 @@ public class Single implements Scoreboard {
 		((TextView) relativeLayout.getChildAt(2)).setText(text);
 		((TextView) relativeLayout.getChildAt(3)).setText(labels[4]);
 
+		//Get proper high score value
+		int highScore = Settings.get("Expert") ? expertHighScore : normalHighScore;
+
 		//Update current stats
 		text = player.getResources().getString(R.string.drawer_stats);
 		text = String.format(text, Round.count, totalTime / 100, highScore);
@@ -53,7 +58,7 @@ public class Single implements Scoreboard {
     }
 
     public void done(boolean win) {
-		//write score at vertical
+		//Write score at vertical
 		String text = labels[0] + Round.separate(score);
 		if(win) text = labels[1] + Round.separate(score);
 		
@@ -61,18 +66,22 @@ public class Single implements Scoreboard {
 		((TextView) relativeLayout.getChildAt(2)).setText(text);
 		((TextView) relativeLayout.getChildAt(3)).setText(labels[5]);
 
-		//show high score data
+		//Show high score data
+		int highScore = Settings.get("Expert") ? expertHighScore : normalHighScore;
 		Timer timer = (Timer) player.getChildAt(1);
 		if(score > highScore) {
 			timer.write(labels[2]);
 
 			//Set high score
-			sharedPreferences.edit().putInt("HighScore", score).apply();
-			highScore = score;
+			String scoreCode = Settings.get("Expert") ? "ExpertHighScore" : "HighScore";
+			sharedPreferences.edit().putInt(scoreCode, score).apply();
+			if(Settings.get("Expert"))
+				expertHighScore = score;
+			else
+				normalHighScore = score;
 		} else timer.write(labels[3] + Round.separate(highScore));
 		
 		//Prepare for restart
-		Settings.set("Hexmode", false);
 		Round.reset();
 		Round.generate();
 		Round.loss = true;
@@ -104,9 +113,9 @@ public class Single implements Scoreboard {
 		Round.reset();
 		if(!file.equals(" ")) {
 			//Get values
-			Round.count = Byte.valueOf(file.split(":")[0]);
-			score = Integer.valueOf(file.split(":")[1]);
-			totalTime = Integer.valueOf(file.split(":")[2]);
+			Round.count = Byte.parseByte(file.split(":")[0]);
+			score = Integer.parseInt(file.split(":")[1]);
+			totalTime = Integer.parseInt(file.split(":")[2]);
 
 			//Set correct round
 			for(int i = 0; i < Round.count; i++) Round.next();

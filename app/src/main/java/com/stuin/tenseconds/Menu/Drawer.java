@@ -6,8 +6,8 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.*;
-import com.stuin.cleanvisuals.Settings;
-import com.stuin.cleanvisuals.Slide.SliderSync;
+import com.stuintech.cleanvisuals.Settings;
+import com.stuintech.cleanvisuals.Slide.SliderSync;
 import com.stuin.tenseconds.MainActivity;
 import com.stuin.tenseconds.R;
 import com.stuin.tenseconds.Round;
@@ -85,10 +85,6 @@ public class Drawer extends RelativeLayout {
                 visible(findViewById(R.id.Drawer_Game_Modes), Round.count == 0);
                 visible(findViewById(R.id.Drawer_Game_In), Round.count != 0);
                 visible(findViewById(R.id.Drawer_Rate), !Settings.get("Rated"));
-
-                //Unlock type options
-                visible(findViewById(R.id.Drawer_Game_Hexmode), Settings.get("HexUnlocked"));
-                visible(findViewById(R.id.Drawer_Game_Expert), Settings.get("ExpertUnlocked"));
                 break;
             case R.id.Drawer_Layout:case R.id.Main_Layout:case R.id.Bar_Layout:case R.id.Second_Decline:
 
@@ -99,7 +95,7 @@ public class Drawer extends RelativeLayout {
                 break;
 
             //Special buttons
-            case R.id.Drawer_Background:case R.id.Drawer_Music: case R.id.Drawer_Game_Expert:
+            case R.id.Drawer_Background:case R.id.Drawer_Music:case R.id.Drawer_Game_Expert:case R.id.Drawer_Game_Hexmode:
 			
                 //Toggle button setting
                 ToggleButton button = (ToggleButton) view;
@@ -113,7 +109,7 @@ public class Drawer extends RelativeLayout {
                     Round.generate();
                 }
                 break;
-            case R.id.Drawer_Game_Tutorial:case R.id.Second_Versus: case R.id.Drawer_Game_Hexmode:
+            case R.id.Drawer_Game_Tutorial:case R.id.Second_Versus:
 			
                 //load Gamemode
                 Settings.setId(view.getId(), true);

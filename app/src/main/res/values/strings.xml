@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <!-- App initial details -->
+        <!-- App main details -->
     <string name="app_name">Ten Seconds To Symmetry</string>
     <string name="app_start"> Start Game </string>
     <string name="app_time"> 0 </string>
     <string name="app_url">https://play.google.com/store/apps/details?id=com.stuin.tenseconds</string>
 
-        <!-- Drawer initial menu -->
+        <!-- Drawer main menu -->
     <string name="drawer_rate">Rate App</string>
 	<string name="drawer_credits">Credits</string>
     <string name="drawer_back">Background</string>
@@ -15,15 +15,10 @@
         <!-- Drawer gameplay menu -->
 	<string name="drawer_tutor">Tutorial</string>
     <string name="drawer_versus">Versus</string>
-    <string name="drawer_hexmode">Hex Mode</string>
+    <string name="drawer_hexmode">Hexagonal</string>
     <string name="drawer_expert">Expert</string>
     <string name="drawer_stats">Level %1$d\nPlayed %2$ds\nTop %3$d</string>
     <string name="drawer_quit">Quit Game</string>
-
-        <!-- Drawer WIP options -->
-    <string name="drawer_play_in">Sign In</string>
-    <string name="drawer_play_out">Sign Out</string>
-    <string name="drawer_blind">Colorblind</string>
 
         <!-- Second Drawer pages -->
     <string name="second_back">Back</string>
@@ -33,7 +28,7 @@
     <string name="second_credits">App Made by\nStuart Irwin</string>
     <string name="second_credits_changelog">Changelog</string>
 	<string name="second_credits_website">Website</string>
-	<string name="second_credits_url">http://stuin.github.io</string>
+	<string name="second_credits_url">http://stuintech.com</string>
 	<string name="second_credits_music">With Music by\nCoated Polecat</string>
 	<string name="second_credits_musicsite">Soundcloud</string>
 	<string name="second_credits_soundcloud">https://m.soundcloud.com/coatedpolecat</string>
@@ -47,11 +42,9 @@
     <string name="changelog_title">Important changes:</string>
     <string name="changelog_button">OK</string>
     <string name="changelog_text">
-        -Major improvement to Background effect performance\n
-        -Fixed possible crash when pressing buttons too fast\n
-        -Changed some default/starting user settings\n
-        -More progress toward new expansions\n
-        -Fixed showing changelog to new user\n
+        -Expert mode with more colors and higher scores
+        -Hexagonal mode with hexagons instead of squares
+        -Fixed automatic backup system
     </string>
 
         <!-- Game button messages -->
