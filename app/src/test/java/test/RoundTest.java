@@ -1,7 +1,7 @@
 package test;
 
-import com.stuin.cleanvisuals.Settings;
 import com.stuin.tenseconds.Game.Cell;
+import com.stuintech.cleanvisuals.Settings;
 import org.junit.Before;
 import org.junit.Test;
 import junit.framework.Assert;
